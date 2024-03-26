@@ -36,6 +36,7 @@ export const StyledTableTr = styled.tr`
 `;
 
 export const StyledTableTd = styled.td`
+  width: 200px;
   padding: 0.6em;
   border-bottom: 2px solid ${(props) => props.theme.border};
 `;
