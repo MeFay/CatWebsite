@@ -4,17 +4,17 @@ import styled from "styled-components";
 export const StyledLink = styled(Link)<{ isActive: boolean }>`
   display: flex;
   align-items: center;
-  color: #9b5de5;
+  color: #ffeecc;
   text-decoration: none;
-  font-size: 1.8rem;
+  font-size: 2rem;
   padding: 1rem;
   &:hover {
-    color: #ffffff;
+    color: #46425e;
   }
 `;
 
 export const Navbar = styled.nav`
-  background-color: #e0aaff;
+  background-color: #00b9be;
   display: flex;
   align-items: center;
   padding-left: 1rem;
@@ -28,9 +28,9 @@ export const NavbarLeft = styled.div`
 `;
 
 export const NavbarRight = styled.div`
-  color: #fff;
+  color: #ffeecc;
   width: 100%;
-  font-size: 1.8rem;
+  font-size: 2rem;
   display: flex;
   align-items: center;
   justify-content: flex-end;
