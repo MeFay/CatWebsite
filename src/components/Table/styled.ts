@@ -13,7 +13,6 @@ export const StyledTableWrapper = styled.div`
 `;
 
 export const StyledTable = styled.table`
-  border-radius: 5px;
   width: 60%;
   font-size: 1.6rem;
   border-collapse: collapse;
@@ -39,6 +38,9 @@ export const StyledTableTd = styled.td`
   width: 200px;
   padding: 0.6em;
   border-bottom: 2px solid ${(props) => props.theme.border};
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export const StyledImage = styled.img`

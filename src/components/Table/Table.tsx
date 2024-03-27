@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import {
   StyledTable,
   StyledTableWrapper,
@@ -7,7 +8,16 @@ import {
   StyledImage,
 } from "./styled";
 
+type TableProps = {
+  headers: Array<string>;
+  lines: {
+    id: string;
+    cols: (string | number)[];
+  }[];
+};
+
 export const Table = ({ headers, lines }: TableProps) => {
+  const navigate = useNavigate();
   const DisplayHeaders = headers.map((header) => {
     return <StyledTableTh key={header}>{header}</StyledTableTh>;
   });
@@ -25,7 +35,11 @@ export const Table = ({ headers, lines }: TableProps) => {
       }
     });
 
-    return <StyledTableTr key={line.id}>{DisplayColumns}</StyledTableTr>;
+    return (
+      <StyledTableTr key={line.id} onClick={() => navigate(`/cat/${line.id}`)}>
+        {DisplayColumns}
+      </StyledTableTr>
+    );
   });
 
   return (
@@ -38,12 +52,4 @@ export const Table = ({ headers, lines }: TableProps) => {
       </StyledTable>
     </StyledTableWrapper>
   );
-};
-
-type TableProps = {
-  headers: Array<string>;
-  lines: {
-    id: string;
-    cols: (string | number)[];
-  }[];
 };

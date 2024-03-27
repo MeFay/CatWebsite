@@ -9,7 +9,7 @@ export const router = createBrowserRouter([
     element: <HomePage />,
   },
   {
-    path: "/shop/:pageId",
+    path: "/shop/:1",
     element: <ShopPage />,
   },
   {

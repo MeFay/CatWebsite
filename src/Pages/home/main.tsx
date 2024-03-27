@@ -1,43 +1,43 @@
-import  { useState } from "react";
-
-import "../../index.css";
-import { Table } from "../../components/Table/Table.tsx";
-import catJsonData from "../../assets/cats.json";
-import ReactPaginate from "react-paginate";
-
-type Cat = {
-  id: number;
-  race: string;
-  name: string;
-  image: string;
-};
+import { useLocation } from "react-router-dom";
+import {
+  StyledWrapper,
+  StyledLink,
+  StyledIntro,
+  StyledImage,
+} from "./styled.ts";
 
 export const MainSection = () => {
-  const [catList, setCatList] = useState<Array<Cat>>(
-    Object.entries(catJsonData).map(([id, cat]) => ({ id: Number(id), ...cat }))
-  );
-
-  const TableLines = catList.map((cat) => {
-    return {
-      id: cat.id.toString(),
-      cols: [cat.name, cat.race, cat.image],
-    };
-  });
+  const location = useLocation();
+  const titleLink = [
+    {
+      title: "Cat Lovers Shop",
+      url: "/shop/1",
+    },
+  ];
+  const titleElement = titleLink.map((item) => (
+    <StyledLink
+      to={item.url}
+      className={location.pathname === item.url ? "active" : ""}
+      key={item.title}
+    >
+      {item.title}
+    </StyledLink>
+  ));
 
   return (
     <>
-      <Table headers={["Name", "Rsdd", "Photo"]} lines={TableLines} />
-      <ReactPaginate
-        breakLabel="..."
-        nextLabel="next >"
-        onPageChange={(a) => {
-          console.log(a);
-        }}
-        pageRangeDisplayed={5}
-        pageCount={5}
-        previousLabel="< previous"
-        renderOnZeroPageCount={null}
-      />
+      <h1>{titleElement}</h1>
+      <StyledWrapper>
+        <StyledIntro>
+          Welcome to our cozy corner of the internet, a haven for cat lovers! We
+          are home to a delightful variety of cute and adorable cats, each one
+          waiting to bring joy into your life. Our cats are more than just pets,
+          they're family. So why wait? Step into our shop and meet our charming
+          feline friends. Who knows, you might just meet your new best friend
+          today!
+        </StyledIntro>
+        <StyledImage src="/src/assets/Shop.png" alt="Our shop" />
+      </StyledWrapper>
     </>
   );
 };

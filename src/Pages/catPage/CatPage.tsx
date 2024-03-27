@@ -1,7 +1,12 @@
+import { NavbarLayout } from "../../navbar.tsx/Navbar";
+import { MainSection } from "./main";
+
 const CatPage = () => {
   return (
-    <div>CatPage</div>
-  )
-}
-
-export default CatPage
+    <>
+      <NavbarLayout />
+      <MainSection />
+    </>
+  );
+};
+export default CatPage;
