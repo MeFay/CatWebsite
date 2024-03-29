@@ -11,8 +11,8 @@ export const StyledWrapper = styled.div`
   border-radius: 15px;
   margin-top: 5em;
   padding: 2em;
-  border: 0.5em solid #15788c;
-  gap: 1em;
+  border: 0.5em solid #ff6973;
+  gap: 2em;
 `;
 
 export const StyledTitle = styled.h1`
@@ -58,11 +58,25 @@ export const StyledButton = styled.button`
   width: 50%;
   padding: 10px;
   border-radius: 10px;
-  background-color: #ff6973;
+  background-color: #15788c;
   color: #ffeecc;
   font-size: 1.5em;
   border: none;
   &:hover {
     cursor: pointer;
   }
+`;
+
+export const StyledPrice = styled.p`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  font-size: 2em;
+  max-width: 100%;
+  color: #ffeecc;
+  background-color: #00b9be;
+  border-radius: 5px;
+  width: 100%;
 `;

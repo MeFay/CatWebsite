@@ -6,6 +6,7 @@ import {
   StyledTraits,
   StyledP,
   StyledButton,
+  StyledPrice,
 } from "./styled";
 
 export const MainSection = () => {
@@ -17,6 +18,8 @@ export const MainSection = () => {
       removeFromCart(itemToRemove);
     }
   };
+
+  const totalPrice = cart.reduce((total, item) => total + item.price, 0);
 
   return (
     <StyledWrapper>
@@ -31,6 +34,7 @@ export const MainSection = () => {
           </StyledButton>
         </StyledTraits>
       ))}
+      <StyledPrice>Total: {totalPrice}$</StyledPrice>
     </StyledWrapper>
   );
 };

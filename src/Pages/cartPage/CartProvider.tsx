@@ -23,7 +23,9 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
   };
 
   const removeFromCart = (item: CartItem) => {
-    setCart((prevCart) => prevCart.filter((cartItem) => cartItem.id !== item.id));
+    setCart((prevCart) =>
+      prevCart.filter((cartItem) => cartItem.id !== item.id)
+    );
   };
 
   return (
