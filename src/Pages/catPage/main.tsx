@@ -41,6 +41,7 @@ export const MainSection = () => {
         id: cat.id,
         name: cat.name,
         image: cat.image,
+        price: cat.price,
       });
     }
   };
