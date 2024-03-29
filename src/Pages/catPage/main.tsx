@@ -1,5 +1,7 @@
 import { useParams } from "react-router-dom";
 import catJsonData from "../../assets/cats.json";
+import { CartContext } from "../cartPage/CartContext";
+
 import {
   StyledWrapper,
   StyledName,
@@ -8,6 +10,7 @@ import {
   StyledTraits,
   StyledButton,
 } from "./styled";
+import { useContext } from "react";
 
 type Cat = {
   id: number;
@@ -30,6 +33,17 @@ const catData = catJsonData as unknown as CatData;
 export const MainSection = () => {
   const { catId } = useParams();
   const cat = catId ? catData[catId] : undefined;
+  const { addToCart } = useContext(CartContext);
+
+  const handleBuyClick = () => {
+    if (cat) {
+      addToCart({
+        id: cat.id,
+        name: cat.name,
+        image: cat.image,
+      });
+    }
+  };
 
   return (
     <>
@@ -45,7 +59,7 @@ export const MainSection = () => {
             <StyledP>Location: {cat.location}</StyledP>
             <StyledP>Price: {cat.price}$</StyledP>
           </StyledTraits>
-          <StyledButton>Buy</StyledButton>
+          <StyledButton onClick={handleBuyClick}>Buy</StyledButton>
         </StyledWrapper>
       ) : (
         <StyledP>Cat not found 404</StyledP>

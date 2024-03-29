@@ -1,4 +1,5 @@
 import { RouterProvider } from "react-router-dom";
+import { CartProvider } from "./Pages/cartPage/CartProvider";
 import { router } from "./Router";
 import ReactDOM from "react-dom/client";
 import React from "react";
@@ -10,7 +11,12 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
 );
 
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <CartProvider>
+      <RouterProvider router={router} />
+    </CartProvider>
+  );
 }
+
 
 export default App;
