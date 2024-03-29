@@ -40,10 +40,10 @@ export const MainSection = () => {
           <StyledTraits>
             <StyledP>Race: {cat.race}</StyledP>
             <StyledP>Color: {cat.color}</StyledP>
-            <StyledP>Age: {cat.age}</StyledP>
-            <StyledP>Weight: {cat.weight}</StyledP>
+            <StyledP>Age: {cat.age}yo</StyledP>
+            <StyledP>Weight: {cat.weight}kg</StyledP>
             <StyledP>Location: {cat.location}</StyledP>
-            <StyledP>Price: {cat.price} $</StyledP>
+            <StyledP>Price: {cat.price}$</StyledP>
           </StyledTraits>
           <StyledButton>Buy</StyledButton>
         </StyledWrapper>
