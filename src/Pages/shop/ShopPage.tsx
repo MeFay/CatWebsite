@@ -1,4 +1,4 @@
-import { NavbarLayout } from "../../navbar.tsx/Navbar";
+import { NavbarLayout } from "../../Navbar/Navbar";
 import { MainSection } from "./main";
 
 const ShopPage = () => {

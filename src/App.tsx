@@ -1,5 +1,6 @@
 import { RouterProvider } from "react-router-dom";
 import { CartProvider } from "./Pages/cartPage/CartProvider";
+import "react-toastify/dist/ReactToastify.css";
 import { router } from "./Router";
 import ReactDOM from "react-dom/client";
 import React from "react";
@@ -17,6 +18,5 @@ function App() {
     </CartProvider>
   );
 }
-
 
 export default App;

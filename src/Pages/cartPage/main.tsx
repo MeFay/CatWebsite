@@ -1,5 +1,7 @@
 import { useContext } from "react";
 import { CartContext } from "./CartContext";
+import { useNavigate } from "react-router-dom";
+
 import {
   StyledWrapper,
   StyledTitle,
@@ -10,6 +12,7 @@ import {
 } from "./styled";
 
 export const MainSection = () => {
+  const navigate = useNavigate();
   const { cart, removeFromCart } = useContext(CartContext);
 
   const handleRemoveClick = (id: number) => {
@@ -35,6 +38,7 @@ export const MainSection = () => {
         </StyledTraits>
       ))}
       <StyledPrice>Total: {totalPrice}$</StyledPrice>
+      <StyledButton onClick={() => navigate("/payment")}>Pay</StyledButton>
     </StyledWrapper>
   );
 };

@@ -1,12 +1,14 @@
 import { NavbarLayout } from "../../Navbar/Navbar";
+import { PaymentForm } from "../../components/Payment/Payment";
 import { MainSection } from "./main";
 
-const CartPage = () => {
+const PaymentPage = () => {
   return (
     <>
       <NavbarLayout />
       <MainSection />
+      <PaymentForm />
     </>
   );
 };
-export default CartPage;
+export default PaymentPage;
