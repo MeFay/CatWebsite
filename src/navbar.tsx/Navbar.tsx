@@ -1,5 +1,12 @@
 import { useLocation } from "react-router-dom";
-import { Logo, Navbar, NavbarLeft, NavbarRight, StyledLink } from "./styled";
+import {
+  StyledNavbar,
+  StyledNavbarLeft,
+  StyledNavbarRight,
+  StyledLink,
+  StyledIcon,
+  StyledLogo,
+} from "./styled";
 
 export const NavbarLayout = () => {
   const NavBarLinks = [
@@ -11,10 +18,16 @@ export const NavbarLayout = () => {
       title: "Shop",
       url: "/shop/:pageId",
     },
+    {
+      title: "Cart",
+      url: "/cart/",
+      icon: "/src/assets/cart.png",
+    },
   ];
 
   const location = useLocation();
-  const message = "Cat's Lovers";
+  const message = "Cat Lovers";
+
   const menuElements = NavBarLinks.map((item) => (
     <StyledLink
       to={item.url}
@@ -22,14 +35,15 @@ export const NavbarLayout = () => {
       key={item.title}
     >
       {item.title}
+      {item.icon && <StyledIcon src={item.icon} alt={item.title} />}
     </StyledLink>
   ));
 
   return (
-    <Navbar>
-      <Logo src="/src/assets/catLogo.png" />
-      <NavbarLeft>{menuElements}</NavbarLeft>
-      <NavbarRight>{message}</NavbarRight>
-    </Navbar>
+    <StyledNavbar>
+      <StyledLogo src="/src/assets/logo.png" />
+      <StyledNavbarLeft>{menuElements}</StyledNavbarLeft>
+      <StyledNavbarRight>{message}</StyledNavbarRight>
+    </StyledNavbar>
   );
 };

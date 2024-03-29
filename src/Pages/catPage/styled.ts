@@ -6,8 +6,7 @@ export const StyledWrapper = styled.div`
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  width: 60%;
-  height: 70%;
+  width: 40%;
   background-color: #ffb0a3;
   border-radius: 15px;
   gap: 1em;
@@ -33,13 +32,14 @@ export const StyledTraits = styled.div`
 `;
 
 export const StyledP = styled.p`
-  margin: 0;
-  padding: 0;
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
+  margin: 0;
+  padding: 0;
   font-size: 2em;
-  max-width: 50%;
+  max-width: 100%;
   color: #00b9be;
 `;
 
@@ -47,4 +47,19 @@ export const StyledImage = styled.img`
   max-width: 40rem;
   max-height: 40rem;
   border-radius: 1em;
+`;
+
+export const StyledButton = styled.button`
+  font-family: "VT323", monospace;
+  font-weight: 400;
+  width: 20%;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #ff6973;
+  color: #ffeecc;
+  font-size: 1.5em;
+  border: none;
+  &:hover {
+    cursor: pointer;
+  }
 `;

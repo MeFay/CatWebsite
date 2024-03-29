@@ -12,7 +12,7 @@ export const StyledLink = styled(Link)<{ isActive: boolean }>`
   }
 `;
 
-export const Navbar = styled.nav`
+export const StyledNavbar = styled.nav`
   background-color: #00b9be;
   display: flex;
   align-items: center;
@@ -22,12 +22,12 @@ export const Navbar = styled.nav`
   font-size: 2.5rem;
 `;
 
-export const NavbarLeft = styled.div`
+export const StyledNavbarLeft = styled.div`
   display: flex;
   column-gap: 1rem;
 `;
 
-export const NavbarRight = styled.div`
+export const StyledNavbarRight = styled.div`
   color: #ffeecc;
   width: 100%;
   display: flex;
@@ -37,6 +37,11 @@ export const NavbarRight = styled.div`
   padding-right: 1rem;
 `;
 
-export const Logo = styled.img`
-  max-width: 6rem;
+export const StyledLogo = styled.img`
+  width: 2em;
+`;
+
+export const StyledIcon = styled.img`
+  width: 1em;
+  padding: 20px
 `;

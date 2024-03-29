@@ -6,6 +6,7 @@ import {
   StyledImage,
   StyledP,
   StyledTraits,
+  StyledButton,
 } from "./styled";
 
 type Cat = {
@@ -44,6 +45,7 @@ export const MainSection = () => {
             <StyledP>Location: {cat.location}</StyledP>
             <StyledP>Price: {cat.price} $</StyledP>
           </StyledTraits>
+          <StyledButton>Buy</StyledButton>
         </StyledWrapper>
       ) : (
         <StyledP>Cat not found 404</StyledP>
