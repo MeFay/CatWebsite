@@ -1,13 +1,15 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
 import "../../index.css";
 import { Table } from "../../components/Table/Table.tsx";
 import catJsonData from "../../assets/cats.json";
-import ReactPaginate from "react-paginate";
-import { StyledPagination, StyledSearchBar } from "./styled.ts";
+import { SearchBar } from "../../components/SearchBar/SearchBar.tsx";
+import { Pagination } from "../../components/Pagination/Pagination.tsx";
 
 type Cat = {
-  id: number;
+  id: string;
   race: string;
   name: string;
   color: string;
@@ -16,12 +18,9 @@ type Cat = {
   price: number;
 };
 
-export const MainSection = () => {
-  const [data, setData] = useState<Array<Cat>>([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [search, setSearch] = useState("");
+const useSearch = (initialSearch = "") => {
+  const [search, setSearch] = useState(initialSearch);
   const [debouncedSearch, setDebouncedSearch] = useState(search);
-  const navigate = useNavigate();
 
   useEffect(() => {
     const timerId = setTimeout(() => {
@@ -33,6 +32,31 @@ export const MainSection = () => {
     };
   }, [search]);
 
+  return { search, setSearch, debouncedSearch };
+};
+
+const useData = () => {
+  const [data, setData] = useState<Array<Cat>>([]);
+
+  useEffect(() => {
+    setData(
+      Object.entries(catJsonData).map(([_, cat]) => ({
+        id: uuidv4(),
+        ...cat,
+      }))
+    );
+  }, []);
+
+  return { data };
+};
+
+export const MainSection = () => {
+  const itemsPerPage = 4;
+  const navigate = useNavigate();
+  const { search, setSearch, debouncedSearch } = useSearch();
+  const { data } = useData();
+  const [currentPage, setCurrentPage] = useState(1);
+
   const filteredData = data.filter(
     (cat) =>
       cat.name.toLowerCase().includes(debouncedSearch.toLowerCase()) ||
@@ -41,19 +65,14 @@ export const MainSection = () => {
       cat.location.toLowerCase().includes(debouncedSearch.toLowerCase())
   );
 
-  useEffect(() => {
-    setData(
-      Object.entries(catJsonData).map(([id, cat]) => ({
-        id: Number(id),
-        ...cat,
-      }))
-    );
-  }, []);
-
-  const itemsPerPage = 4;
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = filteredData.slice(indexOfFirstItem, indexOfLastItem);
+  const { pageId } = useParams();
+
+  useEffect(() => {
+    setCurrentPage(Number(pageId) || 1);
+  }, [pageId]);
 
   const TableLines = currentItems.map((cat) => {
     return {
@@ -69,29 +88,14 @@ export const MainSection = () => {
 
   return (
     <>
-      <StyledSearchBar
-        type="text"
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-        placeholder="Search..."
-      />
+      <SearchBar search={search} setSearch={setSearch} />
 
       <Table headers={["Name", "Race", "Photo"]} lines={TableLines} />
 
-      <StyledPagination>
-        <ReactPaginate
-          breakLabel="..."
-          nextLabel="next >"
-          onPageChange={handlePageChange}
-          pageRangeDisplayed={5}
-          pageCount={Math.ceil(data.length / itemsPerPage)}
-          previousLabel="< previous"
-          renderOnZeroPageCount={null}
-          containerClassName="pagination"
-          activeClassName="active"
-          activeLinkClassName="active-link"
-        />
-      </StyledPagination>
+      <Pagination
+        pageCount={Math.ceil(data.length / itemsPerPage)}
+        handlePageChange={handlePageChange}
+      />
     </>
   );
 };

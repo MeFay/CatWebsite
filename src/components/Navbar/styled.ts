@@ -4,7 +4,7 @@ import styled from "styled-components";
 export const StyledLink = styled(Link)<{ isActive: boolean }>`
   display: flex;
   align-items: center;
-  color: #ffeecc;
+  color: ${(props) => (props.isActive ? "#46425e" : "#ffeecc")};
   text-decoration: none;
   padding: 1rem;
   &:hover {
@@ -43,5 +43,5 @@ export const StyledLogo = styled.img`
 
 export const StyledIcon = styled.img`
   width: 1em;
-  padding: 20px
+  padding: 20px;
 `;

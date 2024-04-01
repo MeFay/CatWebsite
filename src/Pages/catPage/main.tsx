@@ -38,7 +38,7 @@ export const MainSection = () => {
   const handleBuyClick = () => {
     if (cat) {
       addToCart({
-        id: cat.id,
+        id: Date.now(),
         name: cat.name,
         image: cat.image,
         price: cat.price,

@@ -20,15 +20,6 @@ export const StyledLink = styled(Link)`
   }
 `;
 
-export const StyledIntro = styled.p`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 2.5em;
-  max-width: 50%;
-  color: #ffeecc;
-`;
-
 export const StyledImage = styled.img`
   max-width: 40rem;
   max-height: 40rem;

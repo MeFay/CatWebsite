@@ -15,6 +15,9 @@ export const MainSection = () => {
   const navigate = useNavigate();
   const { cart, removeFromCart } = useContext(CartContext);
 
+
+  
+
   const handleRemoveClick = (id: number) => {
     const itemToRemove = cart.find((item) => item.id === id);
     if (itemToRemove) {
