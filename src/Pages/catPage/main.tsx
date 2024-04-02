@@ -10,8 +10,9 @@ import {
   StyledButton,
 } from "./styled";
 import { useContext } from "react";
+
 type Cat = {
-  id: number;
+  id: string;
   race: string;
   name: string;
   color: string;
@@ -21,9 +22,11 @@ type Cat = {
   image: string;
   price: number;
 };
+
 type CatData = {
   [key: string]: Cat;
 };
+
 const catData = catJsonData as unknown as CatData;
 export const MainSection = () => {
   const { catId } = useParams();
@@ -32,7 +35,7 @@ export const MainSection = () => {
   const handleBuyClick = () => {
     if (cat) {
       addToCart({
-        id: Date.now(),
+        id: cat.id,
         name: cat.name,
         image: cat.image,
         price: cat.price,

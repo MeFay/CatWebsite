@@ -1,8 +1,8 @@
 import React from "react";
 
 type CartItem = {
+  id: string;
   price: number;
-  id: number;
   name: string;
   image: string;
 };

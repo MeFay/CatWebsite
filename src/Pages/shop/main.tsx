@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
-import { v4 as uuidv4 } from "uuid";
 import "../../index.css";
 import { Table } from "../../components/Table/Table.tsx";
 import catJsonData from "../../assets/cats.json";

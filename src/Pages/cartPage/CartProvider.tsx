@@ -2,7 +2,7 @@ import React, { useState, ReactNode, useEffect } from "react";
 import { CartContext } from "./CartContext";
 
 type CartItem = {
-  id: number;
+  id: string;
   price: number;
   name: string;
   image: string;
@@ -19,7 +19,15 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
   }, [cart]);
 
   const addToCart = (item: CartItem) => {
-    setCart((prevCart) => [...prevCart, item]);
+    setCart((prevCart) => {
+      const isItemInCart = prevCart.some((cartItem) => cartItem.id === item.id);
+
+      if (!isItemInCart) {
+        return [...prevCart, item];
+      }
+
+      return prevCart;
+    });
   };
 
   const removeFromCart = (item: CartItem) => {
