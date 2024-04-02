@@ -1,7 +1,6 @@
 import { useParams } from "react-router-dom";
+import catJsonData from "../../assets/cats.json";
 import { CartContext } from "../cartPage/CartContext";
-import { useData } from "../shop/main";
-
 import {
   StyledWrapper,
   StyledName,
@@ -11,7 +10,6 @@ import {
   StyledButton,
 } from "./styled";
 import { useContext } from "react";
-
 type Cat = {
   id: number;
   race: string;
@@ -23,24 +21,24 @@ type Cat = {
   image: string;
   price: number;
 };
-
+type CatData = {
+  [key: string]: Cat;
+};
+const catData = catJsonData as unknown as CatData;
 export const MainSection = () => {
   const { catId } = useParams();
-  const { data } = useData();
-  const cat = data.find((cat) => cat.id === catId);
+  const cat = catId ? catData[catId] : undefined;
   const { addToCart } = useContext(CartContext);
-
   const handleBuyClick = () => {
     if (cat) {
       addToCart({
-        id: cat.id,
+        id: Date.now(),
         name: cat.name,
         image: cat.image,
         price: cat.price,
       });
     }
   };
-
   return (
     <>
       {cat ? (

@@ -13,7 +13,6 @@ export const MainSection = () => {
       {item.title}
     </StyledLink>
   ));
-
   return (
     <>
       <h1>{titleElement}</h1>

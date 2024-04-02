@@ -9,8 +9,6 @@ import { SearchBar } from "../../components/SearchBar/SearchBar.tsx";
 import { Pagination } from "../../components/Pagination/Pagination.tsx";
 
 type Cat = {
-  weight: number;
-  age: number;
   id: string;
   race: string;
   name: string;
@@ -28,7 +26,6 @@ const useSearch = (initialSearch = "") => {
     const timerId = setTimeout(() => {
       setDebouncedSearch(search);
     }, 230);
-
     return () => {
       clearTimeout(timerId);
     };
@@ -37,7 +34,7 @@ const useSearch = (initialSearch = "") => {
   return { search, setSearch, debouncedSearch };
 };
 
-export const useData = () => {
+const useData = () => {
   const [data, setData] = useState<Array<Cat>>([]);
 
   useEffect(() => {
@@ -82,7 +79,6 @@ export const MainSection = () => {
       cols: [cat.name, cat.race, cat.image],
     };
   });
-
   const handlePageChange = ({ selected }: { selected: number }) => {
     setCurrentPage(selected + 1);
     navigate(`/shop/${selected + 1}`);

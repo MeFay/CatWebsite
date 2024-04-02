@@ -22,6 +22,7 @@ export const StyledLink = styled(Link)`
 
 export const StyledImage = styled.img`
   max-width: 40rem;
+
   max-height: 40rem;
   border-radius: 10px;
   padding: 1rem;
