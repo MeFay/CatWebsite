@@ -39,8 +39,8 @@ const useData = () => {
 
   useEffect(() => {
     setData(
-      Object.entries(catJsonData).map(([_, cat]) => ({
-        id: uuidv4(),
+      Object.entries(catJsonData).map(([catId, cat]) => ({
+        id: catId,
         ...cat,
       }))
     );
