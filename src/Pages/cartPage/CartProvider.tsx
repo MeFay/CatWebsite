@@ -20,12 +20,10 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
 
   const addToCart = (item: CartItem) => {
     setCart((prevCart) => {
-      const isItemInCart = prevCart.some((cartItem) => cartItem.id === item.id);
-
-      if (!isItemInCart) {
+      const isCatInCart = prevCart.some((cartItem) => cartItem.id === item.id);
+      if (!isCatInCart) {
         return [...prevCart, item];
       }
-
       return prevCart;
     });
   };
