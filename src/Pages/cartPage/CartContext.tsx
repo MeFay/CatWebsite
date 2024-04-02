@@ -2,7 +2,7 @@ import React from "react";
 
 type CartItem = {
   price: number;
-  id: number;
+  id: string;
   name: string;
   image: string;
 };

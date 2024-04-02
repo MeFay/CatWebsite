@@ -9,6 +9,8 @@ import { SearchBar } from "../../components/SearchBar/SearchBar.tsx";
 import { Pagination } from "../../components/Pagination/Pagination.tsx";
 
 type Cat = {
+  weight: number;
+  age: number;
   id: string;
   race: string;
   name: string;
@@ -35,7 +37,7 @@ const useSearch = (initialSearch = "") => {
   return { search, setSearch, debouncedSearch };
 };
 
-const useData = () => {
+export const useData = () => {
   const [data, setData] = useState<Array<Cat>>([]);
 
   useEffect(() => {
