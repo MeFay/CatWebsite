@@ -12,7 +12,7 @@ import {
 import { useContext } from "react";
 
 type Cat = {
-  id: string;
+  id: number;
   race: string;
   name: string;
   color: string;
@@ -31,17 +31,21 @@ const catData = catJsonData as unknown as CatData;
 export const MainSection = () => {
   const { catId } = useParams();
   const cat = catId ? catData[catId] : undefined;
-  const { addToCart } = useContext(CartContext);
+  const { cart, addToCart } = useContext(CartContext);
+
+  const isCatInCart = cart.some((item) => item.id === Number(catId));
+
   const handleBuyClick = () => {
     if (cat && catId !== undefined) {
       addToCart({
-        id: catId,
+        id: Number(catId),
         name: cat.name,
         image: cat.image,
         price: cat.price,
       });
     }
   };
+
   return (
     <>
       {cat ? (
@@ -56,7 +60,9 @@ export const MainSection = () => {
             <StyledP>Location: {cat.location}</StyledP>
             <StyledP>Price: {cat.price}$</StyledP>
           </StyledTraits>
-          <StyledButton onClick={handleBuyClick}>Buy</StyledButton>
+          <StyledButton onClick={handleBuyClick} disabled={isCatInCart}>
+            {isCatInCart ? "In Cart" : "Buy"}
+          </StyledButton>
         </StyledWrapper>
       ) : (
         <StyledP>Cat not found 404</StyledP>

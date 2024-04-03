@@ -1,7 +1,7 @@
 import React from "react";
 
-type CartItem = {
-  id: string;
+export type CartItem = {
+  id: number;
   price: number;
   name: string;
   image: string;

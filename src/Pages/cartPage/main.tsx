@@ -13,6 +13,7 @@ import {
 export const MainSection = () => {
   const navigate = useNavigate();
   const { cart, removeFromCart } = useContext(CartContext);
+  const isCartEmpty = cart.length === 0;
 
   const handleRemoveClick = (id: number) => {
     const itemToRemove = cart.find((item) => item.id === id);
@@ -35,7 +36,9 @@ export const MainSection = () => {
         </StyledTraits>
       ))}
       <StyledPrice>Total: {totalPrice}$</StyledPrice>
-      <StyledButton onClick={() => navigate("/payment")}>Pay</StyledButton>
+      <StyledButton onClick={() => navigate("/payment")} disabled={isCartEmpty}>
+        {isCartEmpty ? "Cart is empty" : "Pay"}
+      </StyledButton>
     </StyledWrapper>
   );
 };
