@@ -1,4 +1,9 @@
+import { StyledTitle } from "./styles";
 
 export const MainSection = () => {
-  return <></>;
+  return (
+    <>
+      <StyledTitle>Payment</StyledTitle>
+    </>
+  );
 };

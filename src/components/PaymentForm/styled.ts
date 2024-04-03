@@ -8,7 +8,6 @@ export const StyledForm = styled.form`
   width: 80%;
   background-color: #ffeecc;
   border-radius: 15px;
-  margin-top: 5em;
   padding: 2em;
   border: 0.5em solid #00b9be;
   gap: 2em;
@@ -38,12 +37,11 @@ export const StyledInput = styled.input`
   font-family: "VT323", monospace;
   line-height: 1.5;
   font-weight: 400;
-  font-size: 0.9em;
+  font-size: 1.5em;
   display: flex;
   margin: auto;
   align-items: center;
   color: #00b9be;
-  padding: 0.5em;
   width: 100%;
 `;
 
@@ -51,12 +49,12 @@ export const StyledSelect = styled.select`
   font-family: "VT323", monospace;
   line-height: 1.5;
   font-weight: 400;
-  font-size: 0.9em;
+  font-size: 1.5em;
   display: flex;
   margin: auto;
   align-items: center;
   color: #00b9be;
-  padding: 0.5em;
+  padding: 0.3em;
   width: 100%;
 `;
 
@@ -65,11 +63,20 @@ export const StyledLabel = styled.label`
   justify-content: center;
   align-items: center;
   margin: 0;
-  padding: 0;
+  padding: 0.1em;
   font-size: 2.5em;
   max-width: 100%;
   color: #46425e;
   width: 100%;
+`;
+
+export const StyledTotal = styled.p`
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  color: #ff6973;
+  font-size: 1.7em;
 `;
 
 export const StyledButton = styled.button`
@@ -80,7 +87,7 @@ export const StyledButton = styled.button`
   border-radius: 10px;
   background-color: #15788c;
   color: #ffeecc;
-  font-size: 1.5em;
+  font-size: 2em;
   border: none;
   &:hover {
     cursor: pointer;
