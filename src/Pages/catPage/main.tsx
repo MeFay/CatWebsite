@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import catJsonData from "../../assets/cats.json";
+import { CartContext } from "../cartPage/CartContext";
 import {
   StyledWrapper,
   StyledName,
@@ -8,6 +9,7 @@ import {
   StyledTraits,
   StyledButton,
 } from "./styled";
+import { useContext } from "react";
 
 type Cat = {
   id: number;
@@ -26,10 +28,23 @@ type CatData = {
 };
 
 const catData = catJsonData as unknown as CatData;
-
 export const MainSection = () => {
   const { catId } = useParams();
   const cat = catId ? catData[catId] : undefined;
+  const { cart, addToCart } = useContext(CartContext);
+
+  const isCatInCart = cart.some((item) => item.id === Number(catId));
+
+  const handleBuyClick = () => {
+    if (cat && catId !== undefined) {
+      addToCart({
+        id: Number(catId),
+        name: cat.name,
+        image: cat.image,
+        price: cat.price,
+      });
+    }
+  };
 
   return (
     <>
@@ -40,12 +55,14 @@ export const MainSection = () => {
           <StyledTraits>
             <StyledP>Race: {cat.race}</StyledP>
             <StyledP>Color: {cat.color}</StyledP>
-            <StyledP>Age: {cat.age}</StyledP>
-            <StyledP>Weight: {cat.weight}</StyledP>
+            <StyledP>Age: {cat.age}yo</StyledP>
+            <StyledP>Weight: {cat.weight}kg</StyledP>
             <StyledP>Location: {cat.location}</StyledP>
-            <StyledP>Price: {cat.price} $</StyledP>
+            <StyledP>Price: {cat.price}$</StyledP>
           </StyledTraits>
-          <StyledButton>Buy</StyledButton>
+          <StyledButton onClick={handleBuyClick} disabled={isCatInCart}>
+            {isCatInCart ? "In Cart" : "Buy"}
+          </StyledButton>
         </StyledWrapper>
       ) : (
         <StyledP>Cat not found 404</StyledP>
