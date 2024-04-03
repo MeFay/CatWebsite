@@ -16,12 +16,34 @@ export const PaymentForm = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [email, setEmail] = useState("");
   const [paymentMethod, setPaymentMethod] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  const handleSubmit = (event: React.FormEvent) => {
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
+    setIsLoading(true);
+    setErrorMessage(null);
 
-    toast.success("Wonderful! We have successfully made the transaction");
+    if (!email.includes("@")) {
+      setErrorMessage("Please enter a valid email address.");
+      setIsLoading(false);
+      return;
+    }
+
+    try {
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      toast.success(
+        "The transaction was successfully submitted! You will receive a confirmation email"
+      );
+    } catch (err) {
+      setErrorMessage(
+        "There was an error while submitting the form. Please try again."
+      );
+    } finally {
+      setIsLoading(false);
+    }
   };
+
   return (
     <StyledForm onSubmit={handleSubmit}>
       <StyledContainer>
@@ -65,7 +87,10 @@ export const PaymentForm = () => {
         </StyledInputContainer>
       </StyledContainer>
 
-      <StyledButton type="submit">Pay</StyledButton>
+      {errorMessage && <p>{errorMessage}</p>}
+      <StyledButton type="submit" disabled={isLoading}>
+        {isLoading ? "Processing... !" : "Pay"}
+      </StyledButton>
     </StyledForm>
   );
 };
