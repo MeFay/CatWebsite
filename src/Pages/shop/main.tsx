@@ -90,7 +90,7 @@ export const MainSection = () => {
       <Table headers={["Name", "Race", "Photo"]} lines={TableLines} />
 
       <Pagination
-        pageCount={Math.ceil(data.length / itemsPerPage)}
+        pageCount={Math.ceil(filteredData.length / itemsPerPage)}
         handlePageChange={handlePageChange}
       />
     </>
