@@ -78,6 +78,7 @@ export const MainSection = () => {
       cols: [cat.name, cat.race, cat.image],
     };
   });
+
   const handlePageChange = ({ selected }: { selected: number }) => {
     setCurrentPage(selected + 1);
     navigate(`/shop/${selected + 1}`);
