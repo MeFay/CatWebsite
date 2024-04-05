@@ -41,7 +41,7 @@ export const StyledInput = styled.input`
   display: flex;
   margin: auto;
   align-items: center;
-  color: #00b9be;
+  color: #ff6973;
   width: 100%;
 `;
 

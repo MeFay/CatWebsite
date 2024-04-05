@@ -3,6 +3,7 @@ import { Toast } from "../Toast/Toast";
 import { toast } from "react-toastify";
 import { useContext } from "react";
 import { CartContext, CartItem } from "../../Pages/cartPage/CartContext";
+import { useData } from "../../Pages/cartPage/UseData";
 import {
   StyledForm,
   StyledContainer,
@@ -23,6 +24,7 @@ export const PaymentForm = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const { cart, removeFromCart } = useContext(CartContext);
+  const { removeCat } = useData();
 
   const paymentFees = [
     { name: "Card", fee: 0 },
@@ -68,6 +70,7 @@ export const PaymentForm = () => {
       setPaymentMethod("");
       cart.forEach((item) => {
         removeFromCart(item);
+        removeCat(item.id.toString());
       });
       totalPrice = calculateTotalPrice();
     }

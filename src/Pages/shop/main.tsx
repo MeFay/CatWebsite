@@ -35,17 +35,27 @@ const useSearch = (initialSearch = "") => {
 
 const useData = () => {
   const [data, setData] = useState<Array<Cat>>([]);
-
   useEffect(() => {
-    setData(
-      Object.entries(catJsonData).map(([catId, cat]) => ({
+    const localData = localStorage.getItem("catData");
+    if (localData) {
+      setData(JSON.parse(localData));
+    } else {
+      const initialData = Object.entries(catJsonData).map(([catId, cat]) => ({
         id: catId,
         ...cat,
-      }))
-    );
+      }));
+      setData(initialData);
+      localStorage.setItem("catData", JSON.stringify(initialData));
+    }
   }, []);
 
-  return { data };
+  const removeCat = (catId: string) => {
+    const newData = data.filter((cat) => cat.id !== catId);
+    setData(newData);
+    localStorage.setItem("catData", JSON.stringify(newData));
+  };
+
+  return { data, removeCat };
 };
 
 export const MainSection = () => {
