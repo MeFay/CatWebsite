@@ -3,7 +3,6 @@ import { Toast } from "../Toast/Toast";
 import { toast } from "react-toastify";
 import { useContext } from "react";
 import { CartContext, CartItem } from "../../Pages/cartPage/CartContext";
-import { useData } from "../../Pages/cartPage/UseData";
 import {
   StyledForm,
   StyledContainer,
@@ -15,7 +14,6 @@ import {
   StyledInput,
   StyledTotal,
 } from "./styled";
-
 export const PaymentForm = () => {
   const [address, setAddress] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -24,7 +22,6 @@ export const PaymentForm = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const { cart, removeFromCart } = useContext(CartContext);
-  const { removeCat } = useData();
 
   const paymentFees = [
     { name: "Card", fee: 0 },
@@ -32,7 +29,6 @@ export const PaymentForm = () => {
     { name: "MB WAY", fee: 0.01 },
     { name: "Gift Card", fee: 0 },
   ];
-
   const calculateTotalPrice = () => {
     const itemsTotal = cart.reduce(
       (total: number, item: CartItem) => total + item.price,
@@ -54,7 +50,6 @@ export const PaymentForm = () => {
     event.preventDefault();
     setIsLoading(true);
     setErrorMessage(null);
-
     if (!email.includes("@")) {
       const message = "Please enter a valid email address.";
       setErrorMessage(message);
@@ -70,7 +65,6 @@ export const PaymentForm = () => {
       setPaymentMethod("");
       cart.forEach((item) => {
         removeFromCart(item);
-        removeCat(item.id.toString());
       });
       totalPrice = calculateTotalPrice();
     }
@@ -88,7 +82,6 @@ export const PaymentForm = () => {
       setIsLoading(false);
     }
   };
-
   return (
     <>
       <Toast />
@@ -100,7 +93,6 @@ export const PaymentForm = () => {
             <StyledLabel>Email:</StyledLabel>
             <StyledLabel>Payment:</StyledLabel>
           </StyledLabelContainer>
-
           <StyledInputContainer>
             <StyledInput
               type="text"
@@ -116,7 +108,6 @@ export const PaymentForm = () => {
               }}
               required
             />
-
             <StyledInput
               type="email"
               value={email}
