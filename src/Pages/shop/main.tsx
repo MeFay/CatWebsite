@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import "../../index.css";
@@ -6,6 +6,7 @@ import { Table } from "../../components/Table/Table.tsx";
 import catJsonData from "../../assets/cats.json";
 import { SearchBar } from "../../components/SearchBar/SearchBar.tsx";
 import { Pagination } from "../../components/Pagination/Pagination.tsx";
+import { CartContext } from "../cartPage/CartContext.tsx";
 type Cat = {
   id: string;
   race: string;
@@ -28,25 +29,38 @@ const useSearch = (initialSearch = "") => {
   }, [search]);
   return { search, setSearch, debouncedSearch };
 };
+
 const useData = () => {
-  const [data, setData] = useState<Array<Cat>>([]);
+  const [originalData, setOriginalData] = useState<Array<Cat>>([]);
+  const [displayedData, setDisplayedData] = useState<Array<Cat>>([]);
+  const { cart } = useContext(CartContext);
+
   useEffect(() => {
-    setData(
-      Object.entries(catJsonData).map(([catId, cat]) => ({
-        id: catId,
-        ...cat,
-      }))
-    );
+    const data = Object.entries(catJsonData).map(([catId, cat]) => ({
+      id: catId,
+      ...cat,
+    }));
+    setOriginalData(data);
+    setDisplayedData(data);
   }, []);
-  return { data };
+
+  useEffect(() => {
+    const updatedData = originalData.filter(
+      (cat) => !cart.some((item) => item.id === Number(cat.id))
+    );
+    setDisplayedData(updatedData);
+  }, [cart, originalData]);
+
+  return { data: displayedData };
 };
+
 export const MainSection = () => {
   const itemsPerPage = 4;
   const navigate = useNavigate();
   const { search, setSearch, debouncedSearch } = useSearch();
-  const { data } = useData();
+  const { data: displayedData } = useData();
   const [currentPage, setCurrentPage] = useState(1);
-  const filteredData = data.filter(
+  const filteredData = displayedData.filter(
     (cat) =>
       cat.name.toLowerCase().includes(debouncedSearch.toLowerCase()) ||
       cat.race.toLowerCase().includes(debouncedSearch.toLowerCase()) ||
