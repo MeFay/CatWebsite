@@ -1,6 +1,5 @@
 import React, { useReducer, useEffect, ReactNode, useState } from "react";
-import { CartContext } from "./CartContext";
-import { CartItem } from "./CartContext";
+import { CartContext, CartItem } from "./CartContext";
 import catJsonData from "../../assets/cats.json";
 
 type CartProviderProps = {
@@ -19,10 +18,9 @@ type CartAction =
 const cartReducer = (state: CartState, action: CartAction): CartState => {
   switch (action.type) {
     case "ADD_TO_CART":
-      if (!state.cart.some((item) => item.id === action.item.id)) {
-        return { cart: [...state.cart, action.item] };
-      }
-      return state;
+      return state.cart.some((item) => item.id === action.item.id)
+        ? state
+        : { cart: [...state.cart, action.item] };
     case "REMOVE_FROM_CART":
       return {
         cart: state.cart.filter((item) => item.id !== action.item.id),
@@ -58,40 +56,39 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
     localStorage.setItem("cart", JSON.stringify(state.cart));
   }, [state.cart]);
 
-  const addToCart = (item: CartItem) => {
-    dispatch({ type: "ADD_TO_CART", item });
+  const updateItemStatus = (item: CartItem, isSold: boolean) => {
     const catIndex = data.findIndex((cat) => cat.id === item.id);
     if (catIndex !== -1) {
       const updatedData = [...data];
-      updatedData[catIndex].isSold = true;
+      updatedData[catIndex].isSold = isSold;
       setData(updatedData);
     }
+  };
+
+  const addToCart = (item: CartItem) => {
+    dispatch({ type: "ADD_TO_CART", item });
+    updateItemStatus(item, true);
   };
 
   const removeFromCart = (item: CartItem) => {
     dispatch({ type: "REMOVE_FROM_CART", item });
-    const catIndex = data.findIndex((cat) => cat.id === item.id);
-    if (catIndex !== -1) {
-      const updatedData = [...data];
-      updatedData[catIndex].isSold = false;
-      setData(updatedData);
-    }
+    updateItemStatus(item, false);
   };
 
   const resetCart = () => {
     dispatch({ type: "RESET_CART" });
-    const updatedData = data.map((cat) => ({ ...cat, isSold: false }));
-    setData(updatedData);
+    setData(data.map((cat) => ({ ...cat, isSold: false })));
   };
 
   const completePurchase = () => {
-    const updatedData = data.map((cat) => {
-      if (state.cart.some((item) => item.id === cat.id)) {
-        return { ...cat, isSold: true };
-      }
-      return cat;
-    });
-    setData(updatedData);
+    setData(
+      data.map((cat) => {
+        if (state.cart.some((item) => item.id === cat.id)) {
+          return { ...cat, isSold: true };
+        }
+        return cat;
+      })
+    );
     dispatch({ type: "RESET_CART" });
   };
 

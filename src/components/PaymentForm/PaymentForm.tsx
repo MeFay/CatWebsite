@@ -1,9 +1,7 @@
-import { useState } from "react";
-import { Toast } from "../Toast/Toast";
+import { useState, useContext } from "react";
 import { toast } from "react-toastify";
-import { useContext } from "react";
 import { CartContext, CartItem } from "../../Pages/cartPage/CartContext";
-
+import { Toast } from "../Toast/Toast";
 import {
   StyledForm,
   StyledContainer,
@@ -16,21 +14,23 @@ import {
   StyledTotal,
 } from "./styled";
 
+const paymentFees = [
+  { name: "Card", fee: 0 },
+  { name: "PayPal", fee: 0.03 },
+  { name: "MB WAY", fee: 0.01 },
+  { name: "Gift Card", fee: 0 },
+];
+
 export const PaymentForm = () => {
-  const [address, setAddress] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [email, setEmail] = useState("");
-  const [paymentMethod, setPaymentMethod] = useState("");
+  const [formState, setFormState] = useState({
+    address: "",
+    phoneNumber: "",
+    email: "",
+    paymentMethod: "",
+  });
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  const { cart, resetCart, completePurchase } = useContext(CartContext);
-
-  const paymentFees = [
-    { name: "Card", fee: 0 },
-    { name: "PayPal", fee: 0.03 },
-    { name: "MB WAY", fee: 0.01 },
-    { name: "Gift Card", fee: 0 },
-  ];
+  const { cart, completePurchase } = useContext(CartContext);
 
   const calculateTotalPrice = () => {
     const itemsTotal = cart.reduce(
@@ -38,23 +38,20 @@ export const PaymentForm = () => {
       0
     );
     const selectedPaymentMethod = paymentFees.find(
-      (method) => method.name === paymentMethod
+      (method) => method.name === formState.paymentMethod
     );
     const fee = selectedPaymentMethod
       ? itemsTotal * selectedPaymentMethod.fee
       : 0;
-    const totalPrice = itemsTotal + fee;
-    return totalPrice.toFixed(2);
+    return (itemsTotal + fee).toFixed(2);
   };
-
-  const totalPrice = calculateTotalPrice();
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     setIsLoading(true);
     setErrorMessage(null);
 
-    if (!email.includes("@")) {
+    if (!formState.email.includes("@")) {
       const message = "Please enter a valid email address.";
       setErrorMessage(message);
       toast.error(message);
@@ -64,10 +61,10 @@ export const PaymentForm = () => {
 
     try {
       await new Promise((resolve) => setTimeout(resolve, 1000));
-      const message =
-        "The transaction was successfully submitted! You will receive a confirmation email";
-      toast.success(message);
-      completePurchase(); // Call completePurchase here
+      toast.success(
+        "The transaction was successfully submitted! You will receive a confirmation email"
+      );
+      completePurchase();
     } catch (err) {
       const message = "There was an error. Please try again.";
       setErrorMessage(message);
@@ -76,6 +73,16 @@ export const PaymentForm = () => {
       setIsLoading(false);
     }
   };
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
+    setFormState({
+      ...formState,
+      [e.target.name]: e.target.value,
+    });
+  };
+
   return (
     <>
       <Toast />
@@ -91,28 +98,29 @@ export const PaymentForm = () => {
           <StyledInputContainer>
             <StyledInput
               type="text"
-              value={address}
-              onChange={(e) => setAddress(e.target.value)}
+              name="address"
+              value={formState.address}
+              onChange={handleChange}
               required
             />
             <StyledInput
               type="number"
-              value={phoneNumber}
-              onChange={(e) => {
-                setPhoneNumber(e.target.value);
-              }}
+              name="phoneNumber"
+              value={formState.phoneNumber}
+              onChange={handleChange}
               required
             />
-
             <StyledInput
               type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              name="email"
+              value={formState.email}
+              onChange={handleChange}
               required
             />
             <StyledSelect
-              value={paymentMethod}
-              onChange={(e) => setPaymentMethod(e.target.value)}
+              name="paymentMethod"
+              value={formState.paymentMethod}
+              onChange={handleChange}
               required
             >
               <option value="">Select a payment method</option>
@@ -124,7 +132,7 @@ export const PaymentForm = () => {
             </StyledSelect>
           </StyledInputContainer>
         </StyledContainer>
-        <StyledTotal>Total: {totalPrice}$</StyledTotal>
+        <StyledTotal>Total: {calculateTotalPrice()}$</StyledTotal>
         {errorMessage && <p>{errorMessage}</p>}
         <StyledButton type="submit" disabled={isLoading}>
           {isLoading ? "Processing... !" : "Pay"}

@@ -1,7 +1,7 @@
 import { NavbarLayout } from "../../components/Navbar/Navbar";
 import { MainSection } from "./main";
 
-const CatPage = () => {
+export const CatPage = () => {
   return (
     <>
       <NavbarLayout />
@@ -9,4 +9,3 @@ const CatPage = () => {
     </>
   );
 };
-export default CatPage;

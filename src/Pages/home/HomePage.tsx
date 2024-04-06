@@ -1,7 +1,7 @@
 import { NavbarLayout } from "../../components/Navbar/Navbar";
 import { MainSection } from "./main";
 
-const HomePage = () => {
+export const HomePage = () => {
   return (
     <>
       <NavbarLayout />
@@ -9,4 +9,3 @@ const HomePage = () => {
     </>
   );
 };
-export default HomePage;

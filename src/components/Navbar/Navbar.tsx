@@ -42,10 +42,9 @@ export const NavbarLayout = () => {
       {item.icon && <StyledIcon src={item.icon} alt={item.title} />}
       {/* #short-circuit evaluation */}
     </StyledLink>
-    
   ));
-  console.log('location.pathname:', location.pathname); // Log the current pathname
-  
+  console.log("location.pathname:", location.pathname); // Log the current pathname
+
   return (
     <StyledNavbar>
       <StyledLogo src="/src/assets/logo.png" />
