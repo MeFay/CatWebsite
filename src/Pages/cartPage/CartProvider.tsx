@@ -14,7 +14,7 @@ type CartState = {
 type CartAction =
   | { type: "ADD_TO_CART"; item: CartItem }
   | { type: "REMOVE_FROM_CART"; item: CartItem }
-  | { type: "RESET_CART" }; 
+  | { type: "RESET_CART" };
 
 const cartReducer = (state: CartState, action: CartAction): CartState => {
   switch (action.type) {
@@ -26,8 +26,8 @@ const cartReducer = (state: CartState, action: CartAction): CartState => {
     case "REMOVE_FROM_CART":
       return {
         cart: state.cart.filter((item) => item.id !== action.item.id),
-      }
-      case "RESET_CART":
+      };
+    case "RESET_CART":
       return { cart: [] };
     default:
       return state;
@@ -49,7 +49,6 @@ const useData = () => {
 
   return { data, setData };
 };
-
 
 export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
   const [state, dispatch] = useReducer(cartReducer, { cart: [] });
@@ -81,13 +80,32 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
 
   const resetCart = () => {
     dispatch({ type: "RESET_CART" });
-    const updatedData = data.map(cat => ({ ...cat, isSold: false }));
+    const updatedData = data.map((cat) => ({ ...cat, isSold: false }));
     setData(updatedData);
   };
-  
+
+  const completePurchase = () => {
+    const updatedData = data.map((cat) => {
+      if (state.cart.some((item) => item.id === cat.id)) {
+        return { ...cat, isSold: true };
+      }
+      return cat;
+    });
+    setData(updatedData);
+    dispatch({ type: "RESET_CART" });
+  };
+
   return (
     <CartContext.Provider
-      value={{ cart: state.cart, data, setData, addToCart, removeFromCart, resetCart }}
+      value={{
+        cart: state.cart,
+        data,
+        setData,
+        addToCart,
+        removeFromCart,
+        resetCart,
+        completePurchase,
+      }}
     >
       {children}
     </CartContext.Provider>

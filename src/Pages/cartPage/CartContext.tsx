@@ -16,7 +16,8 @@ type CartContextType = {
   setData: React.Dispatch<React.SetStateAction<CartItem[]>>;
   addToCart: (item: CartItem) => void;
   removeFromCart: (item: CartItem) => void;
-  resetCart: () => void; // Add this line
+  resetCart: () => void;
+  completePurchase: () => void; // Add this line
 };
 
 export const CartContext = React.createContext<CartContextType>({
@@ -25,5 +26,6 @@ export const CartContext = React.createContext<CartContextType>({
   setData: () => {},
   addToCart: () => {},
   removeFromCart: () => {},
-  resetCart: () => {}, // Add this line
+  resetCart: () => {},
+  completePurchase: () => {}, // Add this line
 });
