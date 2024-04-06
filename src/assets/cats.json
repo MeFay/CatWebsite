@@ -1,302 +1,303 @@
 {
-  "1": {
-    "race": "Siamese",
-    "name": "Fluffy",
-    "color": "Mixed",
-    "weight": 10,
-    "age": 3,
-    "location": "Egypt",
-    "image": "https://cdn.discordapp.com/attachments/672558313317203991/1222125359256961045/Layer_1.png?ex=661513ef&is=66029eef&hm=18405e3f32f394fe4a97fafecaccb3c34a370a7ef6bf35519be5ac70803bed44&",
-    "price": 100
-  },
-  "2": {
-    "race": "Maine Coon",
-    "name": "Arya",
-    "color": "Gray",
-    "weight": 15,
-    "age": 7,
-    "location": "United States",
-    "image": "https://cdn.discordapp.com/attachments/672558313317203991/1222125358967689266/Layer_5.png?ex=661513ef&is=66029eef&hm=f7099fc071ea5f2c549554bfdff36094af2eb1e33ac6fed3db61c80b17a07739&",
-    "price": 150
-  },
-  "3": {
-    "race": "Persian",
-    "name": "Atlas",
-    "color": "Orange",
-    "weight": 8,
-    "age": 5,
-    "location": "Iran",
-    "image": "https://cdn.discordapp.com/attachments/672558313317203991/1222125359529725974/Layer_2.png?ex=661513ef&is=66029eef&hm=4bd17dddc27abf23c1c62965f0eab9a971c445cabd63f1dec4deb808ec602918&",
-    "price": 200
-  },
-  "4": {
-    "race": "Sphynx",
-    "name": "Kuro",
-    "color": "Black",
-    "weight": 6,
-    "age": 2,
-    "location": "Canada",
-    "image": "https://cdn.discordapp.com/attachments/672558313317203991/1222125360850800670/Layer_3.png?ex=661513f0&is=66029ef0&hm=61a1e8be5598b8cb22067dfad3b482ad292aa971435f141c033f876b455d3878&",
-    "price": 300
-  },
-  "5": {
-    "race": "Scottish Fold",
-    "name": "Tiger",
-    "color": "Orange",
-    "weight": 7,
-    "age": 4,
-    "location": "United Kingdom",
-    "image": "https://cdn.discordapp.com/attachments/672558313317203991/1222125361157115944/Layer_4.png?ex=661513f0&is=66029ef0&hm=e2fc426dbffc23100416748b0cd21a0d98dc438bb9a2902bc44e027d8b4227c4&",
-    "price": 250
-  },
-  "6": {
-    "race": "Bengal",
-    "name": "Cupcake",
-    "color": "Mixed",
-    "weight": 12,
-    "age": 6,
-    "location": "India",
-    "image": "https://cdn.discordapp.com/attachments/672558313317203991/1222125379230240850/Layer_6.png?ex=661513f4&is=66029ef4&hm=578da0490a28a0b82886fde69a8f6b1a555def2541cf0db3b7824695dd65309a&",
-    "price": 180
-  },
-  "7": {
-    "race": "Russian Blue",
-    "name": "Napoleon",
-    "color": "Orange",
-    "weight": 9,
-    "age": 3,
-    "location": "Russia",
-    "image": "https://cdn.discordapp.com/attachments/672558313317203991/1222125379440087082/Layer_7.png?ex=661513f4&is=66029ef4&hm=1f42765834b03e011b21649a69c66689e7fa5c3217028633814a9d7e634da7e8&",
-    "price": 220
-  },
-  "8": {
-    "race": "Ragdoll",
-    "name": "Muffin",
-    "color": "Beige",
-    "weight": 11,
-    "age": 7,
-    "location": "Australia",
-    "image": "https://cdn.discordapp.com/attachments/672558313317203991/1222125379683094558/Layer_8.png?ex=661513f4&is=66029ef4&hm=f5408a537059375f25e55dd86dbe91a13fb68e9160e933494ab830c2dbaf02c6&",
-    "price": 280
-  },
-  "9": {
-    "race": "Abyssinian",
-    "name": "Simba",
-    "color": "Mixed",
-    "weight": 5,
-    "age": 1,
-    "location": "Ethiopia",
-    "image": "https://cdn.discordapp.com/attachments/672558313317203991/1222125379888746566/Layer_9.png?ex=661513f4&is=66029ef4&hm=dcd22603f40c7292d30e575a1352058295991f55227ff4efab4bb9cfca6b8e9b&",
-    "price": 320
-  },
-  "10": {
-    "race": "British Shorthair",
-    "name": "Nico",
-    "color": "Orange",
-    "weight": 9,
-    "age": 4,
-    "location": "United Kingdom",
-    "image": "https://cdn.discordapp.com/attachments/672558313317203991/1222125380119564288/Layer_10.png?ex=661513f4&is=66029ef4&hm=7f1517bda55b730999e56b023279b5cd459f9e17a7d7e93971386782d2e37852&",
-    "price": 230
-  },
-  "11": {
-    "race": "Siamese",
-    "name": "Luna",
-    "color": "Gray",
-    "weight": 8,
-    "age": 3,
-    "location": "Thailand",
-    "image": "https://cdn.discordapp.com/attachments/672558313317203991/1222125380320628817/Layer_11.png?ex=661513f4&is=66029ef4&hm=8356a499cea69034b1d76bc2cde5d49bc9b88c152e33d5eb5e9e04e50196bf40&",
-    "price": 180
-  },
-  "12": {
-    "race": "Maine Coon",
-    "name": "Mittens",
-    "color": "Beige",
-    "weight": 14,
-    "age": 5,
-    "location": "United States",
-    "image": "https://cdn.discordapp.com/attachments/672558313317203991/1222125380547252235/Layer_12.png?ex=661513f4&is=66029ef4&hm=78a85639dbdcd393d902ebcc8d18416d9bb9fae7144361ebc143274fb2158d71&",
-    "price": 270
-  },
-  "13": {
-    "race": "Persian",
-    "name": "Princess",
-    "color": "Mixed",
-    "weight": 7,
-    "age": 2,
-    "location": "Iran",
-    "image": "https://cdn.discordapp.com/attachments/672558313317203991/1222125359256961045/Layer_1.png?ex=661513ef&is=66029eef&hm=18405e3f32f394fe4a97fafecaccb3c34a370a7ef6bf35519be5ac70803bed44&",
-    "price": 300
-  },
-  "14": {
-    "race": "Sphynx",
-    "name": "Sphinx",
-    "color": "Gray",
-    "weight": 6,
-    "age": 1,
-    "location": "Canada",
-    "image": "https://cdn.discordapp.com/attachments/672558313317203991/1222125358967689266/Layer_5.png?ex=661513ef&is=66029eef&hm=f7099fc071ea5f2c549554bfdff36094af2eb1e33ac6fed3db61c80b17a07739&",
-    "price": 350
-  },
-  "15": {
-    "race": "Scottish Fold",
-    "name": "Pumpkin",
-    "color": "Orange",
-    "weight": 8,
-    "age": 3,
-    "location": "United Kingdom",
-    "image": "https://cdn.discordapp.com/attachments/672558313317203991/1222125359529725974/Layer_2.png?ex=661513ef&is=66029eef&hm=4bd17dddc27abf23c1c62965f0eab9a971c445cabd63f1dec4deb808ec602918&",
-    "price": 240
-  },
-  "16": {
-    "race": "Bengal",
-    "name": "Leo",
-    "color": "Black",
-    "weight": 10,
-    "age": 4,
-    "location": "India",
-    "image": "https://cdn.discordapp.com/attachments/672558313317203991/1222125360850800670/Layer_3.png?ex=661513f0&is=66029ef0&hm=61a1e8be5598b8cb22067dfad3b482ad292aa971435f141c033f876b455d3878&",
-    "price": 200
-  },
-  "17": {
-    "race": "Russian Blue",
-    "name": "Milo",
-    "color": "Mixed",
-    "weight": 9,
-    "age": 2,
-    "location": "Russia",
-    "image": "https://cdn.discordapp.com/attachments/672558313317203991/1222125361157115944/Layer_4.png?ex=661513f0&is=66029ef0&hm=e2fc426dbffc23100416748b0cd21a0d98dc438bb9a2902bc44e027d8b4227c4&",
-    "price": 210
-  },
-  "18": {
-    "race": "Ragdoll",
-    "name": "Snowball",
-    "color": "White",
-    "weight": 10,
-    "age": 6,
-    "location": "Australia",
-    "image": "https://cdn.discordapp.com/attachments/672558313317203991/1222125379230240850/Layer_6.png?ex=661513f4&is=66029ef4&hm=578da0490a28a0b82886fde69a8f6b1a555def2541cf0db3b7824695dd65309a&",
-    "price": 290
-  },
-  "19": {
-    "race": "Abyssinian",
-    "name": "Cleo",
-    "color": "Orange",
-    "weight": 6,
-    "age": 1,
-    "location": "Ethiopia",
-    "image": "https://cdn.discordapp.com/attachments/672558313317203991/1222125379440087082/Layer_7.png?ex=661513f4&is=66029ef4&hm=1f42765834b03e011b21649a69c66689e7fa5c3217028633814a9d7e634da7e8&",
-    "price": 330
-  },
-  "20": {
-    "race": "British Shorthair",
-    "name": "Peanut",
-    "color": "Beige",
-    "weight": 7,
-    "age": 2,
-    "location": "United Kingdom",
-    "image": "https://cdn.discordapp.com/attachments/672558313317203991/1222125379683094558/Layer_8.png?ex=661513f4&is=66029ef4&hm=f5408a537059375f25e55dd86dbe91a13fb68e9160e933494ab830c2dbaf02c6&",
-    "price": 250
-  },
-  "21": {
-    "race": "Siamese",
-    "name": "Loco",
-    "color": "Mixed",
-    "weight": 9,
-    "age": 5,
-    "location": "Thailand",
-    "image": "https://cdn.discordapp.com/attachments/672558313317203991/1222125379888746566/Layer_9.png?ex=661513f4&is=66029ef4&hm=dcd22603f40c7292d30e575a1352058295991f55227ff4efab4bb9cfca6b8e9b&",
-    "price": 190
-  },
-  "22": {
-    "race": "Maine Coon",
-    "name": "Vesgo",
-    "color": "Orange",
-    "weight": 16,
-    "age": 6,
-    "location": "United States",
-    "image": "https://cdn.discordapp.com/attachments/672558313317203991/1222125380119564288/Layer_10.png?ex=661513f4&is=66029ef4&hm=7f1517bda55b730999e56b023279b5cd459f9e17a7d7e93971386782d2e37852&",
-    "price": 280
-  },
-  "23": {
-    "race": "Persian",
-    "name": "Waffles",
-    "color": "Gray",
-    "weight": 12,
-    "age": 3,
-    "location": "Iran",
-    "image": "https://cdn.discordapp.com/attachments/672558313317203991/1222125380320628817/Layer_11.png?ex=661513f4&is=66029ef4&hm=8356a499cea69034b1d76bc2cde5d49bc9b88c152e33d5eb5e9e04e50196bf40&",
-    "price": 320
-  },
-  "24": {
-    "race": "Sphynx",
-    "name": "Doodle",
-    "color": "Beige",
-    "weight": 7,
-    "age": 2,
-    "location": "Canada",
-    "image": "https://cdn.discordapp.com/attachments/672558313317203991/1222125380547252235/Layer_12.png?ex=661513f4&is=66029ef4&hm=78a85639dbdcd393d902ebcc8d18416d9bb9fae7144361ebc143274fb2158d71&",
-    "price": 330
-  },
-  "25": {
-    "race": "Scottish Fold",
-    "name": "Mozart",
-    "color": "Mixed",
-    "weight": 9,
-    "age": 4,
-    "location": "United Kingdom",
-    "image": "https://cdn.discordapp.com/attachments/672558313317203991/1222125359256961045/Layer_1.png?ex=661513ef&is=66029eef&hm=18405e3f32f394fe4a97fafecaccb3c34a370a7ef6bf35519be5ac70803bed44&",
-    "price": 260
-  },
-  "26": {
-    "race": "Bengal",
-    "name": "Shadow",
-    "color": "Gray",
-    "weight": 11,
-    "age": 5,
-    "location": "India",
-    "image": "https://cdn.discordapp.com/attachments/672558313317203991/1222125358967689266/Layer_5.png?ex=661513ef&is=66029eef&hm=f7099fc071ea5f2c549554bfdff36094af2eb1e33ac6fed3db61c80b17a07739&",
-    "price": 210
-  },
-  "27": {
-    "race": "Russian Blue",
-    "name": "Loki",
-    "color": "Orange",
-    "weight": 8,
-    "age": 3,
-    "location": "Russia",
-    "image": "https://cdn.discordapp.com/attachments/672558313317203991/1222125359529725974/Layer_2.png?ex=661513ef&is=66029eef&hm=4bd17dddc27abf23c1c62965f0eab9a971c445cabd63f1dec4deb808ec602918&",
-    "price": 220
-  },
-  "28": {
-    "race": "Ragdoll",
-    "name": "CutiePie",
-    "color": "Black",
-    "weight": 10,
-    "age": 7,
-    "location": "Australia",
-    "image": "https://cdn.discordapp.com/attachments/672558313317203991/1222125360850800670/Layer_3.png?ex=661513f0&is=66029ef0&hm=61a1e8be5598b8cb22067dfad3b482ad292aa971435f141c033f876b455d3878&",
-    "price": 300
-  },
-  "29": {
-    "race": "Abyssinian",
-    "name": "Chaos",
-    "color": "Mixed",
-    "weight": 6,
-    "age": 2,
-    "location": "Ethiopia",
-    "image": "https://cdn.discordapp.com/attachments/672558313317203991/1222125361157115944/Layer_4.png?ex=661513f0&is=66029ef0&hm=e2fc426dbffc23100416748b0cd21a0d98dc438bb9a2902bc44e027d8b4227c4&",
-    "price": 350
-  },
-  "30": {
-    "race": "British Shorthair",
-    "name": "Zoomie",
-    "color": "Mixed",
-    "weight": 8,
-    "age": 3,
-    "location": "United Kingdom",
-    "image": "https://cdn.discordapp.com/attachments/672558313317203991/1222125379230240850/Layer_6.png?ex=661513f4&is=66029ef4&hm=578da0490a28a0b82886fde69a8f6b1a555def2541cf0db3b7824695dd65309a&",
-    "price": 270
+    "1": {
+      "race": "Siamese",
+      "name": "Fluffy",
+      "color": "Mixed",
+      "weight": 10,
+      "age": 3,
+      "location": "Egypt",
+      "image": "https://cdn.discordapp.com/attachments/672558313317203991/1222125359256961045/Layer_1.png?ex=661513ef&is=66029eef&hm=18405e3f32f394fe4a97fafecaccb3c34a370a7ef6bf35519be5ac70803bed44&",
+      "price": 100
+    },
+    "2": {
+      "race": "Maine Coon",
+      "name": "Arya",
+      "color": "Gray",
+      "weight": 15,
+      "age": 7,
+      "location": "United States",
+      "image": "https://cdn.discordapp.com/attachments/672558313317203991/1222125358967689266/Layer_5.png?ex=661513ef&is=66029eef&hm=f7099fc071ea5f2c549554bfdff36094af2eb1e33ac6fed3db61c80b17a07739&",
+      "price": 150
+    },
+    "3": {
+      "race": "Persian",
+      "name": "Atlas",
+      "color": "Orange",
+      "weight": 8,
+      "age": 5,
+      "location": "Iran",
+      "image": "https://cdn.discordapp.com/attachments/672558313317203991/1222125359529725974/Layer_2.png?ex=661513ef&is=66029eef&hm=4bd17dddc27abf23c1c62965f0eab9a971c445cabd63f1dec4deb808ec602918&",
+      "price": 200
+    },
+    "4": {
+      "race": "Sphynx",
+      "name": "Kuro",
+      "color": "Black",
+      "weight": 6,
+      "age": 2,
+      "location": "Canada",
+      "image": "https://cdn.discordapp.com/attachments/672558313317203991/1222125360850800670/Layer_3.png?ex=661513f0&is=66029ef0&hm=61a1e8be5598b8cb22067dfad3b482ad292aa971435f141c033f876b455d3878&",
+      "price": 300
+    },
+    "5": {
+      "race": "Scottish Fold",
+      "name": "Tiger",
+      "color": "Orange",
+      "weight": 7,
+      "age": 4,
+      "location": "United Kingdom",
+      "image": "https://cdn.discordapp.com/attachments/672558313317203991/1222125361157115944/Layer_4.png?ex=661513f0&is=66029ef0&hm=e2fc426dbffc23100416748b0cd21a0d98dc438bb9a2902bc44e027d8b4227c4&",
+      "price": 250
+    },
+    "6": {
+      "race": "Bengal",
+      "name": "Cupcake",
+      "color": "Mixed",
+      "weight": 12,
+      "age": 6,
+      "location": "India",
+      "image": "https://cdn.discordapp.com/attachments/672558313317203991/1222125379230240850/Layer_6.png?ex=661513f4&is=66029ef4&hm=578da0490a28a0b82886fde69a8f6b1a555def2541cf0db3b7824695dd65309a&",
+      "price": 180
+    },
+    "7": {
+      "race": "Russian Blue",
+      "name": "Napoleon",
+      "color": "Orange",
+      "weight": 9,
+      "age": 3,
+      "location": "Russia",
+      "image": "https://cdn.discordapp.com/attachments/672558313317203991/1222125379440087082/Layer_7.png?ex=661513f4&is=66029ef4&hm=1f42765834b03e011b21649a69c66689e7fa5c3217028633814a9d7e634da7e8&",
+      "price": 220
+    },
+    "8": {
+      "race": "Ragdoll",
+      "name": "Muffin",
+      "color": "Beige",
+      "weight": 11,
+      "age": 7,
+      "location": "Australia",
+      "image": "https://cdn.discordapp.com/attachments/672558313317203991/1222125379683094558/Layer_8.png?ex=661513f4&is=66029ef4&hm=f5408a537059375f25e55dd86dbe91a13fb68e9160e933494ab830c2dbaf02c6&",
+      "price": 280
+    },
+    "9": {
+      "race": "Abyssinian",
+      "name": "Simba",
+      "color": "Mixed",
+      "weight": 5,
+      "age": 1,
+      "location": "Ethiopia",
+      "image": "https://cdn.discordapp.com/attachments/672558313317203991/1222125379888746566/Layer_9.png?ex=661513f4&is=66029ef4&hm=dcd22603f40c7292d30e575a1352058295991f55227ff4efab4bb9cfca6b8e9b&",
+      "price": 320
+    },
+    "10": {
+      "race": "British Shorthair",
+      "name": "Nico",
+      "color": "Orange",
+      "weight": 9,
+      "age": 4,
+      "location": "United Kingdom",
+      "image": "https://cdn.discordapp.com/attachments/672558313317203991/1222125380119564288/Layer_10.png?ex=661513f4&is=66029ef4&hm=7f1517bda55b730999e56b023279b5cd459f9e17a7d7e93971386782d2e37852&",
+      "price": 230
+    },
+    "11": {
+      "race": "Siamese",
+      "name": "Luna",
+      "color": "Gray",
+      "weight": 8,
+      "age": 3,
+      "location": "Thailand",
+      "image": "https://cdn.discordapp.com/attachments/672558313317203991/1222125380320628817/Layer_11.png?ex=661513f4&is=66029ef4&hm=8356a499cea69034b1d76bc2cde5d49bc9b88c152e33d5eb5e9e04e50196bf40&",
+      "price": 180
+    },
+    "12": {
+      "race": "Maine Coon",
+      "name": "Mittens",
+      "color": "Beige",
+      "weight": 14,
+      "age": 5,
+      "location": "United States",
+      "image": "https://cdn.discordapp.com/attachments/672558313317203991/1222125380547252235/Layer_12.png?ex=661513f4&is=66029ef4&hm=78a85639dbdcd393d902ebcc8d18416d9bb9fae7144361ebc143274fb2158d71&",
+      "price": 270
+    },
+    "13": {
+      "race": "Persian",
+      "name": "Princess",
+      "color": "Mixed",
+      "weight": 7,
+      "age": 2,
+      "location": "Iran",
+      "image": "https://cdn.discordapp.com/attachments/672558313317203991/1222125359256961045/Layer_1.png?ex=661513ef&is=66029eef&hm=18405e3f32f394fe4a97fafecaccb3c34a370a7ef6bf35519be5ac70803bed44&",
+      "price": 300
+    },
+    "14": {
+      "race": "Sphynx",
+      "name": "Sphinx",
+      "color": "Gray",
+      "weight": 6,
+      "age": 1,
+      "location": "Canada",
+      "image": "https://cdn.discordapp.com/attachments/672558313317203991/1222125358967689266/Layer_5.png?ex=661513ef&is=66029eef&hm=f7099fc071ea5f2c549554bfdff36094af2eb1e33ac6fed3db61c80b17a07739&",
+      "price": 350
+    },
+    "15": {
+      "race": "Scottish Fold",
+      "name": "Pumpkin",
+      "color": "Orange",
+      "weight": 8,
+      "age": 3,
+      "location": "United Kingdom",
+      "image": "https://cdn.discordapp.com/attachments/672558313317203991/1222125359529725974/Layer_2.png?ex=661513ef&is=66029eef&hm=4bd17dddc27abf23c1c62965f0eab9a971c445cabd63f1dec4deb808ec602918&",
+      "price": 240
+    },
+    "16": {
+      "race": "Bengal",
+      "name": "Leo",
+      "color": "Black",
+      "weight": 10,
+      "age": 4,
+      "location": "India",
+      "image": "https://cdn.discordapp.com/attachments/672558313317203991/1222125360850800670/Layer_3.png?ex=661513f0&is=66029ef0&hm=61a1e8be5598b8cb22067dfad3b482ad292aa971435f141c033f876b455d3878&",
+      "price": 200
+    },
+    "17": {
+      "race": "Russian Blue",
+      "name": "Milo",
+      "color": "Mixed",
+      "weight": 9,
+      "age": 2,
+      "location": "Russia",
+      "image": "https://cdn.discordapp.com/attachments/672558313317203991/1222125361157115944/Layer_4.png?ex=661513f0&is=66029ef0&hm=e2fc426dbffc23100416748b0cd21a0d98dc438bb9a2902bc44e027d8b4227c4&",
+      "price": 210
+    },
+    "18": {
+      "race": "Ragdoll",
+      "name": "Snowball",
+      "color": "White",
+      "weight": 10,
+      "age": 6,
+      "location": "Australia",
+      "image": "https://cdn.discordapp.com/attachments/672558313317203991/1222125379230240850/Layer_6.png?ex=661513f4&is=66029ef4&hm=578da0490a28a0b82886fde69a8f6b1a555def2541cf0db3b7824695dd65309a&",
+      "price": 290
+    },
+    "19": {
+      "race": "Abyssinian",
+      "name": "Cleo",
+      "color": "Orange",
+      "weight": 6,
+      "age": 1,
+      "location": "Ethiopia",
+      "image": "https://cdn.discordapp.com/attachments/672558313317203991/1222125379440087082/Layer_7.png?ex=661513f4&is=66029ef4&hm=1f42765834b03e011b21649a69c66689e7fa5c3217028633814a9d7e634da7e8&",
+      "price": 330
+    },
+    "20": {
+      "race": "British Shorthair",
+      "name": "Peanut",
+      "color": "Beige",
+      "weight": 7,
+      "age": 2,
+      "location": "United Kingdom",
+      "image": "https://cdn.discordapp.com/attachments/672558313317203991/1222125379683094558/Layer_8.png?ex=661513f4&is=66029ef4&hm=f5408a537059375f25e55dd86dbe91a13fb68e9160e933494ab830c2dbaf02c6&",
+      "price": 250
+    },
+    "21": {
+      "race": "Siamese",
+      "name": "Loco",
+      "color": "Mixed",
+      "weight": 9,
+      "age": 5,
+      "location": "Thailand",
+      "image": "https://cdn.discordapp.com/attachments/672558313317203991/1222125379888746566/Layer_9.png?ex=661513f4&is=66029ef4&hm=dcd22603f40c7292d30e575a1352058295991f55227ff4efab4bb9cfca6b8e9b&",
+      "price": 190
+    },
+    "22": {
+      "race": "Maine Coon",
+      "name": "Vesgo",
+      "color": "Orange",
+      "weight": 16,
+      "age": 6,
+      "location": "United States",
+      "image": "https://cdn.discordapp.com/attachments/672558313317203991/1222125380119564288/Layer_10.png?ex=661513f4&is=66029ef4&hm=7f1517bda55b730999e56b023279b5cd459f9e17a7d7e93971386782d2e37852&",
+      "price": 280
+    },
+    "23": {
+      "race": "Persian",
+      "name": "Waffles",
+      "color": "Gray",
+      "weight": 12,
+      "age": 3,
+      "location": "Iran",
+      "image": "https://cdn.discordapp.com/attachments/672558313317203991/1222125380320628817/Layer_11.png?ex=661513f4&is=66029ef4&hm=8356a499cea69034b1d76bc2cde5d49bc9b88c152e33d5eb5e9e04e50196bf40&",
+      "price": 320
+    },
+    "24": {
+      "race": "Sphynx",
+      "name": "Doodle",
+      "color": "Beige",
+      "weight": 7,
+      "age": 2,
+      "location": "Canada",
+      "image": "https://cdn.discordapp.com/attachments/672558313317203991/1222125380547252235/Layer_12.png?ex=661513f4&is=66029ef4&hm=78a85639dbdcd393d902ebcc8d18416d9bb9fae7144361ebc143274fb2158d71&",
+      "price": 330
+    },
+    "25": {
+      "race": "Scottish Fold",
+      "name": "Mozart",
+      "color": "Mixed",
+      "weight": 9,
+      "age": 4,
+      "location": "United Kingdom",
+      "image": "https://cdn.discordapp.com/attachments/672558313317203991/1222125359256961045/Layer_1.png?ex=661513ef&is=66029eef&hm=18405e3f32f394fe4a97fafecaccb3c34a370a7ef6bf35519be5ac70803bed44&",
+      "price": 260
+    },
+    "26": {
+      "race": "Bengal",
+      "name": "Shadow",
+      "color": "Gray",
+      "weight": 11,
+      "age": 5,
+      "location": "India",
+      "image": "https://cdn.discordapp.com/attachments/672558313317203991/1222125358967689266/Layer_5.png?ex=661513ef&is=66029eef&hm=f7099fc071ea5f2c549554bfdff36094af2eb1e33ac6fed3db61c80b17a07739&",
+      "price": 210
+    },
+    "27": {
+      "race": "Russian Blue",
+      "name": "Loki",
+      "color": "Orange",
+      "weight": 8,
+      "age": 3,
+      "location": "Russia",
+      "image": "https://cdn.discordapp.com/attachments/672558313317203991/1222125359529725974/Layer_2.png?ex=661513ef&is=66029eef&hm=4bd17dddc27abf23c1c62965f0eab9a971c445cabd63f1dec4deb808ec602918&",
+      "price": 220
+    },
+    "28": {
+      "race": "Ragdoll",
+      "name": "CutiePie",
+      "color": "Black",
+      "weight": 10,
+      "age": 7,
+      "location": "Australia",
+      "image": "https://cdn.discordapp.com/attachments/672558313317203991/1222125360850800670/Layer_3.png?ex=661513f0&is=66029ef0&hm=61a1e8be5598b8cb22067dfad3b482ad292aa971435f141c033f876b455d3878&",
+      "price": 300
+    },
+    "29": {
+      "race": "Abyssinian",
+      "name": "Chaos",
+      "color": "Mixed",
+      "weight": 6,
+      "age": 2,
+      "location": "Ethiopia",
+      "image": "https://cdn.discordapp.com/attachments/672558313317203991/1222125361157115944/Layer_4.png?ex=661513f0&is=66029ef0&hm=e2fc426dbffc23100416748b0cd21a0d98dc438bb9a2902bc44e027d8b4227c4&",
+      "price": 350
+    },
+    "30": {
+      "race": "British Shorthair",
+      "name": "Zoomie",
+      "color": "Mixed",
+      "weight": 8,
+      "age": 3,
+      "location": "United Kingdom",
+      "image": "https://cdn.discordapp.com/attachments/672558313317203991/1222125379230240850/Layer_6.png?ex=661513f4&is=66029ef4&hm=578da0490a28a0b82886fde69a8f6b1a555def2541cf0db3b7824695dd65309a&",
+      "price": 270
+    }
   }
-}
+  

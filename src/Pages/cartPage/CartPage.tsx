@@ -1,7 +1,7 @@
 import { NavbarLayout } from "../../components/Navbar/Navbar";
 import { MainSection } from "./main";
 
-const CartPage = () => {
+export const CartPage = () => {
   return (
     <>
       <NavbarLayout />
@@ -9,4 +9,3 @@ const CartPage = () => {
     </>
   );
 };
-export default CartPage;

@@ -5,16 +5,28 @@ export type CartItem = {
   price: number;
   name: string;
   image: string;
+  isSold: boolean;
+  race: string;
+  color: string;
+  location: string;
 };
 
 type CartContextType = {
   cart: CartItem[];
+  data: CartItem[];
+  setData: React.Dispatch<React.SetStateAction<CartItem[]>>;
   addToCart: (item: CartItem) => void;
   removeFromCart: (item: CartItem) => void;
+  resetCart: () => void;
+  completePurchase: () => void;
 };
 
 export const CartContext = React.createContext<CartContextType>({
   cart: [],
+  data: [],
+  setData: () => {},
   addToCart: () => {},
   removeFromCart: () => {},
+  resetCart: () => {},
+  completePurchase: () => {},
 });

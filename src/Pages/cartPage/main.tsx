@@ -1,6 +1,6 @@
 import { useContext } from "react";
-import { CartContext } from "./CartContext";
 import { useNavigate } from "react-router-dom";
+import { CartContext } from "./CartContext";
 import {
   StyledWrapper,
   StyledTitle,
@@ -13,7 +13,6 @@ import {
 export const MainSection = () => {
   const navigate = useNavigate();
   const { cart, removeFromCart } = useContext(CartContext);
-  const isCartEmpty = cart.length === 0;
 
   const handleRemoveClick = (id: number) => {
     const itemToRemove = cart.find((item) => item.id === id);
@@ -21,7 +20,10 @@ export const MainSection = () => {
       removeFromCart(itemToRemove);
     }
   };
+
   const totalPrice = cart.reduce((total, item) => total + item.price, 0);
+  const isCartEmpty = cart.length === 0;
+
   return (
     <StyledWrapper>
       <StyledTitle>Your receipt</StyledTitle>
