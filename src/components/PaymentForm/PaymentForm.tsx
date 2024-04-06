@@ -23,7 +23,8 @@ export const PaymentForm = () => {
   const [paymentMethod, setPaymentMethod] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  const { cart, removeFromCart } = useContext(CartContext);
+  const { cart } = useContext(CartContext);
+
   const paymentFees = [
     { name: "Card", fee: 0 },
     { name: "PayPal", fee: 0.03 },
@@ -39,39 +40,26 @@ export const PaymentForm = () => {
     const selectedPaymentMethod = paymentFees.find(
       (method) => method.name === paymentMethod
     );
-
     const fee = selectedPaymentMethod
       ? itemsTotal * selectedPaymentMethod.fee
       : 0;
     const totalPrice = itemsTotal + fee;
-
     return totalPrice.toFixed(2);
   };
 
-  let totalPrice = calculateTotalPrice();
+  const totalPrice = calculateTotalPrice();
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     setIsLoading(true);
     setErrorMessage(null);
+
     if (!email.includes("@")) {
       const message = "Please enter a valid email address.";
       setErrorMessage(message);
       toast.error(message);
       setIsLoading(false);
       return;
-    }
-
-    if (!errorMessage) {
-      setAddress("");
-      setPhoneNumber("");
-      setEmail("");
-      setPaymentMethod("");
-      cart.forEach((item) => {
-        removeFromCart(item);
-      });
-
-      totalPrice = calculateTotalPrice();
     }
 
     try {
@@ -99,6 +87,7 @@ export const PaymentForm = () => {
             <StyledLabel>Email:</StyledLabel>
             <StyledLabel>Payment:</StyledLabel>
           </StyledLabelContainer>
+
           <StyledInputContainer>
             <StyledInput
               type="text"
@@ -114,6 +103,7 @@ export const PaymentForm = () => {
               }}
               required
             />
+
             <StyledInput
               type="email"
               value={email}
