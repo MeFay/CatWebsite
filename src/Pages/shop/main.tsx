@@ -3,9 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import "../../index.css";
 import { Table } from "../../components/Table/Table.tsx";
-import catJsonData from "../../assets/cats.json";
 import { SearchBar } from "../../components/SearchBar/SearchBar.tsx";
 import { Pagination } from "../../components/Pagination/Pagination.tsx";
+import { useContext } from "react"; // Add this line
+import { CartContext } from "../../Pages/cartPage/CartContext"; 
 
 type Cat = {
   id: string;
@@ -15,6 +16,7 @@ type Cat = {
   location: string;
   image: string;
   price: number;
+  isSold: boolean;
 };
 
 const useSearch = (initialSearch = "") => {
@@ -33,34 +35,21 @@ const useSearch = (initialSearch = "") => {
   return { search, setSearch, debouncedSearch };
 };
 
-const useData = () => {
-  const [data, setData] = useState<Array<Cat>>([]);
-
-  useEffect(() => {
-    setData(
-      Object.entries(catJsonData).map(([catId, cat]) => ({
-        id: catId,
-        ...cat,
-      }))
-    );
-  }, []);
-
-  return { data };
-};
 
 export const MainSection = () => {
   const itemsPerPage = 4;
   const navigate = useNavigate();
   const { search, setSearch, debouncedSearch } = useSearch();
-  const { data } = useData();
+  const { data } = useContext(CartContext);
   const [currentPage, setCurrentPage] = useState(1);
 
   const filteredData = data.filter(
     (cat) =>
-      cat.name.toLowerCase().includes(debouncedSearch.toLowerCase()) ||
-      cat.race.toLowerCase().includes(debouncedSearch.toLowerCase()) ||
-      cat.color.toLowerCase().includes(debouncedSearch.toLowerCase()) ||
-      cat.location.toLowerCase().includes(debouncedSearch.toLowerCase())
+      !cat.isSold &&
+      (cat.name.toLowerCase().includes(debouncedSearch.toLowerCase()) ||
+        cat.race.toLowerCase().includes(debouncedSearch.toLowerCase()) ||
+        cat.color.toLowerCase().includes(debouncedSearch.toLowerCase()) ||
+        cat.location.toLowerCase().includes(debouncedSearch.toLowerCase()))
   );
 
   const indexOfLastItem = currentPage * itemsPerPage;
