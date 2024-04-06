@@ -23,7 +23,7 @@ export const PaymentForm = () => {
   const [paymentMethod, setPaymentMethod] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  const { cart } = useContext(CartContext);
+  const { cart, resetCart } = useContext(CartContext);
 
   const paymentFees = [
     { name: "Card", fee: 0 },
@@ -67,6 +67,7 @@ export const PaymentForm = () => {
       const message =
         "The transaction was successfully submitted! You will receive a confirmation email";
       toast.success(message);
+      resetCart(); 
     } catch (err) {
       const message = "There was an error. Please try again.";
       setErrorMessage(message);

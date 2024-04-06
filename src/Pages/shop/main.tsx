@@ -5,7 +5,7 @@ import "../../index.css";
 import { Table } from "../../components/Table/Table.tsx";
 import { SearchBar } from "../../components/SearchBar/SearchBar.tsx";
 import { Pagination } from "../../components/Pagination/Pagination.tsx";
-import { useContext } from "react"; // Add this line
+import { useContext } from "react";
 import { CartContext } from "../../Pages/cartPage/CartContext"; 
 
 type Cat = {
