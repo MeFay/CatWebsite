@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { theme } from "../../styles/themes";
+
 export const StyledForm = styled.form`
   display: flex;
   margin: auto;
@@ -6,10 +8,10 @@ export const StyledForm = styled.form`
   flex-direction: column;
   justify-content: center;
   width: 80%;
-  background-color: #ffeecc;
-  border-radius: 15px;
+  background-color: ${theme.Color1};
+  border-radius: 1em;
   padding: 2em;
-  border: 0.5em solid #00b9be;
+  border: 0.5em solid ${theme.Color6};
   gap: 2em;
 `;
 
@@ -18,7 +20,7 @@ export const StyledContainer = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  row-gap: 20px;
+  row-gap: 1.25em;
   height: 100%;
 `;
 
@@ -30,7 +32,7 @@ export const StyledInputContainer = styled.div`
   width: 70%;
   display: flex;
   flex-direction: column;
-  row-gap: 25px;
+  row-gap: 1.5em;
 `;
 
 export const StyledInput = styled.input`
@@ -41,7 +43,7 @@ export const StyledInput = styled.input`
   display: flex;
   margin: auto;
   align-items: center;
-  color: #ff6973;
+  color: ${theme.Color3};
   width: 100%;
 `;
 
@@ -53,8 +55,8 @@ export const StyledSelect = styled.select`
   display: flex;
   margin: auto;
   align-items: center;
-  color: #00b9be;
-  padding: 0.3em;
+  color: ${theme.Color6};
+  padding: 0.1875em;
   width: 100%;
 `;
 
@@ -63,10 +65,10 @@ export const StyledLabel = styled.label`
   justify-content: center;
   align-items: center;
   margin: 0;
-  padding: 0.1em;
+  padding: 0.0625em;
   font-size: 2.5em;
   max-width: 100%;
-  color: #46425e;
+  color: ${theme.Color4};
   width: 100%;
 `;
 
@@ -75,7 +77,7 @@ export const StyledTotal = styled.p`
   justify-content: center;
   margin: 0;
   padding: 0;
-  color: #ff6973;
+  color: ${theme.Color3};
   font-size: 1.7em;
 `;
 
@@ -83,10 +85,10 @@ export const StyledButton = styled.button`
   font-family: "VT323", monospace;
   font-weight: 400;
   width: 50%;
-  padding: 10px;
-  border-radius: 10px;
-  background-color: #15788c;
-  color: #ffeecc;
+  padding: 0.6em;
+  border-radius: 0.5em;
+  background-color: ${theme.Color5};
+  color: ${theme.Color1};
   font-size: 2em;
   border: none;
   &:hover {

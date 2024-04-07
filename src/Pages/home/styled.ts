@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { theme } from "../../styles/themes";
 
 export const StyledWrapper = styled.div`
   display: flex;
@@ -13,18 +14,18 @@ export const StyledLink = styled(Link)`
   justify-content: center;
   align-items: center;
   font-size: 4em;
-  color: #ffb0a3;
+  color: ${theme.Color2};
   &:hover {
-    color: #ff6973;
+    color: ${theme.Color3};
     cursor: pointer;
   }
 `;
 
 export const StyledImage = styled.img`
-  max-width: 32rem;
-  max-height: 32rem;
-  border-radius: 10px;
-  padding: 1rem;
+  max-width: 32em;
+  max-height: 32em;
+  border-radius: 0.625em;
+  padding: 1em;
   background: linear-gradient(
     48deg,
     rgba(255, 176, 163, 1) 43%,

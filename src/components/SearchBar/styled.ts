@@ -1,15 +1,16 @@
 import styled from "styled-components";
+import { theme } from "../../styles/themes";
 
 export const StyledSearchBar = styled.input`
   width: 100%;
   display: flex;
   text-align: center;
   font-family: "VT323", monospace;
-  padding: 10px;
+  padding: 0.5em;
   box-sizing: border-box;
-  border: 5px solid #46425e;
-  border-radius: 15px;
-  background-color: #ffb0a3;
-  font-size: 26px;
-  color: #ffeecc;
+  border: 0.3em solid ${theme.Color4};
+  border-radius: 0.5em;
+  background-color: ${theme.Color2};
+  font-size: 1.5em;
+  color: ${theme.Color1};
 `;

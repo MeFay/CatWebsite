@@ -1,13 +1,14 @@
 import styled from "styled-components";
 import { ToastContainer } from "react-toastify";
+import { theme } from "../../styles/themes";
 
 export const StyledToastContainer = styled(ToastContainer)`
   .Toastify__toast {
-    color: #00b9be;
-    background-color: #ffeecc;
+    color: ${theme.Color6};
+    background-color: ${theme.Color1};
     width: 100%;
     border-radius: 1em;
-    padding: 20px;
+    padding: 1.25em;
   }
 
   .Toastify__toast-body {
@@ -16,5 +17,4 @@ export const StyledToastContainer = styled(ToastContainer)`
     font-size: 1.5em;
     line-height: 1.2;
   }
-
 `;

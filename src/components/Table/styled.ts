@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { theme } from "../../styles/themes";
 
 export const StyledTableWrapper = styled.div`
   padding-top: 3em;
@@ -9,43 +10,43 @@ export const StyledTableWrapper = styled.div`
   align-items: center;
   text-align: center;
   justify-content: center;
-  color: #46425e;
+  color: ${theme.Color4};
 `;
 
 export const StyledTable = styled.table`
   width: 60%;
-  font-size: 1.6rem;
+  font-size: 1.6em;
   border-collapse: collapse;
 `;
 
 export const StyledTableTh = styled.th`
-  font-size: 2rem;
-  border-bottom: 2px solid ${(props) => props.theme.border};
+  font-size: 2em;
+  border-bottom: 0.1em solid ${(props) => props.theme.border};
   padding: 0.6em;
   text-align: center;
-  background-color: #ff6973;
-  color: #46425e;
+  background-color: ${theme.Color3};
+  color: ${theme.Color4};
 `;
 
 export const StyledTableTr = styled.tr`
   &:hover {
-    background-color: #ffb0a3;
+    background-color:${theme.Color2};
   }
-  background-color: #ffeecc;
+  background-color: ${theme.Color1};
 `;
 
 export const StyledTableTd = styled.td`
-  width: 200px;
+  width: 12em;
   padding: 0.6em;
-  border-bottom: 2px solid ${(props) => props.theme.border};
+  border-bottom: 0.1em solid ${(props) => props.theme.border};
   &:hover {
     cursor: pointer;
   }
 `;
 
 export const StyledImage = styled.img`
-  width: 125px;
-  height: 125px;
+  width: 6em;
+  height: 7em;
   object-fit: contain;
-  border-radius: 5px;
+  border-radius: 0.3em;
 `;

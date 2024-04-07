@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { theme } from "../../styles/themes";
 
 export const StyledWrapper = styled.div`
   display: flex;
@@ -7,29 +8,28 @@ export const StyledWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   width: 60%;
-  background-color: #ffb0a3;
-  border-radius: 15px;
+  background-color: ${theme.Color1};
+  border-radius: 1em;
   margin-top: 5em;
   padding: 2em;
-  border: 0.5em solid #ff6973;
   gap: 2em;
+  border: 0.5em solid ${theme.Color3};
 `;
 
 export const StyledTitle = styled.h1`
   margin: 0;
   padding: 0;
   font-size: 5em;
-  color: #46425e;
+  color: ${theme.Color4};
 `;
 
 export const StyledTraits = styled.div`
   display: flex;
-  flex-direction: row;
   align-items: center;
   width: 100%;
-  background: #ffeecc;
+  background: ${theme.Color2};
   border-radius: 1em;
-  padding: 20px;
+  padding: 1.25em;
 `;
 
 export const StyledP = styled.p`
@@ -40,15 +40,7 @@ export const StyledP = styled.p`
   padding: 0;
   font-size: 2em;
   max-width: 100%;
-  color: #00b9be;
-  width: 100%;
-`;
-
-export const StyledImage = styled.img`
-  max-width: 40rem;
-  max-height: 40rem;
-  border-radius: 1em;
-  paddinng: 10px;
+  color: ${theme.Color5};
   width: 100%;
 `;
 
@@ -56,10 +48,10 @@ export const StyledButton = styled.button`
   font-family: "VT323", monospace;
   font-weight: 400;
   width: 50%;
-  padding: 10px;
-  border-radius: 10px;
-  background-color: #15788c;
-  color: #ffeecc;
+  padding: 0.625em;
+  border-radius: 0.625em;
+  background-color: ${theme.Color6};
+  color: ${theme.Color1};
   font-size: 1.5em;
   border: none;
   &:hover {
@@ -75,8 +67,8 @@ export const StyledPrice = styled.p`
   padding: 0;
   font-size: 2em;
   max-width: 100%;
-  color: #ffeecc;
-  background-color: #00b9be;
-  border-radius: 5px;
+  color: ${theme.Color1};
+  background-color: ${theme.Color3};
+  border-radius: 0.3125em;
   width: 100%;
 `;

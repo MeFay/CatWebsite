@@ -1,20 +1,22 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { theme } from "../../styles/themes";
 
 export const StyledLink = styled(Link)<{ isActive: boolean }>`
   display: flex;
   flex-direction: row; // Add this line
   align-items: center;
-  color: ${(props) => (props.isActive ? "#46425e" : "#ffeecc")};
+  color: ${(props) => (props.isActive ? theme.Color4 : theme.Color1)};
+
   text-decoration: none;
   padding: 1rem;
   &:hover {
-    color: #46425e;
+    color: ${theme.Color4};
   }
 `;
 
 export const StyledNavbar = styled.nav`
-  background-color: #00b9be;
+  background-color: ${theme.Color6};
   display: flex;
   align-items: center;
   padding-left: 1rem;
@@ -29,7 +31,7 @@ export const StyledNavbarLeft = styled.div`
 `;
 
 export const StyledNavbarRight = styled.div`
-  color: #ffeecc;
+  color: ${theme.Color1};
   width: 100%;
   display: flex;
   align-items: center;
@@ -44,5 +46,5 @@ export const StyledLogo = styled.img`
 
 export const StyledIcon = styled.img`
   width: 1em;
-  padding: 20px;
+  padding: 0.8em;
 `;

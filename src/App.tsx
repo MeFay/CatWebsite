@@ -4,6 +4,8 @@ import "react-toastify/dist/ReactToastify.css";
 import { router } from "./Router";
 import ReactDOM from "react-dom/client";
 import React from "react";
+import { ThemeProvider } from "styled-components";
+import { theme } from "./styles/themes";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
@@ -13,9 +15,11 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
 
 function App() {
   return (
-    <CartProvider>
-      <RouterProvider router={router} />
-    </CartProvider>
+    <ThemeProvider theme={theme}>
+      <CartProvider>
+        <RouterProvider router={router} />
+      </CartProvider>
+    </ThemeProvider>
   );
 }
 

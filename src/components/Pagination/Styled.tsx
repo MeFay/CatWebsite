@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { theme } from "../../styles/themes";
 
 export const StyledPagination = styled.div`
   .pagination {
@@ -7,7 +8,7 @@ export const StyledPagination = styled.div`
     align-items: center;
     font-size: 2em;
     list-style-type: none;
-    gap: 10px;
+    gap: 0.5em;
     &:hover {
       cursor: pointer;
     }
@@ -18,14 +19,13 @@ export const StyledPagination = styled.div`
 
   .pagination a {
     text-decoration: none;
-    color: #00b9be;
+    color: ${theme.Color6};
     &:hover {
-      color: #ffb0a3;
+      color: ${theme.Color2};
     }
   }
 
   .pagination a.active-link {
-    font-weight: bold;
-    color: #ffeecc;
+    color: ${theme.Color1};
   }
 `;
