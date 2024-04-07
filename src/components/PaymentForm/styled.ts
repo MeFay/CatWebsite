@@ -85,7 +85,7 @@ export const StyledButton = styled.button`
   font-family: "VT323", monospace;
   font-weight: 400;
   width: 50%;
-  padding: 0.6em;
+  padding: 0.4em;
   border-radius: 0.5em;
   background-color: ${theme.Color5};
   color: ${theme.Color1};
