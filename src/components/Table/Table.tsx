@@ -14,9 +14,10 @@ type TableProps = {
     id: string;
     cols: (string | number)[];
   }[];
+  navigateTo: string;
 };
 
-export const Table = ({ headers, lines }: TableProps) => {
+export const Table = ({ headers, lines, navigateTo }: TableProps) => {
   const navigate = useNavigate();
   const DisplayHeaders = headers.map((header) => {
     return <StyledTableTh key={header}>{header}</StyledTableTh>;
@@ -36,7 +37,10 @@ export const Table = ({ headers, lines }: TableProps) => {
     });
 
     return (
-      <StyledTableTr key={line.id} onClick={() => navigate(`/cat/${line.id}`)}>
+      <StyledTableTr
+        key={line.id}
+        onClick={() => navigate(`/${navigateTo}/${line.id}`)}
+      >
         {DisplayColumns}
       </StyledTableTr>
     );

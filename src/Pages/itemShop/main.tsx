@@ -5,6 +5,7 @@ import { SearchBar } from "../../components/SearchBar/SearchBar.tsx";
 import { Pagination } from "../../components/Pagination/Pagination.tsx";
 import { CartContext } from "../../Pages/cartPage/CartContext";
 import "../../index.css";
+import itemJsonData from "../../assets/items.json";
 
 const useSearch = (initialSearch = "") => {
   const [search, setSearch] = useState(initialSearch);
@@ -34,13 +35,11 @@ export const MainSection = () => {
     setCurrentPage(Number(pageId) || 1);
   }, [pageId]);
 
-  const filteredData = data.filter(
-    (cat) =>
-      !cat.isSold &&
-      (cat.name.toLowerCase().includes(debouncedSearch.toLowerCase()) ||
-        cat.race.toLowerCase().includes(debouncedSearch.toLowerCase()) ||
-        cat.color.toLowerCase().includes(debouncedSearch.toLowerCase()) ||
-        cat.location.toLowerCase().includes(debouncedSearch.toLowerCase()))
+  const filteredData = Object.values(itemJsonData).filter(
+    (item: any) =>
+      !item.isSold &&
+      (item.name.toLowerCase().includes(debouncedSearch.toLowerCase()) ||
+        item.category.toLowerCase().includes(debouncedSearch.toLowerCase()))
   );
 
   const currentItems = filteredData.slice(
@@ -48,23 +47,23 @@ export const MainSection = () => {
     currentPage * itemsPerPage
   );
 
-  const TableLines = currentItems.map((cat) => ({
-    id: cat.id.toString(),
-    cols: [cat.name, cat.race, cat.image],
+  const TableLines = currentItems.map((item) => ({
+    id: item.id.toString(),
+    cols: [item.name, item.category || "", item.image],
   }));
 
   const handlePageChange = ({ selected }: { selected: number }) => {
     setCurrentPage(selected + 1);
-    navigate(`/catShop/${selected + 1}`);
+    navigate(`/itemShop/${selected + 1}`);
   };
 
   return (
     <>
       <SearchBar search={search} setSearch={setSearch} />
       <Table
-        headers={["Name", "Race", "Photo"]}
+        headers={["Name", "Category", "Photo"]}
         lines={TableLines}
-        navigateTo="cat"
+        navigateTo="item"
       />
       <Pagination
         pageCount={Math.ceil(filteredData.length / itemsPerPage)}

@@ -6,10 +6,12 @@ export type CartItem = {
   name: string;
   image: string;
   isSold: boolean;
-  race: string;
-  color: string;
-  location: string;
+  category?: string; // for items
+  race?: string; // for cats
+  color?: string; // for cats
+  location?: string; // for cats
 };
+
 
 type CartContextType = {
   cart: CartItem[];

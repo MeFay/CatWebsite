@@ -4,6 +4,8 @@ import { CatShopPage } from "./Pages/catShop/CatShopPage";
 import { CatPage } from "./Pages/catPage/CatPage";
 import { CartPage } from "./Pages/cartPage/CartPage";
 import { PaymentPage } from "./Pages/payment/PaymentPage";
+import { ItemShopPage } from "./Pages/itemShop/ItemShop";
+import { ItemPage } from "./Pages/itemPage/ItemPage";
 
 export const router = createBrowserRouter([
   {
@@ -15,8 +17,16 @@ export const router = createBrowserRouter([
     element: <CatShopPage />,
   },
   {
+    path: "/itemShop/:pageId",
+    element: <ItemShopPage />,
+  },
+  {
     path: "/cat/:catId",
     element: <CatPage />,
+  },
+  {
+    path: "/item/:itemId",
+    element: <ItemPage />,
   },
   {
     path: "/cart",
