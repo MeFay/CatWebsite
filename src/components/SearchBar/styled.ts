@@ -11,6 +11,6 @@ export const StyledSearchBar = styled.input`
   border: 0.3em solid ${theme.Color4};
   border-radius: 0.5em;
   background-color: ${theme.Color2};
-  font-size: 1.5em;
+  font-size: 1.8em;
   color: ${theme.Color1};
 `;

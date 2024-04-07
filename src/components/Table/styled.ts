@@ -38,7 +38,7 @@ export const StyledTableTr = styled.tr`
 export const StyledTableTd = styled.td`
   width: 12em;
   padding: 0.6em;
-  border-bottom: 0.1em solid ${(props) => props.theme.border};
+  border-bottom: 0.2em solid ${(props) => props.theme.border};
   &:hover {
     cursor: pointer;
   }
@@ -46,7 +46,7 @@ export const StyledTableTd = styled.td`
 
 export const StyledImage = styled.img`
   width: 6em;
-  height: 7em;
+  height: 5em;
   object-fit: contain;
   border-radius: 0.3em;
 `;
