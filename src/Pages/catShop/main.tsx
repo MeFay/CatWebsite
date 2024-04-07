@@ -55,7 +55,7 @@ export const MainSection = () => {
 
   const handlePageChange = ({ selected }: { selected: number }) => {
     setCurrentPage(selected + 1);
-    navigate(`/shop/${selected + 1}`);
+    navigate(`/catShop/${selected + 1}`);
   };
 
   return (

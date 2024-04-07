@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 export const StyledLink = styled(Link)<{ isActive: boolean }>`
   display: flex;
+  flex-direction: row; // Add this line
   align-items: center;
   color: ${(props) => (props.isActive ? "#46425e" : "#ffeecc")};
   text-decoration: none;

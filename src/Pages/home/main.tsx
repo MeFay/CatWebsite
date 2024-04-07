@@ -5,7 +5,7 @@ export const MainSection = () => {
   const titleLink = [
     {
       title: "Cat Lovers Shop",
-      url: "/shop/1",
+      url: "/catShop/1",
     },
   ];
   const titleElement = titleLink.map((item) => (
