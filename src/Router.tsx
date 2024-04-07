@@ -1,9 +1,9 @@
 import { Navigate, createBrowserRouter } from "react-router-dom";
-import HomePage from "./Pages/home/HomePage";
-import ShopPage from "./Pages/shop/ShopPage";
-import CatPage from "./Pages/catPage/CatPage";
-import CartPage from "./Pages/cartPage/CartPage";
-import PaymentPage from "./Pages/payment/PaymentPage";
+import { HomePage } from "./Pages/home/HomePage";
+import { CatShopPage } from "./Pages/catShop/CatShopPage";
+import { CatPage } from "./Pages/catPage/CatPage";
+import { CartPage } from "./Pages/cartPage/CartPage";
+import { PaymentPage } from "./Pages/payment/PaymentPage";
 
 export const router = createBrowserRouter([
   {
@@ -11,8 +11,8 @@ export const router = createBrowserRouter([
     element: <HomePage />,
   },
   {
-    path: "/shop/:pageId",
-    element: <ShopPage />,
+    path: "/catShop/:pageId",
+    element: <CatShopPage />,
   },
   {
     path: "/cat/:catId",

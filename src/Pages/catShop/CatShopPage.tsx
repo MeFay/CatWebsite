@@ -1,7 +1,7 @@
 import { NavbarLayout } from "../../components/Navbar/Navbar";
 import { MainSection } from "./main";
 
-const ShopPage = () => {
+export const CatShopPage = () => {
   return (
     <>
       <NavbarLayout />
@@ -9,4 +9,3 @@ const ShopPage = () => {
     </>
   );
 };
-export default ShopPage;
