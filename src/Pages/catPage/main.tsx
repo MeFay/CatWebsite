@@ -34,12 +34,12 @@ export const MainSection = () => {
   const cat = catId ? catData[catId] : undefined;
   const { cart, addToCart } = useContext(CartContext);
 
-  const isCatInCart = cart.some((item) => item.id === Number(catId));
+  const isCatInCart = cart.some((item) => item.id === `item-${catId}`);
 
   const handleBuyClick = () => {
     if (cat && catId !== undefined) {
       addToCart({
-        id: Number(catId),
+        id: `cat-${catId}`,
         name: cat.name,
         image: cat.image,
         price: cat.price,

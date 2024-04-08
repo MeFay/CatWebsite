@@ -26,7 +26,7 @@ export const MainSection = () => {
   const itemsPerPage = 4;
   const navigate = useNavigate();
   const { search, setSearch, debouncedSearch } = useSearch();
-  const { catData} = useContext(CartContext);
+  const { itemData } = useContext(CartContext);
   const { pageId } = useParams();
   const [currentPage, setCurrentPage] = useState(Number(pageId) || 1);
 
@@ -34,16 +34,12 @@ export const MainSection = () => {
     setCurrentPage(Number(pageId) || 1);
   }, [pageId]);
 
-  const filteredData = catData.filter(
-    (cat) =>
-      !cat.isSold &&
-      (cat.name.toLowerCase().includes(debouncedSearch.toLowerCase()) ||
-        (cat.race &&
-          cat.race.toLowerCase().includes(debouncedSearch.toLowerCase())) ||
-        (cat.color &&
-          cat.color.toLowerCase().includes(debouncedSearch.toLowerCase())) ||
-        (cat.location &&
-          cat.location.toLowerCase().includes(debouncedSearch.toLowerCase())))
+  const filteredData = itemData.filter(
+    (item) =>
+      !item.isSold &&
+      (item.name.toLowerCase().includes(debouncedSearch.toLowerCase()) ||
+        (item.category &&
+          item.category.toLowerCase().includes(debouncedSearch.toLowerCase())))
   );
 
   const currentItems = filteredData.slice(
@@ -51,20 +47,20 @@ export const MainSection = () => {
     currentPage * itemsPerPage
   );
 
-  const TableLines = currentItems.map((cat) => ({
-    id: cat.id.toString(),
-    cols: [cat.name, cat.race || "N/A", cat.image],
+  const TableLines = currentItems.map((item) => ({
+    id: item.id.toString(),
+    cols: [item.name, item.category || "N/A", item.image],
   }));
 
   const handlePageChange = ({ selected }: { selected: number }) => {
     setCurrentPage(selected + 1);
-    navigate(`/catShop/${selected + 1}`);
+    navigate(`/itemShop/${selected + 1}`);
   };
 
   return (
     <>
       <SearchBar search={search} setSearch={setSearch} />
-      <Table headers={["Name", "Race", "Photo"]} lines={TableLines} />
+      <Table headers={["Name", "Category", "Photo"]} lines={TableLines} />
       <Pagination
         pageCount={Math.ceil(filteredData.length / itemsPerPage)}
         handlePageChange={handlePageChange}

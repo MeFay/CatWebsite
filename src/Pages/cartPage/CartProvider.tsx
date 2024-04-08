@@ -1,6 +1,7 @@
 import React, { useReducer, useEffect, ReactNode, useState } from "react";
 import { CartContext, CartItem } from "./CartContext";
 import catJsonData from "../../assets/cats.json";
+import itemJsonData from "../../assets/items.json";
 
 type CartProviderProps = {
   children: ReactNode;
@@ -32,36 +33,62 @@ const cartReducer = (state: CartState, action: CartAction): CartState => {
   }
 };
 
-const useData = () => {
-  const [data, setData] = useState<Array<CartItem>>([]);
+const useCatData = () => {
+  const [catData, setCatData] = useState<Array<CartItem>>([]);
 
   useEffect(() => {
-    setData(
+    setCatData(
       Object.entries(catJsonData).map(([catId, cat]) => ({
-        id: Number(catId),
+        id: `cat-${catId}`,
         ...cat,
         isSold: false,
       }))
     );
   }, []);
 
-  return { data, setData };
+  return { catData, setCatData };
+};
+
+const useItemData = () => {
+  const [itemData, setItemData] = useState<Array<CartItem>>([]);
+
+  useEffect(() => {
+    setItemData(
+      Object.entries(itemJsonData).map(([itemId, item]) => ({
+        id: `item-${itemId}`,
+        ...item,
+        isSold: false,
+      }))
+    );
+  }, []);
+
+  return { itemData, setItemData };
 };
 
 export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
   const [state, dispatch] = useReducer(cartReducer, { cart: [] });
-  const { data, setData } = useData();
+  const { catData, setCatData } = useCatData();
+  const { itemData, setItemData } = useItemData();
 
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(state.cart));
   }, [state.cart]);
 
   const updateItemStatus = (item: CartItem, isSold: boolean) => {
-    const catIndex = data.findIndex((cat) => cat.id === item.id);
-    if (catIndex !== -1) {
-      const updatedData = [...data];
-      updatedData[catIndex].isSold = isSold;
-      setData(updatedData);
+    if (item.id.startsWith("cat-")) {
+      const catIndex = catData.findIndex((cat) => cat.id === item.id);
+      if (catIndex !== -1) {
+        const updatedData = [...catData];
+        updatedData[catIndex].isSold = isSold;
+        setCatData(updatedData);
+      }
+    } else if (item.id.startsWith("item-")) {
+      const itemIndex = itemData.findIndex((item) => item.id === item.id);
+      if (itemIndex !== -1) {
+        const updatedData = [...itemData];
+        updatedData[itemIndex].isSold = isSold;
+        setItemData(updatedData);
+      }
     }
   };
 
@@ -70,23 +97,27 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
     updateItemStatus(item, true);
   };
 
-  const removeFromCart = (item: CartItem) => {
-    dispatch({ type: "REMOVE_FROM_CART", item });
-    updateItemStatus(item, false);
-  };
-
   const resetCart = () => {
     dispatch({ type: "RESET_CART" });
-    setData(data.map((cat) => ({ ...cat, isSold: false })));
+    setCatData(catData.map((cat) => ({ ...cat, isSold: false })));
+    setItemData(itemData.map((item) => ({ ...item, isSold: false })));
   };
 
   const completePurchase = () => {
-    setData(
-      data.map((cat) => {
+    setCatData(
+      catData.map((cat) => {
         if (state.cart.some((item) => item.id === cat.id)) {
           return { ...cat, isSold: true };
         }
         return cat;
+      })
+    );
+    setItemData(
+      itemData.map((item) => {
+        if (state.cart.some((cartItem) => cartItem.id === item.id)) {
+          return { ...item, isSold: true };
+        }
+        return item;
       })
     );
     dispatch({ type: "RESET_CART" });
@@ -96,8 +127,10 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
     <CartContext.Provider
       value={{
         cart: state.cart,
-        data,
-        setData,
+        catData,
+        setCatData,
+        itemData,
+        setItemData,
         addToCart,
         removeFromCart,
         resetCart,

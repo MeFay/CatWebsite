@@ -1,20 +1,23 @@
 import React from "react";
 
 export type CartItem = {
-  id: number;
+  id: string;
   price: number;
   name: string;
   image: string;
   isSold: boolean;
-  race: string;
-  color: string;
-  location: string;
+  race?: string;
+  color?: string;
+  location?: string;
+  category?: string;
 };
 
 type CartContextType = {
   cart: CartItem[];
-  data: CartItem[];
-  setData: React.Dispatch<React.SetStateAction<CartItem[]>>;
+  catData: CartItem[];
+  setCatData: React.Dispatch<React.SetStateAction<CartItem[]>>;
+  itemData: CartItem[];
+  setItemData: React.Dispatch<React.SetStateAction<CartItem[]>>;
   addToCart: (item: CartItem) => void;
   removeFromCart: (item: CartItem) => void;
   resetCart: () => void;
@@ -23,8 +26,10 @@ type CartContextType = {
 
 export const CartContext = React.createContext<CartContextType>({
   cart: [],
-  data: [],
-  setData: () => {},
+  catData: [],
+  setCatData: () => {},
+  itemData: [],
+  setItemData: () => {},
   addToCart: () => {},
   removeFromCart: () => {},
   resetCart: () => {},
