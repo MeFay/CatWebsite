@@ -39,8 +39,8 @@ const useCatData = () => {
   useEffect(() => {
     setCatData(
       Object.entries(catJsonData).map(([catId, cat]) => ({
-        id: `cat-${catId}`,
         ...cat,
+        id: `cat-${catId}`,
         isSold: false,
       }))
     );
@@ -55,8 +55,8 @@ const useItemData = () => {
   useEffect(() => {
     setItemData(
       Object.entries(itemJsonData).map(([itemId, item]) => ({
-        id: `item-${itemId}`,
         ...item,
+        id: `item-${itemId}`,
         isSold: false,
       }))
     );
@@ -75,15 +75,20 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
   }, [state.cart]);
 
   const updateItemStatus = (item: CartItem, isSold: boolean) => {
+    const itemId = item.id.split("-")[1];
     if (item.id.startsWith("cat-")) {
-      const catIndex = catData.findIndex((cat) => cat.id === item.id);
+      const catIndex = catData.findIndex(
+        (cat) => cat.id.split("-")[1] === itemId
+      );
       if (catIndex !== -1) {
         const updatedData = [...catData];
         updatedData[catIndex].isSold = isSold;
         setCatData(updatedData);
       }
     } else if (item.id.startsWith("item-")) {
-      const itemIndex = itemData.findIndex((item) => item.id === item.id);
+      const itemIndex = itemData.findIndex(
+        (item) => item.id.split("-")[1] === itemId
+      );
       if (itemIndex !== -1) {
         const updatedData = [...itemData];
         updatedData[itemIndex].isSold = isSold;
