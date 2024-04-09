@@ -17,7 +17,7 @@ export const NavbarLayout = () => {
       url: "/home",
     },
     {
-      title: "Cat",
+      title: "Cats",
       to: "/catShop/1",
       url: "/catShop",
     },

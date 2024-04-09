@@ -54,7 +54,6 @@ export const MainSection = () => {
       {item ? (
         <StyledWrapper>
           <p>Quantity in cart: {quantityInCart}</p>
-        
           <button onClick={handleBuyClick}>Add to cart</button>
 
           <StyledName>{item.name}</StyledName>

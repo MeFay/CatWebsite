@@ -30,12 +30,13 @@ type CatData = {
 };
 
 const catData = catJsonData as unknown as CatData;
+
 export const MainSection = () => {
   const { catId } = useParams();
   const cat = catId ? catData[catId] : undefined;
   const { cart, addToCart } = useContext(CartContext);
 
-  const isCatInCart = cart.some((item) => item.id === `item-${catId}`);
+  const isCatInCart = cart.some((item) => item.id === `cat-${catId}`);
 
   const handleBuyClick = () => {
     if (cat && catId !== undefined) {
