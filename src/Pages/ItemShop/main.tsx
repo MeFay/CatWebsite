@@ -47,7 +47,7 @@ export const MainSection = () => {
     currentPage * itemsPerPage
   );
 
-  const TableLines = currentItems.map((item) => ({
+  const tableLines = currentItems.map((item) => ({
     id: item.id.toString(),
     cols: [item.name, item.category || "N/A", item.image],
   }));
@@ -60,7 +60,8 @@ export const MainSection = () => {
   return (
     <>
       <SearchBar search={search} setSearch={setSearch} />
-      <Table headers={["Name", "Category", "Photo"]} lines={TableLines} />
+      <Table headers={["Name", "Category", "Photo"]} lines={tableLines} dataType="item" />
+
       <Pagination
         pageCount={Math.ceil(filteredData.length / itemsPerPage)}
         handlePageChange={handlePageChange}

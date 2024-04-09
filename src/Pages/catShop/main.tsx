@@ -26,7 +26,7 @@ export const MainSection = () => {
   const itemsPerPage = 4;
   const navigate = useNavigate();
   const { search, setSearch, debouncedSearch } = useSearch();
-  const { catData} = useContext(CartContext);
+  const { catData } = useContext(CartContext);
   const { pageId } = useParams();
   const [currentPage, setCurrentPage] = useState(Number(pageId) || 1);
 
@@ -51,7 +51,7 @@ export const MainSection = () => {
     currentPage * itemsPerPage
   );
 
-  const TableLines = currentItems.map((cat) => ({
+  const tableLines = currentItems.map((cat) => ({
     id: cat.id.toString(),
     cols: [cat.name, cat.race || "N/A", cat.image],
   }));
@@ -64,7 +64,12 @@ export const MainSection = () => {
   return (
     <>
       <SearchBar search={search} setSearch={setSearch} />
-      <Table headers={["Name", "Race", "Photo"]} lines={TableLines} />
+      <Table
+        headers={["Name", "Race", "Photo"]}
+        lines={tableLines}
+        dataType="cat"
+      />
+
       <Pagination
         pageCount={Math.ceil(filteredData.length / itemsPerPage)}
         handlePageChange={handlePageChange}

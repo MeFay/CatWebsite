@@ -28,7 +28,7 @@ const itemData = itemJsonData as unknown as ItemData;
 
 export const MainSection = () => {
   const { itemId } = useParams();
-  const item = itemId ? itemData[`item-${itemId}`] : undefined;
+  const item = itemId ? itemData[itemId] : undefined; 
   const { cart, addToCart } = useContext(CartContext);
 
   const isItemInCart = cart.some((item) => item.id === `item-${itemId}`);

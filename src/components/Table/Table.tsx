@@ -14,9 +14,10 @@ type TableProps = {
     id: string;
     cols: (string | number)[];
   }[];
+  dataType: "cat" | "item";
 };
 
-export const Table = ({ headers, lines }: TableProps) => {
+export const Table = ({ headers, lines, dataType }: TableProps) => {
   const navigate = useNavigate();
   const DisplayHeaders = headers.map((header) => {
     return <StyledTableTh key={header}>{header}</StyledTableTh>;
@@ -36,7 +37,12 @@ export const Table = ({ headers, lines }: TableProps) => {
     });
 
     return (
-      <StyledTableTr key={line.id} onClick={() => navigate(`/cat/${line.id}`)}>
+      <StyledTableTr
+        key={line.id}
+        onClick={() =>
+          navigate(`/${dataType}/${Number(line.id.split("-")[1])}`)
+        }
+      >
         {DisplayColumns}
       </StyledTableTr>
     );

@@ -25,7 +25,7 @@ export const router = createBrowserRouter([
     element: <CatPage />,
   },
   {
-    path: "/tem/:itemId",
+    path: "/item/:itemId",
     element: <ItemPage />,
   },
   {

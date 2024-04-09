@@ -39,8 +39,8 @@ const useCatData = () => {
   useEffect(() => {
     setCatData(
       Object.entries(catJsonData).map(([catId, cat]) => ({
-        ...cat,
         id: `cat-${catId}`,
+        ...cat,
         isSold: false,
       }))
     );
@@ -55,8 +55,8 @@ const useItemData = () => {
   useEffect(() => {
     setItemData(
       Object.entries(itemJsonData).map(([itemId, item]) => ({
-        ...item,
         id: `item-${itemId}`,
+        ...item,
         isSold: false,
       }))
     );
