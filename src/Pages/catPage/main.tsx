@@ -22,6 +22,7 @@ type Cat = {
   image: string;
   price: number;
   isSold: boolean;
+  quantity: number;
 };
 
 type CatData = {
@@ -47,6 +48,7 @@ export const MainSection = () => {
         race: cat.race,
         color: cat.color,
         location: cat.location,
+        quantity: cat.quantity,
       });
     }
   };

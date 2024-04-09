@@ -14,7 +14,8 @@ type CartState = {
 type CartAction =
   | { type: "ADD_TO_CART"; item: CartItem }
   | { type: "REMOVE_FROM_CART"; item: CartItem }
-  | { type: "RESET_CART" };
+  | { type: "RESET_CART" }
+  | { type: "UPDATE_CART"; cart: CartItem[] };
 
 const cartReducer = (state: CartState, action: CartAction): CartState => {
   switch (action.type) {
@@ -28,6 +29,8 @@ const cartReducer = (state: CartState, action: CartAction): CartState => {
       };
     case "RESET_CART":
       return { cart: [] };
+    case "UPDATE_CART":
+      return { cart: action.cart };
     default:
       return state;
   }
@@ -42,6 +45,7 @@ const useCatData = () => {
         id: `cat-${catId}`,
         ...cat,
         isSold: false,
+        quantity: 0,
       }))
     );
   }, []);
@@ -58,6 +62,7 @@ const useItemData = () => {
         id: `item-${itemId}`,
         ...item,
         isSold: false,
+        quantity: 0,
       }))
     );
   }, []);
@@ -74,32 +79,17 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
     localStorage.setItem("cart", JSON.stringify(state.cart));
   }, [state.cart]);
 
-  const updateItemStatus = (item: CartItem, isSold: boolean) => {
-    const itemId = item.id.split("-")[1];
-    if (item.id.startsWith("cat-")) {
-      const catIndex = catData.findIndex(
-        (cat) => cat.id.split("-")[1] === itemId
-      );
-      if (catIndex !== -1) {
-        const updatedData = [...catData];
-        updatedData[catIndex].isSold = isSold;
-        setCatData(updatedData);
-      }
-    } else if (item.id.startsWith("item-")) {
-      const itemIndex = itemData.findIndex(
-        (item) => item.id.split("-")[1] === itemId
-      );
-      if (itemIndex !== -1) {
-        const updatedData = [...itemData];
-        updatedData[itemIndex].isSold = isSold;
-        setItemData(updatedData);
-      }
-    }
-  };
-
   const addToCart = (item: CartItem) => {
-    dispatch({ type: "ADD_TO_CART", item });
-    updateItemStatus(item, true);
+    const existingItemIndex = state.cart.findIndex(
+      (cartItem) => cartItem.id === item.id
+    );
+    if (existingItemIndex !== -1) {
+      const updatedCart = [...state.cart];
+      updatedCart[existingItemIndex].quantity += 1;
+      dispatch({ type: "UPDATE_CART", cart: updatedCart });
+    } else {
+      dispatch({ type: "ADD_TO_CART", item: { ...item, quantity: 1 } });
+    }
   };
 
   const resetCart = () => {
@@ -138,7 +128,9 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
         setCatData(updatedData);
       }
     } else if (item.id.startsWith("item-")) {
-      const itemIndex = itemData.findIndex((item) => item.id === item.id);
+      const itemIndex = itemData.findIndex(
+        (dataItem) => dataItem.id === item.id
+      );
       if (itemIndex !== -1) {
         const updatedData = [...itemData];
         updatedData[itemIndex].isSold = false;

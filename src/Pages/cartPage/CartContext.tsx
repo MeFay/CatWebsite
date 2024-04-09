@@ -6,11 +6,13 @@ export type CartItem = {
   name: string;
   image: string;
   isSold: boolean;
+  quantity: number;
   race?: string;
   color?: string;
   location?: string;
   category?: string;
 };
+
 
 type CartContextType = {
   cart: CartItem[];

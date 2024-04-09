@@ -12,6 +12,7 @@ import {
 import { useContext } from "react";
 
 type Item = {
+  quantity: number;
   id: number;
   name: string;
   category: string;
@@ -28,10 +29,11 @@ const itemData = itemJsonData as unknown as ItemData;
 
 export const MainSection = () => {
   const { itemId } = useParams();
-  const item = itemId ? itemData[itemId] : undefined; 
+  const item = itemId ? itemData[itemId] : undefined;
   const { cart, addToCart } = useContext(CartContext);
 
-  const isItemInCart = cart.some((item) => item.id === `item-${itemId}`);
+  const cartItem = cart.find((cartItem) => cartItem.id === `item-${itemId}`);
+  const quantityInCart = cartItem ? cartItem.quantity : 0;
 
   const handleBuyClick = () => {
     if (item && itemId !== undefined) {
@@ -42,6 +44,7 @@ export const MainSection = () => {
         price: item.price,
         isSold: item.isSold,
         category: item.category,
+        quantity: item.quantity,
       });
     }
   };
@@ -50,14 +53,21 @@ export const MainSection = () => {
     <>
       {item ? (
         <StyledWrapper>
+          <p>Quantity in cart: {quantityInCart}</p>
+        
+          <button onClick={handleBuyClick}>Add to cart</button>
+
           <StyledName>{item.name}</StyledName>
           <StyledImage src={item.image} alt={item.name} />
           <StyledTraits>
             <StyledP>Category: {item.category}</StyledP>
             <StyledP>Price: {item.price}$</StyledP>
           </StyledTraits>
-          <StyledButton onClick={handleBuyClick} disabled={isItemInCart}>
-            {isItemInCart ? "In Cart" : "Buy"}
+          <StyledButton
+            onClick={handleBuyClick}
+            disabled={cartItem !== undefined}
+          >
+            {cartItem ? "In Cart" : "Buy"}
           </StyledButton>
         </StyledWrapper>
       ) : (

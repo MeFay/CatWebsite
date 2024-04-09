@@ -72,3 +72,8 @@ export const StyledPrice = styled.p`
   border-radius: 0.3125em;
   width: 100%;
 `;
+
+export const StyledImg = styled.img`
+  max-width: 18em;
+  max-height: 18em;
+`;
