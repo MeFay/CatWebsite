@@ -22,6 +22,7 @@ type Cat = {
   image: string;
   price: number;
   isSold: boolean;
+  quantity: number;
 };
 
 type CatData = {
@@ -29,17 +30,18 @@ type CatData = {
 };
 
 const catData = catJsonData as unknown as CatData;
+
 export const MainSection = () => {
   const { catId } = useParams();
   const cat = catId ? catData[catId] : undefined;
   const { cart, addToCart } = useContext(CartContext);
 
-  const isCatInCart = cart.some((item) => item.id === Number(catId));
+  const isCatInCart = cart.some((item) => item.id === `cat-${catId}`);
 
   const handleBuyClick = () => {
     if (cat && catId !== undefined) {
       addToCart({
-        id: Number(catId),
+        id: `cat-${catId}`,
         name: cat.name,
         image: cat.image,
         price: cat.price,
@@ -47,6 +49,7 @@ export const MainSection = () => {
         race: cat.race,
         color: cat.color,
         location: cat.location,
+        quantity: cat.quantity,
       });
     }
   };

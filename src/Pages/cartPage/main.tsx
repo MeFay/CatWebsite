@@ -6,6 +6,7 @@ import {
   StyledTitle,
   StyledTraits,
   StyledP,
+  StyledImg,
   StyledButton,
   StyledPrice,
 } from "./styled";
@@ -14,7 +15,7 @@ export const MainSection = () => {
   const navigate = useNavigate();
   const { cart, removeFromCart } = useContext(CartContext);
 
-  const handleRemoveClick = (id: number) => {
+  const handleRemoveClick = (id: string) => {
     const itemToRemove = cart.find((item) => item.id === id);
     if (itemToRemove) {
       removeFromCart(itemToRemove);
@@ -30,7 +31,7 @@ export const MainSection = () => {
       {cart.map((item) => (
         <StyledTraits key={item.id}>
           <StyledP>It's {item.name}</StyledP>
-          <img src={item.image} alt={item.name} />
+          <StyledImg src={item.image} alt={item.name} />
           <StyledP>{item.price}$</StyledP>
           <StyledButton onClick={() => handleRemoveClick(item.id)}>
             Remove
