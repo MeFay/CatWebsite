@@ -6,6 +6,7 @@ import { CartPage } from "./Pages/cartPage/CartPage";
 import { PaymentPage } from "./Pages/payment/PaymentPage";
 import { ItemPage } from "./Pages/ItemPage/ItemPage";
 import { ItemShop } from "./Pages/ItemShop/ItemShop";
+import { ErrorPage } from "./Pages/errorPage/ErrorPage";
 
 export const router = createBrowserRouter([
   {
@@ -36,5 +37,10 @@ export const router = createBrowserRouter([
     path: "/payment",
     element: <PaymentPage />,
   },
-  { path: "*", element: <Navigate to="/home" replace /> },
+  {
+    path: "/error",
+    element: <ErrorPage />,
+  },
+  { path: "/", element: <Navigate to="/home" replace /> },
+  { path: "*", element: <Navigate to="/error" replace /> },
 ]);

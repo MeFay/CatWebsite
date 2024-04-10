@@ -45,8 +45,7 @@ export const StyledP = styled.p`
 `;
 
 export const StyledImage = styled.img`
-  max-width: 40em;
-  max-height: 40em;
+  max-width: 20em;
 `;
 
 export const StyledButton = styled.button`

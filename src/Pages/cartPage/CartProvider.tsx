@@ -88,7 +88,7 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
       updatedCart[existingItemIndex].quantity += 1;
       dispatch({ type: "UPDATE_CART", cart: updatedCart });
     } else {
-      dispatch({ type: "ADD_TO_CART", item: { ...item, quantity: 1 } });
+      dispatch({ type: "ADD_TO_CART", item });
     }
   };
 

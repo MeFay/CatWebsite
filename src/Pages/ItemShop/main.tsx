@@ -60,11 +60,16 @@ export const MainSection = () => {
   return (
     <>
       <SearchBar search={search} setSearch={setSearch} />
-      <Table headers={["Name", "Category", "Photo"]} lines={tableLines} dataType="item" />
+      <Table
+        headers={["Name", "Category", "Photo"]}
+        lines={tableLines}
+        dataType="item"
+      />
 
       <Pagination
         pageCount={Math.ceil(filteredData.length / itemsPerPage)}
         handlePageChange={handlePageChange}
+        currentPage={currentPage}
       />
     </>
   );

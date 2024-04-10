@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import catJsonData from "../../assets/cats.json";
 import { CartContext } from "../cartPage/CartContext";
+import { useNavigate } from "react-router-dom";
 import {
   StyledWrapper,
   StyledName,
@@ -32,11 +33,17 @@ type CatData = {
 const catData = catJsonData as unknown as CatData;
 
 export const MainSection = () => {
+  const navigate = useNavigate();
   const { catId } = useParams();
   const cat = catId ? catData[catId] : undefined;
   const { cart, addToCart } = useContext(CartContext);
 
   const isCatInCart = cart.some((item) => item.id === `cat-${catId}`);
+
+  if (!cat) {
+    navigate("/error");
+    return null;
+  }
 
   const handleBuyClick = () => {
     if (cat && catId !== undefined) {
@@ -55,26 +62,20 @@ export const MainSection = () => {
   };
 
   return (
-    <>
-      {cat ? (
-        <StyledWrapper>
-          <StyledName>{cat.name}</StyledName>
-          <StyledImage src={cat.image} alt={cat.name} />
-          <StyledTraits>
-            <StyledP>Race: {cat.race}</StyledP>
-            <StyledP>Color: {cat.color}</StyledP>
-            <StyledP>Age: {cat.age}yo</StyledP>
-            <StyledP>Weight: {cat.weight}kg</StyledP>
-            <StyledP>Location: {cat.location}</StyledP>
-            <StyledP>Price: {cat.price}$</StyledP>
-          </StyledTraits>
-          <StyledButton onClick={handleBuyClick} disabled={isCatInCart}>
-            {isCatInCart ? "In Cart" : "Buy"}
-          </StyledButton>
-        </StyledWrapper>
-      ) : (
-        <StyledP>Cat not found 404</StyledP>
-      )}
-    </>
+    <StyledWrapper>
+      <StyledName>{cat.name}</StyledName>
+      <StyledImage src={cat.image} alt={cat.name} />
+      <StyledTraits>
+        <StyledP>Race: {cat.race}</StyledP>
+        <StyledP>Color: {cat.color}</StyledP>
+        <StyledP>Age: {cat.age}yo</StyledP>
+        <StyledP>Weight: {cat.weight}kg</StyledP>
+        <StyledP>Location: {cat.location}</StyledP>
+        <StyledP>Price: {cat.price}€</StyledP>
+      </StyledTraits>
+      <StyledButton onClick={handleBuyClick} disabled={isCatInCart}>
+        {isCatInCart ? "In Cart" : "Buy"}
+      </StyledButton>
+    </StyledWrapper>
   );
 };

@@ -1,4 +1,6 @@
 import { useLocation } from "react-router-dom";
+import { useContext } from "react";
+import { CartContext } from "../../Pages/cartPage/CartContext";
 
 import {
   StyledNavbar,
@@ -10,6 +12,8 @@ import {
 } from "./styled";
 
 export const NavbarLayout = () => {
+  const { cart } = useContext(CartContext);
+
   const NavBarLinks = [
     {
       title: "Home",
@@ -26,16 +30,16 @@ export const NavbarLayout = () => {
       to: "/itemShop/1",
       url: "/itemShop",
     },
-    {
-      title: "Cart",
-      to: "/cart/",
-      url: "/cart/",
-      icon: "/src/assets/cart.png",
-    },
   ];
 
+  const cartLink = {
+    title: "Cart",
+    to: "/cart/",
+    url: "/cart/",
+    icon: "/src/assets/cart.png",
+  };
+
   const location = useLocation();
-  const message = "Cat Lovers";
 
   const menuElements = NavBarLinks.map((item) => (
     <StyledLink
@@ -44,20 +48,29 @@ export const NavbarLayout = () => {
       key={item.title}
     >
       {item.title}
-      {item.icon && <StyledIcon src={item.icon} alt={item.title} />}
-      {/* #short-circuit evaluation */}
     </StyledLink>
   ));
-  console.log("location.pathname:", location.pathname); // Log the current pathname
+
+  const cartElement = (
+    <StyledLink
+      to={cartLink.to}
+      isActive={location.pathname.startsWith(cartLink.url)}
+      key={cartLink.title}
+    >
+      {`${cartLink.title} (${cart.length})`}
+      {cartLink.icon && <StyledIcon src={cartLink.icon} alt={cartLink.title} />}
+    </StyledLink>
+  );
 
   return (
     <StyledNavbar>
       <StyledLogo src="/src/assets/logo.png" />
       <StyledNavbarLeft>{menuElements}</StyledNavbarLeft>
-      <StyledNavbarRight>{message}</StyledNavbarRight>
+      <StyledNavbarRight>{cartElement}</StyledNavbarRight>
     </StyledNavbar>
   );
 };
+
 {
   /* #how it works:
   If the operand on the left side is true, it returns the operand on the right side.

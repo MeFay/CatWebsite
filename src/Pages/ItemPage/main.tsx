@@ -37,15 +37,25 @@ export const MainSection = () => {
 
   const handleBuyClick = () => {
     if (item && itemId !== undefined) {
-      addToCart({
-        id: `item-${itemId}`,
-        name: item.name,
-        image: item.image,
-        price: item.price,
-        isSold: item.isSold,
-        category: item.category,
-        quantity: item.quantity,
-      });
+      const existingCartItem = cart.find(
+        (cartItem) => cartItem.id === `item-${itemId}`
+      );
+      if (existingCartItem) {
+        addToCart({
+          ...existingCartItem,
+          quantity: existingCartItem.quantity + 1,
+        });
+      } else {
+        addToCart({
+          id: `item-${itemId}`,
+          name: item.name,
+          image: item.image,
+          price: item.price,
+          isSold: item.isSold,
+          category: item.category,
+          quantity: 1,
+        });
+      }
     }
   };
 
@@ -53,9 +63,6 @@ export const MainSection = () => {
     <>
       {item ? (
         <StyledWrapper>
-          <p>Quantity in cart: {quantityInCart}</p>
-          <button onClick={handleBuyClick}>Add to cart</button>
-
           <StyledName>{item.name}</StyledName>
           <StyledImage src={item.image} alt={item.name} />
           <StyledTraits>
@@ -66,8 +73,9 @@ export const MainSection = () => {
             onClick={handleBuyClick}
             disabled={cartItem !== undefined}
           >
-            {cartItem ? "In Cart" : "Buy"}
+            Buy
           </StyledButton>
+          <p>Quantity in cart: {quantityInCart}</p>
         </StyledWrapper>
       ) : (
         <StyledP>Item not found 404</StyledP>

@@ -1,4 +1,4 @@
-import { StyledTitle } from "./styles";
+import { StyledTitle } from "./styled";
 
 export const MainSection = () => {
   return (

@@ -14,6 +14,7 @@ import {
 export const MainSection = () => {
   const navigate = useNavigate();
   const { cart, removeFromCart } = useContext(CartContext);
+  
 
   const handleRemoveClick = (id: string) => {
     const itemToRemove = cart.find((item) => item.id === id);
@@ -32,7 +33,8 @@ export const MainSection = () => {
         <StyledTraits key={item.id}>
           <StyledP>It's {item.name}</StyledP>
           <StyledImg src={item.image} alt={item.name} />
-          <StyledP>{item.price}$</StyledP>
+          <StyledP>Price: {item.price}$</StyledP>
+          <StyledP>Quantity: {item.quantity}</StyledP>
           <StyledButton onClick={() => handleRemoveClick(item.id)}>
             Remove
           </StyledButton>

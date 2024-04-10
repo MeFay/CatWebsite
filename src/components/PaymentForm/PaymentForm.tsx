@@ -1,5 +1,6 @@
 import { useState, useContext } from "react";
 import { toast } from "react-toastify";
+import Select from "react-select";
 import { CartContext, CartItem } from "../../Pages/cartPage/CartContext";
 import { Toast } from "../Toast/Toast";
 import {
@@ -51,6 +52,15 @@ export const PaymentForm = () => {
     setIsLoading(true);
     setErrorMessage(null);
 
+    if (cart.length === 0) {
+      const message =
+        "Your cart is empty. Please add items before checking out.";
+      setErrorMessage(message);
+      toast.error(message);
+      setIsLoading(false);
+      return;
+    }
+
     if (!formState.email.includes("@")) {
       const message = "Please enter a valid email address.";
       setErrorMessage(message);
@@ -82,6 +92,20 @@ export const PaymentForm = () => {
       [e.target.name]: e.target.value,
     });
   };
+
+  const handleSelectChange = (selectedOption: any) => {
+    setFormState({
+      ...formState,
+      paymentMethod: selectedOption.value,
+    });
+  };
+
+  const options = paymentFees.map((method) => ({
+    value: method.name,
+    label: `${method.name} ${
+      method.fee > 0 ? `Fee: ${method.fee * 100}%` : ""
+    }`,
+  }));
 
   return (
     <>
@@ -117,23 +141,12 @@ export const PaymentForm = () => {
               onChange={handleChange}
               required
             />
-            <StyledSelect
-              name="paymentMethod"
-              value={formState.paymentMethod}
-              onChange={handleChange}
-              required
-            >
-              <option value="">Select a payment method</option>
-              {paymentFees.map((method) => (
-                <option key={method.name} value={method.name}>
-                  {method.name} {method.fee > 0 && `Fee: ${method.fee * 100}%`}
-                </option>
-              ))}
-            </StyledSelect>
+            <Select options={options} onChange={handleSelectChange} />
           </StyledInputContainer>
         </StyledContainer>
+
         <StyledTotal>Total: {calculateTotalPrice()}$</StyledTotal>
-        {errorMessage && <p>{errorMessage}</p>}
+
         <StyledButton type="submit" disabled={isLoading}>
           {isLoading ? "Processing... !" : "Pay"}
         </StyledButton>

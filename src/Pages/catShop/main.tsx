@@ -73,6 +73,7 @@ export const MainSection = () => {
       <Pagination
         pageCount={Math.ceil(filteredData.length / itemsPerPage)}
         handlePageChange={handlePageChange}
+        currentPage={currentPage}
       />
     </>
   );
