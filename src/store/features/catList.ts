@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import { Cat } from "../../assets/types";
+import { Cat } from "../../types";
 //TODO: Create a Cat type
 
 export type CatListState = {
@@ -29,5 +29,4 @@ export const catListSlice = createSlice({
 });
 
 export const { fillList } = catListSlice.actions;
-
 export default catListSlice.reducer;
