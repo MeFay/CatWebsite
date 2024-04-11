@@ -14,15 +14,12 @@ import {
   StyledButton,
 } from "./styled";
 
-
-
 export const MainSection = () => {
   const navigate = useNavigate();
   const { catId } = useParams();
   const catData = useSelector((state: RootState) => state.catList.list);
   const cat = catData.find((cat) => cat.id === `cat-${catId}`);
   const { cart, addToCart } = useContext(CartContext);
-
   const isCatInCart = cart.some((item) => item.id === `cat-${catId}`);
 
   if (!cat) {

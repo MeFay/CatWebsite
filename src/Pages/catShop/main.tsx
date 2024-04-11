@@ -28,7 +28,7 @@ export const MainSection = () => {
   const itemsPerPage = 4;
   const navigate = useNavigate();
   const { search, setSearch, debouncedSearch } = useSearch();
-  const catData = useSelector((state: RootState) => state.catList.list)
+  const catData = useSelector((state: RootState) => state.catList.list);
   const { pageId } = useParams();
   const [currentPage, setCurrentPage] = useState(Number(pageId) || 1);
 
@@ -66,17 +66,24 @@ export const MainSection = () => {
   return (
     <>
       <SearchBar search={search} setSearch={setSearch} />
-      <Table
-        headers={["Name", "Race", "Photo"]}
-        lines={tableLines}
-        dataType="cat"
-      />
+      {filteredData.length > 0 ? (
+        <>
+          <Table
+            headers={["Name", "Race", "Photo"]}
+            lines={tableLines}
+            dataType="cat"
+          />
 
-      <Pagination
-        pageCount={Math.ceil(filteredData.length / itemsPerPage)}
-        handlePageChange={handlePageChange}
-        currentPage={currentPage}
-      />
+          <Pagination
+            pageCount={Math.ceil(filteredData.length / itemsPerPage)}
+            handlePageChange={handlePageChange}
+            currentPage={currentPage}
+          />
+        </>
+      ) : (
+        <p>No cats found.</p>
+        //TODO: STYLE THE P
+      )}
     </>
   );
 };

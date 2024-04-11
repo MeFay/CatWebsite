@@ -1,6 +1,9 @@
 import { useParams } from "react-router-dom";
-import itemJsonData from "../../assets/items.json";
 import { CartContext } from "../cartPage/CartContext";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useContext } from "react";
+import { RootState } from "../../store";
 import {
   StyledWrapper,
   StyledName,
@@ -9,31 +12,21 @@ import {
   StyledTraits,
   StyledButton,
 } from "./styled";
-import { useContext } from "react";
-
-type Item = {
-  quantity: number;
-  id: number;
-  name: string;
-  category: string;
-  image: string;
-  price: number;
-  isSold: boolean;
-};
-
-type ItemData = {
-  [key: string]: Item;
-};
-
-const itemData = itemJsonData as unknown as ItemData;
 
 export const MainSection = () => {
+  const navigate = useNavigate();
   const { itemId } = useParams();
-  const item = itemId ? itemData[itemId] : undefined;
+  const itemData = useSelector((state: RootState) => state.itemList.list);
+  const item = itemData.find((item) => item.id === `item-${itemId}`);
   const { cart, addToCart } = useContext(CartContext);
 
   const cartItem = cart.find((cartItem) => cartItem.id === `item-${itemId}`);
   const quantityInCart = cartItem ? cartItem.quantity : 0;
+
+  if (!item) {
+    navigate("/error");
+    return null;
+  }
 
   const handleBuyClick = () => {
     if (item && itemId !== undefined) {
