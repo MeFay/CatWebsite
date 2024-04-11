@@ -1,7 +1,10 @@
 import { useParams } from "react-router-dom";
-import catJsonData from "../../assets/cats.json";
 import { CartContext } from "../cartPage/CartContext";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useContext } from "react";
+import { RootState } from "../../store";
+
 import {
   StyledWrapper,
   StyledName,
@@ -10,32 +13,12 @@ import {
   StyledTraits,
   StyledButton,
 } from "./styled";
-import { useContext } from "react";
-
-type Cat = {
-  id: number;
-  race: string;
-  name: string;
-  color: string;
-  weight: number;
-  age: number;
-  location: string;
-  image: string;
-  price: number;
-  isSold: boolean;
-  quantity: number;
-};
-
-type CatData = {
-  [key: string]: Cat;
-};
-
-const catData = catJsonData as unknown as CatData;
 
 export const MainSection = () => {
   const navigate = useNavigate();
   const { catId } = useParams();
-  const cat = catId ? catData[catId] : undefined;
+  const catData = useSelector((state: RootState) => state.catList.list);
+  const cat = catData.find((cat) => cat.id === `cat-${catId}`);
   const { cart, addToCart } = useContext(CartContext);
 
   const isCatInCart = cart.some((item) => item.id === `cat-${catId}`);

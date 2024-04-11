@@ -14,7 +14,6 @@ import {
 export const MainSection = () => {
   const navigate = useNavigate();
   const { cart, removeFromCart } = useContext(CartContext);
-  
 
   const handleRemoveClick = (id: string) => {
     const itemToRemove = cart.find((item) => item.id === id);
@@ -23,7 +22,10 @@ export const MainSection = () => {
     }
   };
 
-  const totalPrice = cart.reduce((total, item) => total + item.price, 0);
+  const totalPrice = cart.reduce(
+    (total, item) => total + item.price * item.quantity,
+    0
+  );
   const isCartEmpty = cart.length === 0;
 
   return (

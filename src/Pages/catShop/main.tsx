@@ -1,10 +1,12 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Table } from "../../components/Table/Table.tsx";
 import { SearchBar } from "../../components/SearchBar/SearchBar.tsx";
 import { Pagination } from "../../components/Pagination/Pagination.tsx";
-import { CartContext } from "../../Pages/cartPage/CartContext";
+import { CartItem } from "../cartPage/CartContext.tsx";
 import "../../index.css";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/index.ts";
 
 const useSearch = (initialSearch = "") => {
   const [search, setSearch] = useState(initialSearch);
@@ -26,7 +28,7 @@ export const MainSection = () => {
   const itemsPerPage = 4;
   const navigate = useNavigate();
   const { search, setSearch, debouncedSearch } = useSearch();
-  const { catData } = useContext(CartContext);
+  const catData = useSelector((state: RootState) => state.catList.list)
   const { pageId } = useParams();
   const [currentPage, setCurrentPage] = useState(Number(pageId) || 1);
 
@@ -35,7 +37,7 @@ export const MainSection = () => {
   }, [pageId]);
 
   const filteredData = catData.filter(
-    (cat) =>
+    (cat: CartItem) =>
       !cat.isSold &&
       (cat.name.toLowerCase().includes(debouncedSearch.toLowerCase()) ||
         (cat.race &&
@@ -51,7 +53,7 @@ export const MainSection = () => {
     currentPage * itemsPerPage
   );
 
-  const tableLines = currentItems.map((cat) => ({
+  const tableLines = currentItems.map((cat: CartItem) => ({
     id: cat.id.toString(),
     cols: [cat.name, cat.race || "N/A", cat.image],
   }));

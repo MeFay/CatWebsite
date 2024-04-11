@@ -14,7 +14,7 @@ export const Pagination = ({
 }: PaginationProps) => (
   <StyledPagination>
     <ReactPaginate
-      breakLabel="..."
+      breakLabel="| "
       nextLabel={currentPage < pageCount ? "next >" : ""}
       onPageChange={handlePageChange}
       pageRangeDisplayed={2}

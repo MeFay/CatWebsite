@@ -35,9 +35,11 @@ export const PaymentForm = () => {
 
   const calculateTotalPrice = () => {
     const itemsTotal = cart.reduce(
-      (total: number, item: CartItem) => total + item.price,
+      (total: number, item: CartItem) => total + item.price * item.quantity,
       0
     );
+
+    console.log(itemsTotal.toString);
     const selectedPaymentMethod = paymentFees.find(
       (method) => method.name === formState.paymentMethod
     );

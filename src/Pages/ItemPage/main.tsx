@@ -41,10 +41,8 @@ export const MainSection = () => {
         (cartItem) => cartItem.id === `item-${itemId}`
       );
       if (existingCartItem) {
-        addToCart({
-          ...existingCartItem,
-          quantity: existingCartItem.quantity + 1,
-        });
+        existingCartItem.quantity += 1;
+        addToCart(existingCartItem);
       } else {
         addToCart({
           id: `item-${itemId}`,
@@ -69,12 +67,7 @@ export const MainSection = () => {
             <StyledP>Category: {item.category}</StyledP>
             <StyledP>Price: {item.price}$</StyledP>
           </StyledTraits>
-          <StyledButton
-            onClick={handleBuyClick}
-            disabled={cartItem !== undefined}
-          >
-            Buy
-          </StyledButton>
+          <StyledButton onClick={handleBuyClick}>Buy</StyledButton>
           <p>Quantity in cart: {quantityInCart}</p>
         </StyledWrapper>
       ) : (
