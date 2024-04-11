@@ -55,7 +55,7 @@ export const StyledSelect = styled.select`
   display: flex;
   margin: auto;
   align-items: center;
-  color: ${theme.Color6};
+  color: red;
   padding: 0.1875em;
   width: 100%;
 `;
