@@ -14,6 +14,8 @@ import {
   StyledButton,
 } from "./styled";
 
+
+
 export const MainSection = () => {
   const navigate = useNavigate();
   const { catId } = useParams();
