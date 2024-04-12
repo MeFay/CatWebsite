@@ -25,10 +25,15 @@ const useSearch = (initialSearch = "") => {
 };
 
 export const MainSection = () => {
+  console.log("Rendering MainSection");
   const itemsPerPage = 4;
   const navigate = useNavigate();
   const { search, setSearch, debouncedSearch } = useSearch();
   const catData = useSelector((state: RootState) => state.catList.list);
+  console.log("Cat data in MainSection:", catData);
+  const state = useSelector((state: RootState) => state);
+  console.log("State in MainSection:", state);
+
   const availableCats = catData.filter((cat) => !cat.isSold);
   const { pageId } = useParams();
   const [currentPage, setCurrentPage] = useState(Number(pageId) || 1);

@@ -16,7 +16,8 @@ type CartAction =
   | { type: "ADD_TO_CART"; item: CartItem }
   | { type: "REMOVE_FROM_CART"; item: CartItem }
   | { type: "RESET_CART" }
-  | { type: "UPDATE_CART"; cart: CartItem[] };
+  | { type: "UPDATE_CART"; cart: CartItem[] }
+  | { type: "COMPLETE_PURCHASE" };
 
 const cartReducer = (state: CartState, action: CartAction): CartState => {
   switch (action.type) {
@@ -32,6 +33,10 @@ const cartReducer = (state: CartState, action: CartAction): CartState => {
       return { cart: [] };
     case "UPDATE_CART":
       return { cart: action.cart };
+    case "COMPLETE_PURCHASE":
+      return {
+        cart: state.cart.map((item) => ({ ...item, isSold: true })),
+      };
     default:
       return state;
   }
@@ -47,9 +52,6 @@ const useCatData = () => {
       isSold: false,
       quantity: 0,
     }));
-
-    console.log("Transformed cat data:", transformedData);
-
     setCatData(transformedData);
   }, []);
 
@@ -78,6 +80,7 @@ const useItemData = () => {
 };
 
 export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
+  
   const [state, dispatch] = useReducer(cartReducer, { cart: [] });
   const { catData, setCatData } = useCatData();
   const { itemData, setItemData } = useItemData();
@@ -117,19 +120,17 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
   };
 
   const completePurchase = () => {
-    setCatData((currentCatData) =>
-      currentCatData.filter(
-        (cat) => !state.cart.some((cartItem) => cartItem.id === cat.id)
-      )
-    );
-    setItemData((currentItemData) =>
-      currentItemData.map((item) => {
-        if (state.cart.some((cartItem) => cartItem.id === item.id)) {
-          return { ...item, isSold: true };
-        }
-        return item;
-      })
-    );
+    const purchasedCatIds = state.cart.map((item) => item.id);
+    console.log('Purchased cat IDs:', purchasedCatIds); 
+  
+    setCatData((currentCatData) => {
+      const updatedCatData = currentCatData.map((cat) =>
+        purchasedCatIds.includes(cat.id) ? { ...cat, isSold: true } : cat
+      );
+      console.log('Updated cat data:', updatedCatData);
+      return updatedCatData;
+    });
+    dispatch({ type: "COMPLETE_PURCHASE" });
     dispatch({ type: "RESET_CART" });
   };
 

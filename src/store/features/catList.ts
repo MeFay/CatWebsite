@@ -1,8 +1,10 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
+import type { PayloadAction } from "@reduxjs/toolkit";
 import { Cat } from "../../types";
+//TODO: Create a Cat type
 
 export type CatListState = {
-  list: Array<Cat>;
+  list: Array<any>;
 };
 
 const initialState: CatListState = {
@@ -23,14 +25,18 @@ export const catListSlice = createSlice({
         })
       );
     },
-    markCatAsSold: (state, action: PayloadAction<string>) => {
-      const cat = state.list.find((cat) => cat.id === action.payload);
-      if (cat) {
-        cat.isSold = true;
-        console.log(`Cat with id ${action.payload} is marked as sold.`);
-      }
-    },
+    completePurchase: (state, action: PayloadAction<string[]>) => {
+      state.list = state.list.map(cat => {
+        if (action.payload.includes(cat.id)) {
+          return { ...cat, isSold: true };
+        } else {
+          return cat;
+        }
+      });
+      console.log("Updated state in catListSlice:", state);
+    },    
   },
 });
-export const { fillList, markCatAsSold } = catListSlice.actions;
+
+export const { fillList } = catListSlice.actions;
 export default catListSlice.reducer;

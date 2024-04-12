@@ -1,11 +1,10 @@
 import { useState, useContext } from "react";
 import { toast } from "react-toastify";
 import Select from "react-select";
-import { CartContext } from "../../Pages/cartPage/CartContext";
+import { CartContext} from "../../Pages/cartPage/CartContext";
 import { CartItem } from "../../types";
 import { Toast } from "../Toast/Toast";
-import { useDispatch } from "react-redux";
-import { markCatAsSold } from "../../store/features/catList";
+
 import {
   StyledForm,
   StyledContainer,
@@ -32,7 +31,6 @@ export const PaymentForm = () => {
     email: "",
     paymentMethod: "",
   });
-  const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const { cart, completePurchase } = useContext(CartContext);
@@ -80,11 +78,6 @@ export const PaymentForm = () => {
       toast.success(
         "The transaction was successfully submitted! You will receive a confirmation email"
       );
-      cart.forEach((item) => {
-        if (item.id.startsWith("cat-")) {
-          dispatch(markCatAsSold(item.id));
-        }
-      });
       completePurchase();
     } catch (err) {
       const message = "There was an error. Please try again.";
