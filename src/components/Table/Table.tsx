@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import {
   StyledTable,
   StyledTableWrapper,
@@ -35,12 +35,12 @@ export const Table = ({ headers, lines, dataType }: TableProps) => {
         return <StyledTableTd key={column.toString()}>{column}</StyledTableTd>;
       }
     });
-
+    console.log("cenas", +line.id.split("-")[2], dataType);
     return (
       <StyledTableTr
         key={line.id}
         onClick={() =>
-          navigate(`/${dataType}/${Number(line.id.split("-")[1])}`)
+          navigate(`/${dataType}/${Number(line.id.split("-")[2])}`)
         }
       >
         {DisplayColumns}

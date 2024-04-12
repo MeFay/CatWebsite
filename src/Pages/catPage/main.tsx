@@ -16,12 +16,16 @@ import {
 
 export const MainSection = () => {
   const navigate = useNavigate();
-  const { catId } = useParams();
+  const { catId = "" } = useParams();
+  const numericCatId = catId.replace("cat-", "");
+  console.log(catId);
   const catData = useSelector((state: RootState) => state.catList.list);
-  const cat = catData.find((cat) => cat.id === `cat-${catId}`);
+  const cat = catData.find((cat) => cat.id === `cat-${numericCatId}`);
+  console.log("catIdd");
   const { cart, addToCart } = useContext(CartContext);
+  console.log("catId");
   const isCatInCart = cart.some((item) => item.id === `cat-${catId}`);
-
+  console.log("cat", cat.id);
   useEffect(() => {
     if (!cat) {
       navigate("/error");
@@ -43,7 +47,6 @@ export const MainSection = () => {
       });
     }
   };
-
 
   return (
     <StyledWrapper>
