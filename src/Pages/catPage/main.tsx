@@ -17,15 +17,12 @@ import {
 export const MainSection = () => {
   const navigate = useNavigate();
   const { catId = "" } = useParams();
-  const numericCatId = catId.replace("cat-", "");
-  console.log(catId);
   const catData = useSelector((state: RootState) => state.catList.list);
-  const cat = catData.find((cat) => cat.id === `cat-${numericCatId}`);
-  console.log("catIdd");
+  const numericCatId = Number(catId.replace("cat-", ""));
+  const cat = catData.find((cat) => cat.id === `cat-cat-${numericCatId}`)
   const { cart, addToCart } = useContext(CartContext);
-  console.log("catId");
-  const isCatInCart = cart.some((item) => item.id === `cat-${catId}`);
-  console.log("cat", cat.id);
+  const isCatInCart = cart.some((item) => item.id === `cat-${numericCatId}`);
+
   useEffect(() => {
     if (!cat) {
       navigate("/error");

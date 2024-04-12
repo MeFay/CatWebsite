@@ -29,6 +29,7 @@ export const MainSection = () => {
   const navigate = useNavigate();
   const { search, setSearch, debouncedSearch } = useSearch();
   const catData = useSelector((state: RootState) => state.catList.list);
+  const availableCats = catData.filter((cat) => !cat.isSold);
   const { pageId } = useParams();
   const [currentPage, setCurrentPage] = useState(Number(pageId) || 1);
 
@@ -36,16 +37,15 @@ export const MainSection = () => {
     setCurrentPage(Number(pageId) || 1);
   }, [pageId]);
 
-  const filteredData = catData.filter(
+  const filteredData = availableCats.filter(
     (cat: CartItem) =>
-      !cat.isSold &&
-      (cat.name.toLowerCase().includes(debouncedSearch.toLowerCase()) ||
-        (cat.race &&
-          cat.race.toLowerCase().includes(debouncedSearch.toLowerCase())) ||
-        (cat.color &&
-          cat.color.toLowerCase().includes(debouncedSearch.toLowerCase())) ||
-        (cat.location &&
-          cat.location.toLowerCase().includes(debouncedSearch.toLowerCase())))
+      cat.name.toLowerCase().includes(debouncedSearch.toLowerCase()) ||
+      (cat.race &&
+        cat.race.toLowerCase().includes(debouncedSearch.toLowerCase())) ||
+      (cat.color &&
+        cat.color.toLowerCase().includes(debouncedSearch.toLowerCase())) ||
+      (cat.location &&
+        cat.location.toLowerCase().includes(debouncedSearch.toLowerCase()))
   );
 
   const currentItems = filteredData.slice(

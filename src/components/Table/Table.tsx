@@ -1,4 +1,4 @@
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {
   StyledTable,
   StyledTableWrapper,
@@ -35,7 +35,7 @@ export const Table = ({ headers, lines, dataType }: TableProps) => {
         return <StyledTableTd key={column.toString()}>{column}</StyledTableTd>;
       }
     });
-    console.log("cenas", +line.id.split("-")[2], dataType);
+
     return (
       <StyledTableTr
         key={line.id}

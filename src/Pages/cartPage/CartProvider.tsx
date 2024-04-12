@@ -41,14 +41,16 @@ const useCatData = () => {
   const [catData, setCatData] = useState<Array<CartItem>>([]);
 
   useEffect(() => {
-    setCatData(
-      Object.entries(catJsonData).map(([catId, cat]) => ({
-        id: `cat-${catId}`,
-        ...cat,
-        isSold: false,
-        quantity: 0,
-      }))
-    );
+    const transformedData = Object.entries(catJsonData).map(([catId, cat]) => ({
+      id: `cat-${catId}`,
+      ...cat,
+      isSold: false,
+      quantity: 0,
+    }));
+
+    console.log("Transformed cat data:", transformedData);
+
+    setCatData(transformedData);
   }, []);
 
   return { catData, setCatData };
@@ -58,14 +60,18 @@ const useItemData = () => {
   const [itemData, setItemData] = useState<Array<CartItem>>([]);
 
   useEffect(() => {
-    setItemData(
-      Object.entries(itemJsonData).map(([itemId, item]) => ({
+    const transformedData = Object.entries(itemJsonData).map(
+      ([itemId, item]) => ({
         id: `item-${itemId}`,
         ...item,
         isSold: false,
         quantity: 0,
-      }))
+      })
     );
+
+    console.log("Transformed item data:", transformedData);
+
+    setItemData(transformedData);
   }, []);
 
   return { itemData, setItemData };
@@ -85,11 +91,22 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
       (cartItem) => cartItem.id === item.id
     );
     if (existingItemIndex !== -1) {
-      const updatedCart = [...state.cart];
-      updatedCart[existingItemIndex].quantity += 1;
-      dispatch({ type: "UPDATE_CART", cart: updatedCart });
+      const newCart = [...state.cart];
+      newCart[existingItemIndex] = {
+        ...newCart[existingItemIndex],
+        quantity: newCart[existingItemIndex].quantity + 1,
+      };
+      dispatch({ type: "UPDATE_CART", cart: newCart });
     } else {
-      dispatch({ type: "ADD_TO_CART", item });
+      dispatch({ type: "ADD_TO_CART", item: { ...item, quantity: 1 } });
+    }
+    if (item.id.startsWith("cat-")) {
+      const catIndex = catData.findIndex((cat) => cat.id === item.id);
+      if (catIndex !== -1) {
+        const updatedData = [...catData];
+        updatedData[catIndex].isSold = true;
+        setCatData(updatedData);
+      }
     }
   };
 
@@ -100,16 +117,13 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
   };
 
   const completePurchase = () => {
-    setCatData(
-      catData.map((cat) => {
-        if (state.cart.some((item) => item.id === cat.id)) {
-          return { ...cat, isSold: true };
-        }
-        return cat;
-      })
+    setCatData((currentCatData) =>
+      currentCatData.filter(
+        (cat) => !state.cart.some((cartItem) => cartItem.id === cat.id)
+      )
     );
-    setItemData(
-      itemData.map((item) => {
+    setItemData((currentItemData) =>
+      currentItemData.map((item) => {
         if (state.cart.some((cartItem) => cartItem.id === item.id)) {
           return { ...item, isSold: true };
         }

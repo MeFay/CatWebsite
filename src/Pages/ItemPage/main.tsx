@@ -16,12 +16,24 @@ import {
 
 export const MainSection = () => {
   const navigate = useNavigate();
-  const { itemId } = useParams();
+  const { itemId = "" } = useParams();
+  console.log("itemId:", itemId);
   const itemData = useSelector((state: RootState) => state.itemList.list);
-  const item = itemData.find((item) => item.id === `item-${itemId}`);
+  console.log(
+    "itemData:",
+    itemData,
+    "Type of first item id:",
+    typeof itemData[0].id
+  );
+  const numericItemId = Number(itemId.replace("item-", ""));
+  const item = itemData.find((item) => item.id === `item-item-${numericItemId}`);
+  if (!item) {
+    console.log("Undefined item for itemId:", itemId);
+    console.log("ittemData:", itemData);
+  }
+
   const { cart, addToCart } = useContext(CartContext);
-  const cartItem = cart.find((cartItem) => cartItem.id === `item-${itemId}`);
-  const quantityInCart = cartItem ? cartItem.quantity : 0;
+  const isItemInCart = cart.some((item) => item.id === `item-${numericItemId}`);
 
   useEffect(() => {
     if (!item) {
@@ -29,44 +41,36 @@ export const MainSection = () => {
     }
   }, [item, navigate]);
 
+
   const handleBuyClick = () => {
     if (item && itemId !== undefined) {
-      const existingCartItem = cart.find(
-        (cartItem) => cartItem.id === `item-${itemId}`
-      );
-      if (existingCartItem) {
-        existingCartItem.quantity += 1;
-        addToCart(existingCartItem);
-      } else {
-        addToCart({
-          id: `item-${itemId}`,
-          name: item.name,
-          image: item.image,
-          price: item.price,
-          isSold: item.isSold,
-          category: item.category,
-          quantity: 1,
-        });
-      }
+      addToCart({
+        id: `item-${itemId}`,
+        name: item.name,
+        image: item.image,
+        price: item.price,
+        isSold: item.isSold,
+        category: item.category,
+        quantity: item.quantity,
+      });
     }
   };
 
   return (
-    <>
-      {item ? (
-        <StyledWrapper>
+    <StyledWrapper>
+      {item && (
+        <>
           <StyledName>{item.name}</StyledName>
           <StyledImage src={item.image} alt={item.name} />
           <StyledTraits>
             <StyledP>Category: {item.category}</StyledP>
             <StyledP>Price: {item.price}$</StyledP>
           </StyledTraits>
-          <StyledButton onClick={handleBuyClick}>Buy</StyledButton>
-          <p>Quantity in cart: {quantityInCart}</p>
-        </StyledWrapper>
-      ) : (
-        <StyledP>Item not found 404</StyledP>
+          <StyledButton onClick={handleBuyClick} disabled={isItemInCart}>
+            {isItemInCart ? "In Cart" : "Buy"}
+          </StyledButton>
+        </>
       )}
-    </>
+    </StyledWrapper>
   );
 };
