@@ -25,32 +25,27 @@ const useSearch = (initialSearch = "") => {
 };
 
 export const MainSection = () => {
-  console.log("Rendering MainSection");
   const itemsPerPage = 4;
   const navigate = useNavigate();
-  const { search, setSearch, debouncedSearch } = useSearch();
-  const catData = useSelector((state: RootState) => state.catList.list);
-  console.log("Cat data in MainSection:", catData);
-  const state = useSelector((state: RootState) => state);
-  console.log("State in MainSection:", state);
-
-  const availableCats = catData.filter((cat) => !cat.isSold);
   const { pageId } = useParams();
+  const catData = useSelector((state: RootState) => state.catList.list);
+  const { search, setSearch, debouncedSearch } = useSearch();
   const [currentPage, setCurrentPage] = useState(Number(pageId) || 1);
 
   useEffect(() => {
     setCurrentPage(Number(pageId) || 1);
   }, [pageId]);
 
-  const filteredData = availableCats.filter(
+  const filteredData = catData.filter(
     (cat: CartItem) =>
-      cat.name.toLowerCase().includes(debouncedSearch.toLowerCase()) ||
-      (cat.race &&
-        cat.race.toLowerCase().includes(debouncedSearch.toLowerCase())) ||
-      (cat.color &&
-        cat.color.toLowerCase().includes(debouncedSearch.toLowerCase())) ||
-      (cat.location &&
-        cat.location.toLowerCase().includes(debouncedSearch.toLowerCase()))
+      !cat.isSold &&
+      (cat.name.toLowerCase().includes(debouncedSearch.toLowerCase()) ||
+        (cat.race &&
+          cat.race.toLowerCase().includes(debouncedSearch.toLowerCase())) ||
+        (cat.color &&
+          cat.color.toLowerCase().includes(debouncedSearch.toLowerCase())) ||
+        (cat.location &&
+          cat.location.toLowerCase().includes(debouncedSearch.toLowerCase())))
   );
 
   const currentItems = filteredData.slice(
@@ -62,6 +57,7 @@ export const MainSection = () => {
     id: cat.id.toString(),
     cols: [cat.name, cat.race || "N/A", cat.image],
   }));
+  console.log("Table lines:", tableLines);
 
   const handlePageChange = ({ selected }: { selected: number }) => {
     setCurrentPage(selected + 1);
@@ -78,7 +74,7 @@ export const MainSection = () => {
             lines={tableLines}
             dataType="cat"
           />
-
+          console.log("Table lines:", tableLines);
           <Pagination
             pageCount={Math.ceil(filteredData.length / itemsPerPage)}
             handlePageChange={handlePageChange}

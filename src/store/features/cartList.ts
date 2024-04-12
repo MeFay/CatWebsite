@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { RootState } from "..";
 import { CartItem } from "../../types";
 
 type CartListState = {
@@ -23,9 +22,14 @@ export const cartListSlice = createSlice({
     resetCart: (state) => {
       state.cart = [];
     },
+    completePurchase: (state, action: PayloadAction<string[]>) => {
+      state.cart = state.cart.map((item) =>
+        action.payload.includes(item.id) ? { ...item, isSold: true } : item
+      );
+    },
   },
 });
 
-export const { addToCart, removeFromCart, resetCart } = cartListSlice.actions;
-export const selectCart = (state: RootState) => state.cart.cart;
+export const { addToCart, removeFromCart, resetCart, completePurchase } =
+  cartListSlice.actions;
 export default cartListSlice.reducer;

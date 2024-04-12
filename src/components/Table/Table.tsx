@@ -39,9 +39,11 @@ export const Table = ({ headers, lines, dataType }: TableProps) => {
     return (
       <StyledTableTr
         key={line.id}
-        onClick={() =>
-          navigate(`/${dataType}/${Number(line.id.split("-")[2])}`)
-        }
+        onClick={() => {
+          const prefix = dataType === "cat" ? "cat-" : "item-";
+          const extractedId = line.id.replace(prefix, "");
+          navigate(`/${dataType}/${extractedId}`);
+        }}
       >
         {DisplayColumns}
       </StyledTableTr>

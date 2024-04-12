@@ -17,20 +17,11 @@ import {
 export const MainSection = () => {
   const navigate = useNavigate();
   const { itemId = "" } = useParams();
-  console.log("itemId:", itemId);
   const itemData = useSelector((state: RootState) => state.itemList.list);
-  console.log(
-    "itemData:",
-    itemData,
-    "Type of first item id:",
-    typeof itemData[0].id
-  );
   const numericItemId = Number(itemId.replace("item-", ""));
-  const item = itemData.find((item) => item.id === `item-item-${numericItemId}`);
-  if (!item) {
-    console.log("Undefined item for itemId:", itemId);
-    console.log("ittemData:", itemData);
-  }
+  const item = itemData.find(
+    (item) => item.id === `item-item-${numericItemId}`
+  );
 
   const { cart, addToCart } = useContext(CartContext);
   const isItemInCart = cart.some((item) => item.id === `item-${numericItemId}`);
@@ -40,7 +31,6 @@ export const MainSection = () => {
       navigate("/error");
     }
   }, [item, navigate]);
-
 
   const handleBuyClick = () => {
     if (item && itemId !== undefined) {

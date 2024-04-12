@@ -1,8 +1,11 @@
 import React, { useReducer, useEffect, ReactNode, useState } from "react";
-import { CartContext } from "./CartContext";
 import { CartItem } from "../../types";
 import catJsonData from "../../assets/cats.json";
 import itemJsonData from "../../assets/items.json";
+import { useDispatch } from "react-redux";
+import { completePurchase } from "../../store/features/cartList";
+import { CartContext } from "./CartContext";
+import { markCatAsSold } from "../../store/features/catList";
 
 type CartProviderProps = {
   children: ReactNode;
@@ -71,7 +74,6 @@ const useItemData = () => {
       })
     );
 
-    console.log("Transformed item data:", transformedData);
 
     setItemData(transformedData);
   }, []);
@@ -80,10 +82,10 @@ const useItemData = () => {
 };
 
 export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
-  
   const [state, dispatch] = useReducer(cartReducer, { cart: [] });
-  const { catData, setCatData } = useCatData();
   const { itemData, setItemData } = useItemData();
+  const reduxDispatch = useDispatch();
+  const { catData, setCatData } = useCatData();
 
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(state.cart));
@@ -104,6 +106,9 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
       dispatch({ type: "ADD_TO_CART", item: { ...item, quantity: 1 } });
     }
     if (item.id.startsWith("cat-")) {
+      reduxDispatch(markCatAsSold(item.id));
+    }
+    if (item.id.startsWith("cat-")) {
       const catIndex = catData.findIndex((cat) => cat.id === item.id);
       if (catIndex !== -1) {
         const updatedData = [...catData];
@@ -119,18 +124,9 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
     setItemData(itemData.map((item) => ({ ...item, isSold: false })));
   };
 
-  const completePurchase = () => {
+  const handleCompletePurchase = () => {
     const purchasedCatIds = state.cart.map((item) => item.id);
-    console.log('Purchased cat IDs:', purchasedCatIds); 
-  
-    setCatData((currentCatData) => {
-      const updatedCatData = currentCatData.map((cat) =>
-        purchasedCatIds.includes(cat.id) ? { ...cat, isSold: true } : cat
-      );
-      console.log('Updated cat data:', updatedCatData);
-      return updatedCatData;
-    });
-    dispatch({ type: "COMPLETE_PURCHASE" });
+    reduxDispatch(completePurchase(purchasedCatIds));
     dispatch({ type: "RESET_CART" });
   };
 
@@ -159,14 +155,12 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
     <CartContext.Provider
       value={{
         cart: state.cart,
-        catData,
-        setCatData,
         itemData,
         setItemData,
         addToCart,
         removeFromCart,
         resetCart,
-        completePurchase,
+        completePurchase: handleCompletePurchase,
       }}
     >
       {children}

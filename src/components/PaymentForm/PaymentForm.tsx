@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import { toast } from "react-toastify";
 import Select from "react-select";
-import { CartContext} from "../../Pages/cartPage/CartContext";
+import { CartContext } from "../../Pages/cartPage/CartContext";
 import { CartItem } from "../../types";
 import { Toast } from "../Toast/Toast";
 
@@ -78,7 +78,6 @@ export const PaymentForm = () => {
       toast.success(
         "The transaction was successfully submitted! You will receive a confirmation email"
       );
-      completePurchase();
     } catch (err) {
       const message = "There was an error. Please try again.";
       setErrorMessage(message);

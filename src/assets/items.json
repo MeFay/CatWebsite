@@ -2,31 +2,31 @@
   "1": {
     "name": "Toy Mouse",
     "category": "Toys",
-    "image": "https://cdn.discordapp.com/attachments/672558313317203991/1226282753180565534/image-removebg-preview_3.png?ex=662433cf&is=6611becf&hm=63aaa1b4531b27e2a03571805a83a5e7e2c767da57781d9c3b23b65dedb731c0&",
+    "image": "https://i.imgur.com/B569bhx.png",
     "price": 10
   },
   "2": {
     "name": "Cat Food",
     "category": "Food",
-    "image": "https://cdn.discordapp.com/attachments/672558313317203991/1226282753725693962/image-removebg-preview_6.png?ex=662433cf&is=6611becf&hm=b7f617d7f5240b6eef4cde64d7333d865250e9185d29c1fe576bc46e2068496f&",
+    "image": "https://i.imgur.com/skNOQK1.png",
     "price": 20
   },
   "3": {
     "name": "Surprise Bag",
     "category": "???",
-    "image": "https://cdn.discordapp.com/attachments/672558313317203991/1226282753482559568/image-removebg-preview_5.png?ex=662433cf&is=6611becf&hm=3c00c4d50249ea62a748d1a3bb266e61a3c8c5f45e5c72adb53892663fd01e41&",
+    "image": "https://i.imgur.com/OWuTcmb.png",
     "price": 50
   },
   "4": {
     "name": "Scratcher",
     "category": "Toy",
-    "image": "https://cdn.discordapp.com/attachments/672558313317203991/1226282753990066358/image-removebg-preview_7.png?ex=662433cf&is=6611becf&hm=d7c03e6767f341d78d7f83498f8f83ef44350c8f68f50e3dc54673422fd6f496&",
+    "image": "https://i.imgur.com/d4EZdib.png",
     "price": 40
   },
   "5": {
     "name": "Toy Green ball",
     "category": "Toy",
-    "image": "https://cdn.discordapp.com/attachments/1031281507182071841/1226491988111790182/3.png?ex=6624f6ad&is=661281ad&hm=344661af3d58a796613b96bc3fcd6986beb772fdca58555e113ff3df566eb55f&",
+    "image": "https://i.imgur.com/MSW1Fh4.png",
     "price": 5
   }
 }
