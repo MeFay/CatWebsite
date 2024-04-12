@@ -2,8 +2,9 @@ import { useParams } from "react-router-dom";
 import { CartContext } from "../cartPage/CartContext";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { RootState } from "../../store";
+
 import {
   StyledWrapper,
   StyledName,
@@ -19,14 +20,14 @@ export const MainSection = () => {
   const itemData = useSelector((state: RootState) => state.itemList.list);
   const item = itemData.find((item) => item.id === `item-${itemId}`);
   const { cart, addToCart } = useContext(CartContext);
-
   const cartItem = cart.find((cartItem) => cartItem.id === `item-${itemId}`);
   const quantityInCart = cartItem ? cartItem.quantity : 0;
 
-  if (!item) {
-    navigate("/error");
-    return null;
-  }
+  useEffect(() => {
+    if (!item) {
+      navigate("/error");
+    }
+  }, [item, navigate]);
 
   const handleBuyClick = () => {
     if (item && itemId !== undefined) {

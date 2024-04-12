@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Table } from "../../components/Table/Table.tsx";
 import { SearchBar } from "../../components/SearchBar/SearchBar.tsx";
 import { Pagination } from "../../components/Pagination/Pagination.tsx";
-import { CartItem } from "../cartPage/CartContext.tsx";
+import { CartItem } from "../../types.ts";
 import "../../index.css";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/index.ts";

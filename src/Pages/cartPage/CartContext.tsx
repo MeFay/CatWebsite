@@ -1,18 +1,5 @@
 import React from "react";
-
-export type CartItem = {
-  id: string;
-  price: number;
-  name: string;
-  image: string;
-  isSold: boolean;
-  quantity: number;
-  race?: string;
-  color?: string;
-  location?: string;
-  category?: string;
-};
-
+import { CartItem } from "../../types";
 
 type CartContextType = {
   cart: CartItem[];

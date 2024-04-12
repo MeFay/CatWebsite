@@ -1,9 +1,10 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Table } from "../../components/Table/Table.tsx";
 import { SearchBar } from "../../components/SearchBar/SearchBar.tsx";
 import { Pagination } from "../../components/Pagination/Pagination.tsx";
-import { CartContext } from "../../Pages/cartPage/CartContext";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store";
 import "../../index.css";
 
 const useSearch = (initialSearch = "") => {
@@ -26,7 +27,7 @@ export const MainSection = () => {
   const itemsPerPage = 4;
   const navigate = useNavigate();
   const { search, setSearch, debouncedSearch } = useSearch();
-  const { itemData } = useContext(CartContext);
+  const itemData = useSelector((state: RootState) => state.itemList.list);
   const { pageId } = useParams();
   const [currentPage, setCurrentPage] = useState(Number(pageId) || 1);
 

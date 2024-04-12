@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import { CartContext } from "../cartPage/CartContext";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { RootState } from "../../store";
 
 import {
@@ -22,10 +22,11 @@ export const MainSection = () => {
   const { cart, addToCart } = useContext(CartContext);
   const isCatInCart = cart.some((item) => item.id === `cat-${catId}`);
 
-  if (!cat) {
-    navigate("/error");
-    return null;
-  }
+  useEffect(() => {
+    if (!cat) {
+      navigate("/error");
+    }
+  }, [cat, navigate]);
 
   const handleBuyClick = () => {
     if (cat && catId !== undefined) {
@@ -43,21 +44,26 @@ export const MainSection = () => {
     }
   };
 
+
   return (
     <StyledWrapper>
-      <StyledName>{cat.name}</StyledName>
-      <StyledImage src={cat.image} alt={cat.name} />
-      <StyledTraits>
-        <StyledP>Race: {cat.race}</StyledP>
-        <StyledP>Color: {cat.color}</StyledP>
-        <StyledP>Age: {cat.age}yo</StyledP>
-        <StyledP>Weight: {cat.weight}kg</StyledP>
-        <StyledP>Location: {cat.location}</StyledP>
-        <StyledP>Price: {cat.price}€</StyledP>
-      </StyledTraits>
-      <StyledButton onClick={handleBuyClick} disabled={isCatInCart}>
-        {isCatInCart ? "In Cart" : "Buy"}
-      </StyledButton>
+      {cat && (
+        <>
+          <StyledName>{cat.name}</StyledName>
+          <StyledImage src={cat.image} alt={cat.name} />
+          <StyledTraits>
+            <StyledP>Race: {cat.race}</StyledP>
+            <StyledP>Color: {cat.color}</StyledP>
+            <StyledP>Age: {cat.age}yo</StyledP>
+            <StyledP>Weight: {cat.weight}kg</StyledP>
+            <StyledP>Location: {cat.location}</StyledP>
+            <StyledP>Price: {cat.price}€</StyledP>
+          </StyledTraits>
+          <StyledButton onClick={handleBuyClick} disabled={isCatInCart}>
+            {isCatInCart ? "In Cart" : "Buy"}
+          </StyledButton>
+        </>
+      )}
     </StyledWrapper>
   );
 };

@@ -1,5 +1,6 @@
 import React, { useReducer, useEffect, ReactNode, useState } from "react";
-import { CartContext, CartItem } from "./CartContext";
+import { CartContext } from "./CartContext";
+import { CartItem } from "../../types";
 import catJsonData from "../../assets/cats.json";
 import itemJsonData from "../../assets/items.json";
 

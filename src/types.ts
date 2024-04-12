@@ -1,5 +1,5 @@
 export type Cat = {
-  id: number;
+  id: string;
   race: string;
   name: string;
   color: string;
@@ -14,10 +14,23 @@ export type Cat = {
 
 export type Item = {
   quantity: number;
-  id: number;
+  id: string;
   name: string;
   category: string;
   image: string;
   price: number;
   isSold: boolean;
+};
+
+export type CartItem = {
+  id: string;
+  price: number;
+  name: string;
+  image: string;
+  isSold: boolean;
+  quantity: number;
+  race?: string;
+  color?: string;
+  location?: string;
+  category?: string;
 };
