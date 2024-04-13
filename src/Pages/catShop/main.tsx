@@ -57,7 +57,6 @@ export const MainSection = () => {
     id: cat.id.toString(),
     cols: [cat.name, cat.race || "N/A", cat.image],
   }));
-  console.log("Table lines:", tableLines);
 
   const handlePageChange = ({ selected }: { selected: number }) => {
     setCurrentPage(selected + 1);
@@ -74,7 +73,7 @@ export const MainSection = () => {
             lines={tableLines}
             dataType="cat"
           />
-          console.log("Table lines:", tableLines);
+
           <Pagination
             pageCount={Math.ceil(filteredData.length / itemsPerPage)}
             handlePageChange={handlePageChange}

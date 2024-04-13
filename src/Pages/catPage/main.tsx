@@ -22,8 +22,6 @@ export const MainSection = () => {
   const cat = catData.find((cat) => cat.id === `cat-${numericCatId}`);
   const { cart, addToCart } = useContext(CartContext);
   const isCatInCart = cart.some((item) => item.id === `cat-${numericCatId}`);
-  console.log("Cat ID:", numericCatId);
-  console.log("Cat:", cat);
 
   useEffect(() => {
     if (!cat) {
@@ -46,8 +44,6 @@ export const MainSection = () => {
       });
     }
   };
-  console.log("Cat ID:", catId);
-  console.log("Cat:", cat);
   return (
     <StyledWrapper>
       {cat && (

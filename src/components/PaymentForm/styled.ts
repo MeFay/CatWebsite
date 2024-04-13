@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { theme } from "../../styles/themes";
+import Select from "react-select";
 
 export const StyledForm = styled.form`
   display: flex;
@@ -47,18 +48,25 @@ export const StyledInput = styled.input`
   width: 100%;
 `;
 
-export const StyledSelect = styled.select`
-  font-family: "VT323", monospace;
-  line-height: 1.5;
-  font-weight: 400;
-  font-size: 1.5em;
-  display: flex;
-  margin: auto;
-  align-items: center;
-  color: red;
-  padding: 0.1875em;
-  width: 100%;
+export const StyledSelect = styled(Select)`
+ & .react-select__control {
+    background-color: salmon;
+    border-color: gray;
+    box-shadow: none;
+    &:hover {
+      border-color: black;
+    }
+ }
+ & .react-select__option {
+    background-color: lightgray;
+    color: black;
+    padding: 20px;
+ }
+ & .react-select__option--is-focused {
+    background-color: darkgray;
+ }
 `;
+
 
 export const StyledLabel = styled.label`
   display: flex;

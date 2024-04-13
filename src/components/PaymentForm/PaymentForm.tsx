@@ -33,15 +33,13 @@ export const PaymentForm = () => {
   });
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  const { cart, completePurchase } = useContext(CartContext);
+  const { cart } = useContext(CartContext);
 
   const calculateTotalPrice = () => {
     const itemsTotal = cart.reduce(
       (total: number, item: CartItem) => total + item.price * item.quantity,
       0
     );
-
-    console.log(itemsTotal.toString);
     const selectedPaymentMethod = paymentFees.find(
       (method) => method.name === formState.paymentMethod
     );
