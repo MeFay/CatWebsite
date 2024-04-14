@@ -12,7 +12,7 @@ type TableProps = {
   headers: Array<string>;
   lines: {
     id: string;
-    cols: (string | number)[];
+    cols: (string | JSX.Element)[];
   }[];
   dataType: "cat" | "item";
 };

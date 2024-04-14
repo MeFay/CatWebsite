@@ -3,9 +3,10 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Table } from "../../components/Table/Table.tsx";
 import { SearchBar } from "../../components/SearchBar/SearchBar.tsx";
 import { Pagination } from "../../components/Pagination/Pagination.tsx";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../store";
 import "../../index.css";
+import { toggleFavorite } from "../../store/features/itemList.ts";
 
 const useSearch = (initialSearch = "") => {
   const [search, setSearch] = useState(initialSearch);
@@ -30,6 +31,7 @@ export const MainSection = () => {
   const itemData = useSelector((state: RootState) => state.itemList.list);
   const { pageId } = useParams();
   const [currentPage, setCurrentPage] = useState(Number(pageId) || 1);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     setCurrentPage(Number(pageId) || 1);
@@ -50,7 +52,14 @@ export const MainSection = () => {
 
   const tableLines = currentItems.map((item) => ({
     id: item.id.toString(),
-    cols: [item.name, item.category || "N/A", item.image],
+    cols: [
+      item.name,
+      item.category || "N/A",
+      item.image,
+      <button onClick={() => dispatch(toggleFavorite(item.id))}>
+        {item.isFavorite ? "❤️" : "♡"}
+      </button>,
+    ],
   }));
 
   const handlePageChange = ({ selected }: { selected: number }) => {

@@ -24,8 +24,16 @@ export const itemListSlice = createSlice({
         })
       );
     },
+    toggleFavorite: (state, action: PayloadAction<string>) => {
+      const itemIndex = state.list.findIndex(
+        (item) => item.id === action.payload
+      );
+      if (itemIndex !== -1) {
+        state.list[itemIndex].isFavorite = !state.list[itemIndex].isFavorite;
+      }
+    },
   },
 });
 
-export const { fillList } = itemListSlice.actions;
+export const { fillList, toggleFavorite } = itemListSlice.actions;
 export default itemListSlice.reducer;

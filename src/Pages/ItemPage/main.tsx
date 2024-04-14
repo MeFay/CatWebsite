@@ -1,9 +1,10 @@
 import { useParams } from "react-router-dom";
 import { CartContext } from "../cartPage/CartContext";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useContext, useEffect } from "react";
 import { RootState } from "../../store";
+import { toggleFavorite } from "../../store/features/itemList";
 
 import {
   StyledWrapper,
@@ -22,9 +23,9 @@ export const MainSection = () => {
   const item = itemData.find(
     (item) => item.id === `item-item-${numericItemId}`
   );
-
   const { cart, addToCart } = useContext(CartContext);
   const isItemInCart = cart.some((item) => item.id === `item-${numericItemId}`);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (!item) {
@@ -51,6 +52,10 @@ export const MainSection = () => {
       {item && (
         <>
           <StyledName>{item.name}</StyledName>
+          <button onClick={() => dispatch(toggleFavorite(item.id))}>
+            {item.isFavorite ? "Remove from Favorites" : "Add to Favorites"}
+          </button>
+
           <StyledImage src={item.image} alt={item.name} />
           <StyledTraits>
             <StyledP>Category: {item.category}</StyledP>
