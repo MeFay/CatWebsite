@@ -28,8 +28,19 @@ export const catListSlice = createSlice({
         state.list[catIndex].isSold = true;
       }
     },
+    updateCatStatus: (
+      state,
+      action: PayloadAction<{ id: string; isSold: boolean }>
+    ) => {
+      const catIndex = state.list.findIndex(
+        (cat) => cat.id === action.payload.id
+      );
+      if (catIndex !== -1) {
+        state.list[catIndex].isSold = action.payload.isSold;
+      }
+    },
   },
 });
 
-export const { fillList,toggleFavorite, markCatAsSold } = catListSlice.actions;
+export const { fillList, toggleFavorite, markCatAsSold, updateCatStatus } = catListSlice.actions;
 export default catListSlice.reducer;

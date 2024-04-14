@@ -5,7 +5,7 @@ import itemJsonData from "../../assets/items.json";
 import { useDispatch } from "react-redux";
 import { completePurchase } from "../../store/features/cartList";
 import { CartContext } from "./CartContext";
-import { markCatAsSold } from "../../store/features/catList";
+import { markCatAsSold, updateCatStatus } from "../../store/features/catList";
 
 type CartProviderProps = {
   children: ReactNode;
@@ -140,19 +140,23 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
 
     if (item.id.startsWith("cat-")) {
       const catIndex = catData.findIndex((cat) => cat.id === item.id);
-      if (catIndex !== -1) {
-        const updatedData = [...catData];
-        updatedData[catIndex].isSold = false;
-        setCatData(updatedData);
-      }
-    } else if (item.id.startsWith("item-")) {
-      const itemIndex = itemData.findIndex(
-        (dataItem) => dataItem.id === item.id
-      );
-      if (itemIndex !== -1) {
-        const updatedData = [...itemData];
-        updatedData[itemIndex].isSold = false;
-        setItemData(updatedData);
+      if (item.id.startsWith("cat-")) {
+        reduxDispatch(markCatAsSold(item.id));
+        reduxDispatch(updateCatStatus({ id: item.id, isSold: false }));
+        if (catIndex !== -1) {
+          const updatedData = [...catData];
+          updatedData[catIndex].isSold = false;
+          setCatData(updatedData);
+        }
+      } else if (item.id.startsWith("item-")) {
+        const itemIndex = itemData.findIndex(
+          (dataItem) => dataItem.id === item.id
+        );
+        if (itemIndex !== -1) {
+          const updatedData = [...itemData];
+          updatedData[itemIndex].isSold = false;
+          setItemData(updatedData);
+        }
       }
     }
   };
