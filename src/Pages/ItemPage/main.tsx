@@ -43,6 +43,7 @@ export const MainSection = () => {
         isSold: item.isSold,
         category: item.category,
         quantity: item.quantity,
+        isFavorite: item.isFavorite,
       });
     }
   };

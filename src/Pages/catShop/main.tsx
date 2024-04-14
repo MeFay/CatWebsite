@@ -8,6 +8,9 @@ import "../../index.css";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../store/index.ts";
 import { toggleFavorite } from "../../store/features/catList.ts";
+import isFavorite from "../../assets/isFavorite.png";
+import isNotFavorite from "../../assets/isNotFavorite.png";
+import { StyledImage } from "./styed.ts";
 
 const useSearch = (initialSearch = "") => {
   const [search, setSearch] = useState(initialSearch);
@@ -61,9 +64,11 @@ export const MainSection = () => {
       cat.name,
       cat.race || "N/A",
       cat.image,
-      <button onClick={() => dispatch(toggleFavorite(cat.id))}>
-        {cat.isFavorite ? "❤️" : "♡"}
-      </button>,
+      <StyledImage
+        src={cat.isFavorite ? isFavorite : isNotFavorite}
+        alt="Toggle Favorite"
+        onClick={() => dispatch(toggleFavorite(cat.id))}
+      />,
     ],
   }));
 
@@ -78,7 +83,7 @@ export const MainSection = () => {
       {filteredData.length > 0 ? (
         <>
           <Table
-            headers={["Name", "Race", "Photo"]}
+            headers={["Name", "Race", "Photo", "Favorite"]}
             lines={tableLines}
             dataType="cat"
           />

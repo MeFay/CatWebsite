@@ -25,6 +25,7 @@ export type Item = {
 };
 
 export type CartItem = {
+  isFavorite: boolean;
   id: string;
   price: number;
   name: string;

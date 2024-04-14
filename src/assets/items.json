@@ -19,14 +19,122 @@
   },
   "4": {
     "name": "Scratcher",
-    "category": "Toy",
+    "category": "Toys",
     "image": "https://i.imgur.com/d4EZdib.png",
     "price": 40
   },
   "5": {
     "name": "Toy Green ball",
-    "category": "Toy",
+    "category": "Toys",
     "image": "https://i.imgur.com/MSW1Fh4.png",
+    "price": 5
+  },
+  "6": {
+    "name": "Baby Milk Kit",
+    "category": "Food",
+    "image": "https://i.imgur.com/aDwTmVx.png",
+    "price": 30
+  },
+  "7": {
+    "name": "Colorful Yarn",
+    "category": "Toys",
+    "image": "https://i.imgur.com/ZBIXBM7.png",
+    "price": 15
+  },
+  "8": {
+    "name": "Big Hair Comb",
+    "category": "Hygiene",
+    "image": "https://i.imgur.com/Vut2yTQ.png",
+    "price": 15
+  },
+  "9": {
+    "name": "Juvenile Milk",
+    "category": "Food",
+    "image": "https://i.imgur.com/bkimFn6.png",
+    "price": 7
+  },
+  "10": {
+    "name": "Small Hair Comb",
+    "category": "Hygiene",
+    "image": "https://i.imgur.com/VN40oCN.png",
+    "price": 9
+  },
+  "11": {
+    "name": "Greener Cat Grass",
+    "category": "Health",
+    "image": "https://i.imgur.com/La6HgOV.pngs",
+    "price": 27
+  },
+  "12": {
+    "name": "Normal Cat Grass",
+    "category": "Health",
+    "image": "https://i.imgur.com/3PEEmmy.png",
+    "price": 27
+  },
+  "13": {
+    "name": "Sausage",
+    "category": "Food",
+    "image": "https://i.imgur.com/rxdz3nw.png",
+    "price": 5
+  },
+  "14": {
+    "name": "Low Fat Milk",
+    "category": "Food",
+    "image": "https://i.imgur.com/0fMx4Nt.png",
+    "price": 5
+  },
+  "15": {
+    "name": "Half Fat Milk",
+    "category": "Food",
+    "image": "https://i.imgur.com/LsOEDGb.png",
+    "price": 5
+  },
+  "16": {
+    "name": "Whole Fat Milk",
+    "category": "Food",
+    "image": "https://i.imgur.com/jdMZCMN.png",
+    "price": 5
+  },
+  "17": {
+    "name": "Salmon Food",
+    "category": "Food",
+    "image": "https://i.imgur.com/UURRGGg.png",
+    "price": 7
+  },
+  "18": {
+    "name": "Pork Food",
+    "category": "Food",
+    "image": "https://i.imgur.com/5aJwRed.png",
+    "price": 7
+  },
+  "19": {
+    "name": "Chicken Food",
+    "category": "Food",
+    "image": "https://i.imgur.com/OS2XuM0.png",
+    "price": 7
+  },
+  "20": {
+    "name": "Beef Food",
+    "category": "Food",
+    "image": "https://i.imgur.com/0VIGYak.png",
+    "price": 7
+  },
+  "21": {
+    "name": "Vitamins Snack",
+    "category": "Health",
+    "image": "https://i.imgur.com/sTDXlGd.png",
+    "price": 7
+  },
+  "22": {
+    "name": "Wiskers",
+    "category": "Food",
+    "image": "https://i.imgur.com/n7ndr7a.png",
+    "price": 5
+  },
+  "23": {
+    "name": "Colorful Snack",
+    "category": "Food",
+    "image": "https://i.imgur.com/121Ax2X.png",
     "price": 5
   }
 }
