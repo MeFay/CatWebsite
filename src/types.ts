@@ -10,6 +10,7 @@ export type Cat = {
   price: number;
   isSold: boolean;
   quantity: number;
+  isFavorite: boolean;
 };
 
 export type Item = {
@@ -20,9 +21,11 @@ export type Item = {
   image: string;
   price: number;
   isSold: boolean;
+  isFavorite: boolean;
 };
 
 export type CartItem = {
+  isFavorite: boolean;
   id: string;
   price: number;
   name: string;

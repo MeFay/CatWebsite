@@ -1,6 +1,6 @@
 import { RouterProvider } from "react-router-dom";
 import { Provider, useDispatch } from "react-redux";
-import { CartProvider } from "./Pages/cartPage/CartProvider";
+import { CartProvider } from "./Pages/cart/CartProvider";
 import "react-toastify/dist/ReactToastify.css";
 import { router } from "./Router";
 import ReactDOM from "react-dom/client";
@@ -13,7 +13,7 @@ import { fillList } from "./store/features/catList";
 import itemData from "./assets/items.json";
 import { fillList as fillItemList } from "./store/features/itemList";
 import { useEffect } from "react";
-import { Cat, Item} from "./types";
+import { Cat, Item } from "./types";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
@@ -34,6 +34,7 @@ function App() {
           id: `cat-${id}`,
           isSold: false,
           quantity: 0,
+          isFavorite: false,
         };
         return acc;
       },
@@ -48,6 +49,7 @@ function App() {
           id: `item-${id}`,
           isSold: false,
           quantity: 0,
+          isFavorite: false,
         };
         return acc;
       },

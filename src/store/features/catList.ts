@@ -16,6 +16,12 @@ export const catListSlice = createSlice({
     fillList: (state, action: PayloadAction<Record<string, Cat>>) => {
       state.list = Object.values(action.payload);
     },
+    toggleFavorite: (state, action: PayloadAction<string>) => {
+      const catIndex = state.list.findIndex((cat) => cat.id === action.payload);
+      if (catIndex !== -1) {
+        state.list[catIndex].isFavorite = !state.list[catIndex].isFavorite;
+      }
+    },
     markCatAsSold: (state, action: PayloadAction<string>) => {
       const catIndex = state.list.findIndex((cat) => cat.id === action.payload);
       if (catIndex !== -1) {
@@ -25,5 +31,5 @@ export const catListSlice = createSlice({
   },
 });
 
-export const { fillList, markCatAsSold } = catListSlice.actions;
+export const { fillList,toggleFavorite, markCatAsSold } = catListSlice.actions;
 export default catListSlice.reducer;

@@ -1,6 +1,6 @@
 import { useLocation } from "react-router-dom";
 import { useContext } from "react";
-import { CartContext } from "../../Pages/cartPage/CartContext";
+import { CartContext } from "../../Pages/cart/CartContext";
 
 import {
   StyledNavbar,

@@ -5,8 +5,12 @@ import { SearchBar } from "../../components/SearchBar/SearchBar.tsx";
 import { Pagination } from "../../components/Pagination/Pagination.tsx";
 import { CartItem } from "../../types.ts";
 import "../../index.css";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../store/index.ts";
+import { toggleFavorite } from "../../store/features/catList.ts";
+import isFavorite from "../../assets/isFavorite.png";
+import isNotFavorite from "../../assets/isNotFavorite.png";
+import { StyledImage } from "./styed.ts";
 
 const useSearch = (initialSearch = "") => {
   const [search, setSearch] = useState(initialSearch);
@@ -31,6 +35,7 @@ export const MainSection = () => {
   const catData = useSelector((state: RootState) => state.catList.list);
   const { search, setSearch, debouncedSearch } = useSearch();
   const [currentPage, setCurrentPage] = useState(Number(pageId) || 1);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     setCurrentPage(Number(pageId) || 1);
@@ -53,9 +58,18 @@ export const MainSection = () => {
     currentPage * itemsPerPage
   );
 
-  const tableLines = currentItems.map((cat: CartItem) => ({
+  const tableLines = currentItems.map((cat) => ({
     id: cat.id.toString(),
-    cols: [cat.name, cat.race || "N/A", cat.image],
+    cols: [
+      cat.name,
+      cat.race || "N/A",
+      cat.image,
+      <StyledImage
+        src={cat.isFavorite ? isFavorite : isNotFavorite}
+        alt="Toggle Favorite"
+        onClick={() => dispatch(toggleFavorite(cat.id))}
+      />,
+    ],
   }));
 
   const handlePageChange = ({ selected }: { selected: number }) => {
@@ -69,7 +83,7 @@ export const MainSection = () => {
       {filteredData.length > 0 ? (
         <>
           <Table
-            headers={["Name", "Race", "Photo"]}
+            headers={["Name", "Race", "Photo", "Favorite"]}
             lines={tableLines}
             dataType="cat"
           />

@@ -1,9 +1,8 @@
-import { useParams } from "react-router-dom";
-import { CartContext } from "../cartPage/CartContext";
-import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useParams, useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import { useContext, useEffect } from "react";
 import { RootState } from "../../store";
+import { toggleFavorite } from "../../store/features/catList";
 
 import {
   StyledWrapper,
@@ -13,6 +12,7 @@ import {
   StyledTraits,
   StyledButton,
 } from "./styled";
+import { CartContext } from "../cart/CartContext";
 
 export const MainSection = () => {
   const navigate = useNavigate();
@@ -22,6 +22,7 @@ export const MainSection = () => {
   const cat = catData.find((cat) => cat.id === `cat-${numericCatId}`);
   const { cart, addToCart } = useContext(CartContext);
   const isCatInCart = cart.some((item) => item.id === `cat-${numericCatId}`);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (!cat) {
@@ -44,11 +45,15 @@ export const MainSection = () => {
       });
     }
   };
+
   return (
     <StyledWrapper>
       {cat && (
         <>
-          <StyledName>{cat.name}</StyledName>
+          <StyledName>{cat.name}</StyledName>{" "}
+          <button onClick={() => dispatch(toggleFavorite(cat.id))}>
+            {cat.isFavorite ? "Remove from Favorites" : "Add to Favorites"}
+          </button>
           <StyledImage src={cat.image} alt={cat.name} />
           <StyledTraits>
             <StyledP>Race: {cat.race}</StyledP>

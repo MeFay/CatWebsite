@@ -1,12 +1,12 @@
 import { Navigate, createBrowserRouter } from "react-router-dom";
 import { HomePage } from "./Pages/home/HomePage";
 import { CatShopPage } from "./Pages/catShop/CatShopPage";
-import { CatPage } from "./Pages/catPage/CatPage";
-import { CartPage } from "./Pages/cartPage/CartPage";
+import { CatPage } from "./Pages/cat/CatPage";
+import { CartPage } from "./Pages/cart/CartPage";
 import { PaymentPage } from "./Pages/payment/PaymentPage";
-import { ItemPage } from "./Pages/ItemPage/ItemPage";
+import { ItemPage } from "./Pages/Item/ItemPage";
 import { ItemShop } from "./Pages/ItemShop/ItemShop";
-import { ErrorPage } from "./Pages/errorPage/ErrorPage";
+import { ErrorPage } from "./Pages/error/ErrorPage";
 
 export const router = createBrowserRouter([
   {
