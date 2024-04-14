@@ -1,6 +1,5 @@
-import { useState, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { toast } from "react-toastify";
-import Select from "react-select";
 import { CartContext } from "../../Pages/cart/CartContext";
 import { CartItem } from "../../types";
 import { Toast } from "../Toast/Toast";
@@ -32,7 +31,7 @@ export const PaymentForm = () => {
     paymentMethod: "",
   });
   const [isLoading, setIsLoading] = useState(false);
-  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [, setErrorMessage] = useState<string | null>(null);
   const { cart } = useContext(CartContext);
 
   const calculateTotalPrice = () => {
@@ -55,18 +54,13 @@ export const PaymentForm = () => {
     setErrorMessage(null);
 
     if (cart.length === 0) {
-      const message =
-        "Your cart is empty. Please add items before checking out.";
-      setErrorMessage(message);
-      toast.error(message);
+      toast.error("Your cart is empty. Please add items before checking out.");
       setIsLoading(false);
       return;
     }
 
     if (!formState.email.includes("@")) {
-      const message = "Please enter a valid email address.";
-      setErrorMessage(message);
-      toast.error(message);
+      toast.error("Please enter a valid email address.");
       setIsLoading(false);
       return;
     }
@@ -74,12 +68,10 @@ export const PaymentForm = () => {
     try {
       await new Promise((resolve) => setTimeout(resolve, 1000));
       toast.success(
-        "The transaction was successfully submitted! You will receive a confirmation email"
+        "The transaction was successfully submitted! You will receive a confirmation email."
       );
     } catch (err) {
-      const message = "There was an error. Please try again.";
-      setErrorMessage(message);
-      toast.error(message);
+      toast.error("There was an error. Please try again.");
     } finally {
       setIsLoading(false);
     }
@@ -142,7 +134,7 @@ export const PaymentForm = () => {
               onChange={handleChange}
               required
             />
-            <Select options={options} onChange={handleSelectChange} />
+            <StyledSelect options={options} onChange={handleSelectChange} />
           </StyledInputContainer>
         </StyledContainer>
 

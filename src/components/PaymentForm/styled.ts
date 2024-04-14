@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { theme } from "../../styles/themes";
 import Select from "react-select";
+import { device } from "../../styles/device";
 
 export const StyledForm = styled.form`
   display: flex;
@@ -14,6 +15,11 @@ export const StyledForm = styled.form`
   padding: 2em;
   border: 0.5em solid ${theme.Color6};
   gap: 2em;
+
+  @media ${device.tablet} {
+    width: 90%;
+    padding: 1em;
+  }
 `;
 
 export const StyledContainer = styled.div`
@@ -23,10 +29,18 @@ export const StyledContainer = styled.div`
   width: 100%;
   row-gap: 1.25em;
   height: 100%;
+
+  @media ${device.tablet} {
+    flex-direction: column;
+  }
 `;
 
 export const StyledLabelContainer = styled.div`
   width: 20%;
+
+  @media ${device.tablet} {
+    width: 100%;
+  }
 `;
 
 export const StyledInputContainer = styled.div`
@@ -34,6 +48,10 @@ export const StyledInputContainer = styled.div`
   display: flex;
   flex-direction: column;
   row-gap: 1.5em;
+
+  @media ${device.tablet} {
+    width: 100%;
+  }
 `;
 
 export const StyledInput = styled.input`
@@ -46,27 +64,19 @@ export const StyledInput = styled.input`
   align-items: center;
   color: ${theme.Color3};
   width: 100%;
+
+  @media ${device.tablet} {
+    font-size: 1.2em;
+  }
 `;
 
 export const StyledSelect = styled(Select)`
- & .react-select__control {
-    background-color: salmon;
-    border-color: gray;
-    box-shadow: none;
-    &:hover {
-      border-color: black;
-    }
- }
- & .react-select__option {
-    background-color: lightgray;
-    color: black;
-    padding: 20px;
- }
- & .react-select__option--is-focused {
-    background-color: darkgray;
- }
+  width: 100%;
+  font-family: "VT323", monospace;
+  font-size: 1.2em;
+  color: ${theme.Color3};
+  }
 `;
-
 
 export const StyledLabel = styled.label`
   display: flex;
@@ -78,6 +88,10 @@ export const StyledLabel = styled.label`
   max-width: 100%;
   color: ${theme.Color4};
   width: 100%;
+
+  @media ${device.tablet} {
+    font-size: 2em;
+  }
 `;
 
 export const StyledTotal = styled.p`
@@ -87,6 +101,10 @@ export const StyledTotal = styled.p`
   padding: 0;
   color: ${theme.Color3};
   font-size: 1.7em;
+
+  @media ${device.tablet} {
+    font-size: 1.5em;
+  }
 `;
 
 export const StyledButton = styled.button`
@@ -102,5 +120,9 @@ export const StyledButton = styled.button`
   &:hover {
     cursor: pointer;
   }
-`;
 
+  @media ${device.tablet} {
+    width: 100%;
+    font-size: 1.5em;
+  }
+`;

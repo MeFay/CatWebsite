@@ -10,8 +10,8 @@ import "../../index.css";
 import { toggleFavorite } from "../../store/features/itemList.ts";
 import isFavorite from "../../assets/isFavorite.png";
 import isNotFavorite from "../../assets/isNotFavorite.png";
+import { StyledImage, StyledNoItemsFound } from "./styled.ts";
 
-import { StyledImage } from "./styled.ts";
 const useSearch = (initialSearch = "") => {
   const [search, setSearch] = useState(initialSearch);
   const [debouncedSearch, setDebouncedSearch] = useState(search);
@@ -24,13 +24,14 @@ const useSearch = (initialSearch = "") => {
       clearTimeout(timerId);
     };
   }, [search]);
+
   return { search, setSearch, debouncedSearch };
 };
 
 export const MainSection = () => {
   const itemsPerPage = 4;
   const navigate = useNavigate();
-  const { search, setSearch } = useSearch();
+  const { search, setSearch, debouncedSearch } = useSearch();
   const itemData = useSelector((state: RootState) => state.itemList.list);
   const { pageId } = useParams();
   const [currentPage, setCurrentPage] = useState(Number(pageId) || 1);
@@ -46,12 +47,16 @@ export const MainSection = () => {
     Record<string, boolean>
   >({});
 
-  const filteredData = itemData.filter((item) => {
-    if (Object.values(selectedCategories).every((val) => !val)) {
-      return true;
-    }
-    return selectedCategories[item.category] || false;
-  });
+  const filteredData = itemData
+    .filter((item) => {
+      if (Object.values(selectedCategories).every((val) => !val)) {
+        return true;
+      }
+      return selectedCategories[item.category] || false;
+    })
+    .filter((item) => {
+      return item.name.toLowerCase().includes(debouncedSearch.toLowerCase());
+    });
 
   const currentItems = filteredData.slice(
     (currentPage - 1) * itemsPerPage,
@@ -80,21 +85,29 @@ export const MainSection = () => {
   return (
     <>
       <SearchBar search={search} setSearch={setSearch} />
-      <CategoryFilter
-        categories={categories}
-        selectedCategories={selectedCategories}
-        setSelectedCategories={setSelectedCategories}
-      />
-      <Table
-        headers={["Name", "Category", "Photo", "Favorite"]}
-        lines={tableLines}
-        dataType="item"
-      />
-      <Pagination
-        pageCount={Math.ceil(filteredData.length / itemsPerPage)}
-        handlePageChange={handlePageChange}
-        currentPage={currentPage}
-      />
+      {filteredData.length > 0 ? (
+        <>
+          <CategoryFilter
+            categories={categories}
+            selectedCategories={selectedCategories}
+            setSelectedCategories={setSelectedCategories}
+          />
+          <Table
+            headers={["Name", "Category", "Photo", "Favorite"]}
+            lines={tableLines}
+            dataType="item"
+          />
+          <Pagination
+            pageCount={Math.ceil(filteredData.length / itemsPerPage)}
+            handlePageChange={handlePageChange}
+            currentPage={currentPage}
+          />
+        </>
+      ) : (
+        <StyledNoItemsFound>
+          Sorry! Couldn't find that for you, try something else...
+        </StyledNoItemsFound>
+      )}
     </>
   );
 };

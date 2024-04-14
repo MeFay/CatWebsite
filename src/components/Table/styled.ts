@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { theme } from "../../styles/themes";
+import { device } from "../../styles/device";
 
 export const StyledTableWrapper = styled.div`
   padding-top: 3em;
@@ -17,20 +18,35 @@ export const StyledTable = styled.table`
   width: 60%;
   font-size: 1.6em;
   border-collapse: collapse;
+  @media ${device.mobile} {
+    width: 30%;
+  }
+
+  @media ${device.tablet} {
+    width: 90%;
+  }
 `;
 
 export const StyledTableTh = styled.th`
   font-size: 2em;
   border-bottom: 0.1em solid ${(props) => props.theme.border};
-  padding: 0.6em;
+  width: auto;
+  padding: 0.8em;
   text-align: center;
   background-color: ${theme.Color3};
   color: ${theme.Color4};
+  @media ${device.mobile} {
+    padding: 0.5em;
+  }
+
+  @media ${device.tablet} {
+    padding: 0.7em;
+  }
 `;
 
 export const StyledTableTr = styled.tr`
   &:hover {
-    background-color:${theme.Color2};
+    background-color: ${theme.Color2};
   }
   background-color: ${theme.Color1};
 `;
@@ -42,6 +58,13 @@ export const StyledTableTd = styled.td`
   &:hover {
     cursor: pointer;
   }
+  @media ${device.mobile} {
+    padding: 0.4em;
+  }
+
+  @media ${device.tablet} {
+    padding: 0.5em;
+  }
 `;
 
 export const StyledImage = styled.img`
@@ -49,4 +72,11 @@ export const StyledImage = styled.img`
   height: 5em;
   object-fit: contain;
   border-radius: 0.3em;
+  @media ${device.mobile} {
+    width: 70%;
+  }
+
+  @media ${device.tablet} {
+    width: 100%;
+  }
 `;

@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { completePurchase } from "../../store/features/cartList";
 import { CartContext } from "./CartContext";
 import { markCatAsSold } from "../../store/features/catList";
+
 type CartProviderProps = {
   children: ReactNode;
 };
@@ -128,7 +129,23 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
   };
 
   const removeFromCart = (item: CartItem) => {
-    dispatch({ type: "REMOVE_FROM_CART", item });
+    const itemIndex = state.cart.findIndex(
+      (cartItem) => cartItem.id === item.id
+    );
+
+    if (itemIndex !== -1) {
+      if (state.cart[itemIndex].quantity > 1) {
+        const newCart = [...state.cart];
+        newCart[itemIndex] = {
+          ...newCart[itemIndex],
+          quantity: newCart[itemIndex].quantity - 1,
+        };
+        dispatch({ type: "UPDATE_CART", cart: newCart });
+      } else {
+        dispatch({ type: "REMOVE_FROM_CART", item });
+      }
+    }
+
     if (item.id.startsWith("cat-")) {
       const catIndex = catData.findIndex((cat) => cat.id === item.id);
       if (catIndex !== -1) {

@@ -10,7 +10,7 @@ import { RootState } from "../../store/index.ts";
 import { toggleFavorite } from "../../store/features/catList.ts";
 import isFavorite from "../../assets/isFavorite.png";
 import isNotFavorite from "../../assets/isNotFavorite.png";
-import { StyledImage } from "./styed.ts";
+import { StyledImage, StyledNoCatsFound } from "./styled.ts";
 
 const useSearch = (initialSearch = "") => {
   const [search, setSearch] = useState(initialSearch);
@@ -95,8 +95,7 @@ export const MainSection = () => {
           />
         </>
       ) : (
-        <p>No cats found.</p>
-        //TODO: STYLE THE P
+        <StyledNoCatsFound>Sorry! Couldn't find that for you, try something else...</StyledNoCatsFound>
       )}
     </>
   );

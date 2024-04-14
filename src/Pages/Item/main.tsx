@@ -1,19 +1,22 @@
 import { useParams } from "react-router-dom";
-import { CartContext } from "../cart/CartContext";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useContext, useEffect } from "react";
 import { RootState } from "../../store";
 import { toggleFavorite } from "../../store/features/itemList";
-
+import { CartContext } from "../cart/CartContext";
+import isFavorite from "../../assets/isFavorite.png";
+import isNotFavorite from "../../assets/isNotFavorite.png";
 import {
   StyledWrapper,
   StyledName,
   StyledImage,
   StyledP,
   StyledTraits,
+  StyledFavorite,
   StyledButton,
 } from "./styled";
+
 
 export const MainSection = () => {
   const navigate = useNavigate();
@@ -48,14 +51,22 @@ export const MainSection = () => {
     }
   };
 
+  const renderFavoriteIcon = () => {
+    return item?.isFavorite ? (
+      <img src={isFavorite} alt="Favorite" />
+    ) : (
+      <img src={isNotFavorite} alt="Not Favorite" />
+    );
+  };
+
   return (
     <StyledWrapper>
       {item && (
         <>
           <StyledName>{item.name}</StyledName>
-          <button onClick={() => dispatch(toggleFavorite(item.id))}>
-            {item.isFavorite ? "Remove from Favorites" : "Add to Favorites"}
-          </button>
+          <StyledFavorite onClick={() => dispatch(toggleFavorite(item.id))}>
+            {renderFavoriteIcon()}
+          </StyledFavorite>
 
           <StyledImage src={item.image} alt={item.name} />
           <StyledTraits>

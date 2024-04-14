@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { theme } from "../../styles/themes";
+import { device } from "../../styles/device";
 
 export const StyledWrapper = styled.div`
   display: flex;
@@ -10,10 +11,17 @@ export const StyledWrapper = styled.div`
   width: 60%;
   background-color: ${theme.Color1};
   border-radius: 1em;
-  margin-top: 5em;
+  margin-top: 4em;
+  margin-botto: 2em;
   padding: 2em;
   gap: 2em;
   border: 0.5em solid ${theme.Color3};
+
+  @media ${device.tablet} {
+    width: 90%;
+    margin-top: 2em;
+    padding: 1em;
+  }
 `;
 
 export const StyledTitle = styled.h1`
@@ -21,15 +29,25 @@ export const StyledTitle = styled.h1`
   padding: 0;
   font-size: 5em;
   color: ${theme.Color4};
+
+  @media ${device.tablet} {
+    font-size: 3em;
+  }
 `;
 
 export const StyledTraits = styled.div`
   display: flex;
+  flex-direction: column; // Stack items vertically for better readability
   align-items: center;
   width: 100%;
   background: ${theme.Color2};
   border-radius: 1em;
-  padding: 1.25em;
+  padding: 1em;
+  margin-top: 2em; // Add space between title and content
+
+  @media ${device.tablet} {
+    padding: 0.5em;
+  }
 `;
 
 export const StyledP = styled.p`
@@ -42,6 +60,10 @@ export const StyledP = styled.p`
   max-width: 100%;
   color: ${theme.Color5};
   width: 100%;
+
+  @media ${device.tablet} {
+    font-size: 1.5em;
+  }
 `;
 
 export const StyledButton = styled.button`
@@ -57,6 +79,10 @@ export const StyledButton = styled.button`
   &:hover {
     cursor: pointer;
   }
+
+  @media ${device.tablet} {
+    width: 100%;
+  }
 `;
 
 export const StyledPrice = styled.p`
@@ -71,27 +97,18 @@ export const StyledPrice = styled.p`
   background-color: ${theme.Color3};
   border-radius: 0.3125em;
   width: 100%;
+
+  @media ${device.tablet} {
+    font-size: 1.5em;
+  }
 `;
 
 export const StyledImg = styled.img`
-  max-width: 18em;
-  max-height: 18em;
-`;
+  max-width: 20em;
+  max-height: 20em;
 
-export const StyledEasterEgg = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.8);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-`;
-
-export const StyledEasterEggImg = styled.img`
-  max-width: 30em;
-  max-height: 30em;
+  @media ${device.tablet} {
+    max-width: 20em;
+    max-height: 20em;
+  }
 `;

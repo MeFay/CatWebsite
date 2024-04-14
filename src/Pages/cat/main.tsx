@@ -3,6 +3,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { useContext, useEffect } from "react";
 import { RootState } from "../../store";
 import { toggleFavorite } from "../../store/features/catList";
+import isFavorite from "../../assets/isFavorite.png";
+import isNotFavorite from "../../assets/isNotFavorite.png";
+import { CartContext } from "../cart/CartContext";
 
 import {
   StyledWrapper,
@@ -10,9 +13,9 @@ import {
   StyledImage,
   StyledP,
   StyledTraits,
+  StyledFavorite,
   StyledButton,
 } from "./styled";
-import { CartContext } from "../cart/CartContext";
 
 export const MainSection = () => {
   const navigate = useNavigate();
@@ -42,18 +45,27 @@ export const MainSection = () => {
         color: cat.color,
         location: cat.location,
         quantity: cat.quantity,
+        isFavorite: false,
       });
     }
   };
 
+  const renderFavoriteIcon = () => {
+    return cat?.isFavorite ? (
+      <img src={isFavorite} alt="Favorite" />
+    ) : (
+      <img src={isNotFavorite} alt="Not Favorite" />
+    );
+  };
+
   return (
     <StyledWrapper>
-      {cat && (
+      {cat ? (
         <>
-          <StyledName>{cat.name}</StyledName>{" "}
-          <button onClick={() => dispatch(toggleFavorite(cat.id))}>
-            {cat.isFavorite ? "Remove from Favorites" : "Add to Favorites"}
-          </button>
+          <StyledName>{cat.name}</StyledName>
+          <StyledFavorite onClick={() => dispatch(toggleFavorite(cat.id))}>
+            {renderFavoriteIcon()}
+          </StyledFavorite>
           <StyledImage src={cat.image} alt={cat.name} />
           <StyledTraits>
             <StyledP>Race: {cat.race}</StyledP>
@@ -67,6 +79,8 @@ export const MainSection = () => {
             {isCatInCart ? "In Cart" : "Buy"}
           </StyledButton>
         </>
+      ) : (
+        <div>Loading...</div>
       )}
     </StyledWrapper>
   );

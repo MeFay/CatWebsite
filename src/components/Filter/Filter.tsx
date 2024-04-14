@@ -1,4 +1,5 @@
 import React from "react";
+import { StyledCheckbox, StyledLabel, StyledFilter } from "./styled";
 
 interface CategoryFilterProps {
   categories: string[];
@@ -21,18 +22,17 @@ const CategoryFilter: React.FC<CategoryFilterProps> = ({
   };
 
   return (
-    <div>
+    <StyledFilter>
       {categories.map((category) => (
-        <label key={category}>
-          <input
-            type="checkbox"
+        <StyledLabel key={category}>
+          <StyledCheckbox
             checked={selectedCategories[category] || false}
             onChange={() => handleCheckboxChange(category)}
           />
           {category}
-        </label>
+        </StyledLabel>
       ))}
-    </div>
+    </StyledFilter>
   );
 };
 

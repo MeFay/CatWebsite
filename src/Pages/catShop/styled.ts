@@ -7,12 +7,12 @@ export const StyledImage = styled.img`
   max-height: 40px;
 
   @media ${device.tablet} {
-    max-width: 40px;
-    max-height: 40px;
+    max-width: 60px;
+    max-height: 60px;
   }
 `;
 
-export const StyledNoItemsFound = styled.p`
+export const StyledNoCatsFound = styled.p`
   text-align: center;
   font-size: 2em;
   color: ${theme.Color1};
