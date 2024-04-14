@@ -50,7 +50,8 @@ export const MainSection = () => {
         (cat.color &&
           cat.color.toLowerCase().includes(debouncedSearch.toLowerCase())) ||
         (cat.location &&
-          cat.location.toLowerCase().includes(debouncedSearch.toLowerCase())))
+          cat.location.toLowerCase().includes(debouncedSearch.toLowerCase())) ||
+        (debouncedSearch.toLowerCase() === "favorites" && cat.isFavorite))
   );
 
   const currentItems = filteredData.slice(
@@ -95,7 +96,9 @@ export const MainSection = () => {
           />
         </>
       ) : (
-        <StyledNoCatsFound>Sorry! Couldn't find that for you, try something else...</StyledNoCatsFound>
+        <StyledNoCatsFound>
+          Sorry! Couldn't find that for you, try something else...
+        </StyledNoCatsFound>
       )}
     </>
   );

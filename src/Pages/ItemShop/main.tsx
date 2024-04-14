@@ -55,6 +55,9 @@ export const MainSection = () => {
       return selectedCategories[item.category] || false;
     })
     .filter((item) => {
+      if (debouncedSearch.toLowerCase() === "favorites") {
+        return item.isFavorite;
+      }
       return item.name.toLowerCase().includes(debouncedSearch.toLowerCase());
     });
 
