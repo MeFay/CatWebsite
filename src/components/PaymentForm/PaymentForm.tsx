@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import { toast } from "react-toastify";
 import Select from "react-select";
-import { CartContext } from "../../Pages/cartPage/CartContext";
+import { CartContext } from "../../Pages/cart/CartContext";
 import { CartItem } from "../../types";
 import { Toast } from "../Toast/Toast";
 

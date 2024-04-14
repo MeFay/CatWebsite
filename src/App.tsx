@@ -1,6 +1,6 @@
 import { RouterProvider } from "react-router-dom";
 import { Provider, useDispatch } from "react-redux";
-import { CartProvider } from "./Pages/cartPage/CartProvider";
+import { CartProvider } from "./Pages/cart/CartProvider";
 import "react-toastify/dist/ReactToastify.css";
 import { router } from "./Router";
 import ReactDOM from "react-dom/client";

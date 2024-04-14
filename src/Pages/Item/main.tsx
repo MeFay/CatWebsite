@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { CartContext } from "../cartPage/CartContext";
+import { CartContext } from "../cart/CartContext";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useContext, useEffect } from "react";

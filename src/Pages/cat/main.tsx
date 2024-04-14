@@ -12,7 +12,7 @@ import {
   StyledTraits,
   StyledButton,
 } from "./styled";
-import { CartContext } from "../cartPage/CartContext";
+import { CartContext } from "../cart/CartContext";
 
 export const MainSection = () => {
   const navigate = useNavigate();

@@ -6,7 +6,6 @@ import { useDispatch } from "react-redux";
 import { completePurchase } from "../../store/features/cartList";
 import { CartContext } from "./CartContext";
 import { markCatAsSold } from "../../store/features/catList";
-
 type CartProviderProps = {
   children: ReactNode;
 };
@@ -54,10 +53,10 @@ const useCatData = () => {
       ...cat,
       isSold: false,
       quantity: 0,
+      isFavorite: false,
     }));
     setCatData(transformedData);
   }, []);
-
   return { catData, setCatData };
 };
 
@@ -71,13 +70,11 @@ const useItemData = () => {
         ...item,
         isSold: false,
         quantity: 0,
+        isFavorite: false,
       })
     );
-
-
     setItemData(transformedData);
   }, []);
-
   return { itemData, setItemData };
 };
 
