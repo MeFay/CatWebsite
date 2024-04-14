@@ -106,14 +106,6 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
     if (item.id.startsWith("cat-")) {
       reduxDispatch(markCatAsSold(item.id));
     }
-    if (item.id.startsWith("cat-")) {
-      const catIndex = catData.findIndex((cat) => cat.id === item.id);
-      if (catIndex !== -1) {
-        const updatedData = [...catData];
-        updatedData[catIndex].isSold = true;
-        setCatData(updatedData);
-      }
-    }
   };
 
   const resetCart = () => {
