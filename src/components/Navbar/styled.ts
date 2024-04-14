@@ -73,34 +73,34 @@ export const StyledNavbarRight = styled.div`
 `;
 
 export const StyledLink = styled(Link)<{ $isActive: boolean }>`
- display: flex;
- flex-direction: row;
- align-items: center;
- color: ${(props) => (props.$isActive ? theme.Color4 : theme.Color1)};
- text-decoration: none;
- padding: 1rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: ${(props) => (props.$isActive ? theme.Color4 : theme.Color1)};
+  text-decoration: none;
+  padding: 1rem;
 
- @media ${device.tablet} {
+  @media ${device.tablet} {
     padding: 0.5rem;
- }
+  }
 
- @media ${device.mobile} {
+  @media ${device.mobile} {
     padding: 0.25rem;
- }
+  }
 
- &:hover {
+  &:hover {
     color: ${theme.Color4};
- }
+  }
 `;
 
-
 export const StyledLogo = styled.img`
-  width: 2em;
+  width: 2.2em;
+  padding: 1rem;
 `;
 
 export const StyledIcon = styled.img`
-  width: 1em;
-  padding: 0.8em;
+  width: 2em;
+  padding: 0.8rem;
   cursor: pointer;
 
   &#hamburger {
