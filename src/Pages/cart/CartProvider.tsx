@@ -134,6 +134,7 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
         };
         dispatch({ type: "UPDATE_CART", cart: newCart });
       } else {
+
         dispatch({ type: "REMOVE_FROM_CART", item });
       }
     }

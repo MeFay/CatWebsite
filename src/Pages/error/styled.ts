@@ -15,7 +15,7 @@ export const StyledLogo = styled.img`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 20%;
+  width: 25%;
 `;
 
 export const StyledWrapper = styled.div`

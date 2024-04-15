@@ -12,6 +12,9 @@ export const StyledTableWrapper = styled.div`
   text-align: center;
   justify-content: center;
   color: ${theme.Color4};
+  @media ${device.mobile} {
+  overflow-x: auto;
+  }
 `;
 
 export const StyledTable = styled.table`
