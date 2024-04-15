@@ -3,6 +3,8 @@ import { toast } from "react-toastify";
 import { CartContext } from "../../Pages/cart/CartContext";
 import { CartItem } from "../../types";
 import { Toast } from "../Toast/Toast";
+import { cartListSlice } from "../../store/features/cartList";
+import { useDispatch } from "react-redux";
 
 import {
   StyledForm,
@@ -32,7 +34,8 @@ export const PaymentForm = () => {
   });
   const [isLoading, setIsLoading] = useState(false);
   const [, setErrorMessage] = useState<string | null>(null);
-  const { cart } = useContext(CartContext);
+  const { cart, resetCart } = useContext(CartContext);
+  const dispatch = useDispatch();
 
   const calculateTotalPrice = () => {
     const itemsTotal = cart.reduce(
@@ -70,6 +73,10 @@ export const PaymentForm = () => {
       toast.success(
         "The transaction was successfully submitted! You will receive a confirmation email."
       );
+      //TODO:
+      //FIX THE RESETCART
+      dispatch(cartListSlice.actions.resetCart());
+      resetCart(); 
     } catch (err) {
       toast.error("There was an error. Please try again.");
     } finally {

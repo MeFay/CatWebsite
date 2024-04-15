@@ -42,8 +42,6 @@ export const NavbarLayout = () => {
   };
 
   const location = useLocation();
-
-  // Calculate the total quantity of items in the cart
   const totalQuantity = cart.reduce((total, item) => total + item.quantity, 0);
 
   const menuElements = NavBarLinks.map((item) => (
