@@ -14,8 +14,18 @@ export const cartListSlice = createSlice({
   initialState,
   reducers: {
     addToCart: (state, action: PayloadAction<CartItem>) => {
-      state.cart.push(action.payload);
+      const itemIndex = state.cart.findIndex(
+        (item) => item.id === action.payload.id
+      );
+      if (itemIndex !== -1) {
+        if (!action.payload.id.startsWith("cat")) {
+          state.cart[itemIndex].quantity += 1;
+        }
+      } else {
+        state.cart.push(action.payload);
+      }
     },
+
     removeFromCart: (state, action: PayloadAction<string>) => {
       state.cart = state.cart.filter((item) => item.id !== action.payload);
     },

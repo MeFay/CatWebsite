@@ -1,6 +1,9 @@
-import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { CartContext } from "./CartContext";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store";
+import { removeFromCart } from "../../store/features/cartList";
+
 import {
   StyledWrapper,
   StyledTitle,
@@ -13,12 +16,11 @@ import {
 
 export const MainSection = () => {
   const navigate = useNavigate();
-  const { cart, removeFromCart } = useContext(CartContext);
+  const dispatch = useDispatch();
+  const cart = useSelector((state: RootState) => state.cart.cart);
+
   const handleRemoveClick = (id: string) => {
-    const itemToRemove = cart.find((item) => item.id === id);
-    if (itemToRemove) {
-      removeFromCart(itemToRemove);
-    }
+    dispatch(removeFromCart(id));
   };
 
   const totalPrice = cart.reduce(
@@ -26,6 +28,7 @@ export const MainSection = () => {
     0
   );
   const isCartEmpty = cart.length === 0;
+  console.log("Total quantity: ", totalPrice);
 
   return (
     <StyledWrapper>

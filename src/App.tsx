@@ -1,6 +1,5 @@
 import { RouterProvider } from "react-router-dom";
 import { Provider, useDispatch } from "react-redux";
-import { CartProvider } from "./Pages/cart/CartProvider";
 import "react-toastify/dist/ReactToastify.css";
 import { router } from "./Router";
 import ReactDOM from "react-dom/client";
@@ -60,9 +59,7 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <CartProvider>
-        <RouterProvider router={router} />
-      </CartProvider>
+      <RouterProvider router={router} />
     </ThemeProvider>
   );
 }

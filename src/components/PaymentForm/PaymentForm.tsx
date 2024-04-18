@@ -1,22 +1,28 @@
-import React, { useState, useContext } from "react";
-import { toast } from "react-toastify";
-import { CartContext } from "../../Pages/cart/CartContext";
-import { CartItem } from "../../types";
-import { Toast } from "../Toast/Toast";
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { RootState } from "../../store";
+import {
+  updateForm,
+  setLoading,
+  setErrorMessage,
+  resetForm,
+} from "../../store/features/paymentForm";
 import { cartListSlice } from "../../store/features/cartList";
-import { useDispatch } from "react-redux";
-
+import { toast } from "react-toastify";
+import { Toast } from "../Toast/Toast";
+import { CartItem } from "../../types";
 import {
   StyledForm,
   StyledContainer,
   StyledLabelContainer,
-  StyledInputContainer,
   StyledLabel,
-  StyledSelect,
-  StyledButton,
+  StyledInputContainer,
   StyledInput,
+  StyledSelect,
   StyledTotal,
+  StyledButton,
 } from "./styled";
+import { markCatAsSold } from "../../store/features/catList";
 
 const paymentFees = [
   { name: "Card", fee: 0 },
@@ -26,15 +32,8 @@ const paymentFees = [
 ];
 
 export const PaymentForm = () => {
-  const [formState, setFormState] = useState({
-    address: "",
-    phoneNumber: "",
-    email: "",
-    paymentMethod: "",
-  });
-  const [isLoading, setIsLoading] = useState(false);
-  const [, setErrorMessage] = useState<string | null>(null);
-  const { cart, resetCart } = useContext(CartContext);
+  const cart = useSelector((state: RootState) => state.cart.cart);
+  const formState = useSelector((state: RootState) => state.paymentForm);
   const dispatch = useDispatch();
 
   const calculateTotalPrice = () => {
@@ -53,18 +52,18 @@ export const PaymentForm = () => {
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    setIsLoading(true);
-    setErrorMessage(null);
+    dispatch(setLoading(true));
+    dispatch(setErrorMessage(null));
 
     if (cart.length === 0) {
       toast.error("Your cart is empty. Please add items before checking out.");
-      setIsLoading(false);
+      dispatch(setLoading(false));
       return;
     }
 
     if (!formState.email.includes("@")) {
       toast.error("Please enter a valid email address.");
-      setIsLoading(false);
+      dispatch(setLoading(false));
       return;
     }
 
@@ -73,31 +72,28 @@ export const PaymentForm = () => {
       toast.success(
         "The transaction was successfully submitted! You will receive a confirmation email."
       );
-      //TODO:
-      //FIX THE RESETCART
+      cart.forEach((item) => {
+        if (item.id.startsWith("cat")) {
+          dispatch(markCatAsSold(item.id));
+        }
+      });
       dispatch(cartListSlice.actions.resetCart());
-      resetCart(); 
     } catch (err) {
       toast.error("There was an error. Please try again.");
     } finally {
-      setIsLoading(false);
+      dispatch(setLoading(false));
+      dispatch(resetForm());
     }
   };
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
-    setFormState({
-      ...formState,
-      [e.target.name]: e.target.value,
-    });
+    dispatch(updateForm({ [e.target.name]: e.target.value }));
   };
 
   const handleSelectChange = (selectedOption: any) => {
-    setFormState({
-      ...formState,
-      paymentMethod: selectedOption.value,
-    });
+    dispatch(updateForm({ paymentMethod: selectedOption.value }));
   };
 
   const options = paymentFees.map((method) => ({
@@ -147,9 +143,7 @@ export const PaymentForm = () => {
 
         <StyledTotal>Total: {calculateTotalPrice()}$</StyledTotal>
 
-        <StyledButton type="submit" disabled={isLoading}>
-          {isLoading ? "Processing... !" : "Pay"}
-        </StyledButton>
+        <StyledButton type="submit">Pay</StyledButton>
       </StyledForm>
     </>
   );

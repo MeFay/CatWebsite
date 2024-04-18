@@ -1,11 +1,10 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { useContext, useEffect } from "react";
+import { useEffect } from "react";
 import { RootState } from "../../store";
 import { toggleFavorite } from "../../store/features/catList";
 import isFavorite from "../../assets/isFavorite.png";
 import isNotFavorite from "../../assets/isNotFavorite.png";
-import { CartContext } from "../cart/CartContext";
 
 import {
   StyledWrapper,
@@ -16,6 +15,7 @@ import {
   StyledFavorite,
   StyledButton,
 } from "./styled";
+import { addToCart } from "../../store/features/cartList";
 
 export const MainSection = () => {
   const navigate = useNavigate();
@@ -23,7 +23,7 @@ export const MainSection = () => {
   const catData = useSelector((state: RootState) => state.catList.list);
   const numericCatId = Number(catId.replace("cat-", ""));
   const cat = catData.find((cat) => cat.id === `cat-${numericCatId}`);
-  const { cart, addToCart } = useContext(CartContext);
+  const cart = useSelector((state: RootState) => state.cart.cart);
   const isCatInCart = cart.some((item) => item.id === `cat-${numericCatId}`);
   const dispatch = useDispatch();
 
@@ -35,18 +35,16 @@ export const MainSection = () => {
 
   const handleBuyClick = () => {
     if (cat && catId !== undefined) {
-      addToCart({
-        id: `cat-${catId}`,
-        name: cat.name,
-        image: cat.image,
-        price: cat.price,
-        isSold: cat.isSold,
-        race: cat.race,
-        color: cat.color,
-        location: cat.location,
-        quantity: cat.quantity,
-        isFavorite: false,
-      });
+      const isCatInCart = cart.some((item) => item.id === `cat-${catId}`);
+      if (!isCatInCart) {
+        dispatch(
+          addToCart({
+            ...cat,
+            id: `cat-${catId}`,
+            quantity: 1,
+          })
+        );
+      }
     }
   };
 

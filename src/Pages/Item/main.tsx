@@ -1,10 +1,9 @@
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { useContext, useEffect } from "react";
+import { useEffect } from "react";
 import { RootState } from "../../store";
 import { toggleFavorite } from "../../store/features/itemList";
-import { CartContext } from "../cart/CartContext";
 import isFavorite from "../../assets/isFavorite.png";
 import isNotFavorite from "../../assets/isNotFavorite.png";
 import {
@@ -16,7 +15,7 @@ import {
   StyledFavorite,
   StyledButton,
 } from "./styled";
-
+import { addToCart } from "../../store/features/cartList";
 
 export const MainSection = () => {
   const navigate = useNavigate();
@@ -26,7 +25,7 @@ export const MainSection = () => {
   const item = itemData.find(
     (item) => item.id === `item-item-${numericItemId}`
   );
-  const { cart, addToCart } = useContext(CartContext);
+  const cart = useSelector((state: RootState) => state.cart.cart);
   const isItemInCart = cart.some((item) => item.id === `item-${numericItemId}`);
   const dispatch = useDispatch();
 
@@ -36,18 +35,16 @@ export const MainSection = () => {
     }
   }, [item, navigate]);
 
+
   const handleBuyClick = () => {
     if (item && itemId !== undefined) {
-      addToCart({
-        id: `item-${itemId}`,
-        name: item.name,
-        image: item.image,
-        price: item.price,
-        isSold: item.isSold,
-        category: item.category,
-        quantity: item.quantity,
-        isFavorite: item.isFavorite,
-      });
+      dispatch(
+        addToCart({
+          ...item,
+          id: `item-${itemId}`,
+          quantity: 1,
+        })
+      );
     }
   };
 

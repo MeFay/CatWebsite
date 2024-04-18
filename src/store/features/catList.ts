@@ -42,5 +42,6 @@ export const catListSlice = createSlice({
   },
 });
 
-export const { fillList, toggleFavorite, markCatAsSold, updateCatStatus } = catListSlice.actions;
+export const { fillList, toggleFavorite, markCatAsSold, updateCatStatus } =
+  catListSlice.actions;
 export default catListSlice.reducer;

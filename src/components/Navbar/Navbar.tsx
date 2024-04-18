@@ -1,6 +1,5 @@
 import { useLocation } from "react-router-dom";
-import { useContext, useState } from "react";
-import { CartContext } from "../../Pages/cart/CartContext";
+import { useEffect, useState } from "react";
 import hamburguer from "../../assets/navbarHamburguer.png";
 
 import {
@@ -11,9 +10,12 @@ import {
   StyledIcon,
   StyledLogo,
 } from "./styled";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store";
 
 export const NavbarLayout = () => {
-  const { cart } = useContext(CartContext);
+  const cart = useSelector((state: RootState) => state.cart.cart);
+
   const [isOpen, setIsOpen] = useState(false);
 
   const NavBarLinks = [
@@ -42,7 +44,10 @@ export const NavbarLayout = () => {
   };
 
   const location = useLocation();
-  const totalQuantity = cart.reduce((total, item) => total + item.quantity, 0);
+  const [totalQuantity, setTotalQuantity] = useState(0);
+  useEffect(() => {
+    setTotalQuantity(cart.reduce((total, item) => total + item.quantity, 0));
+  }, [cart]);
 
   const menuElements = NavBarLinks.map((item) => (
     <StyledLink
