@@ -7,18 +7,21 @@ interface CategoryFilterProps {
   setSelectedCategories: React.Dispatch<
     React.SetStateAction<Record<string, boolean>>
   >;
+  onCategorySelect: (category: string) => void;
 }
 
 const CategoryFilter: React.FC<CategoryFilterProps> = ({
   categories,
   selectedCategories,
   setSelectedCategories,
+  onCategorySelect,
 }) => {
   const handleCheckboxChange = (category: string) => {
     setSelectedCategories((prev) => ({
       ...prev,
       [category]: !prev[category],
     }));
+    onCategorySelect(category);
   };
 
   return (

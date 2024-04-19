@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { Table } from "../../components/Table/Table.tsx";
 import { SearchBar } from "../../components/SearchBar/SearchBar.tsx";
 import { Pagination } from "../../components/Pagination/Pagination.tsx";
@@ -36,6 +36,25 @@ export const MainSection = () => {
   const { pageId } = useParams();
   const [currentPage, setCurrentPage] = useState(Number(pageId) || 1);
   const dispatch = useDispatch();
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const selectedCategory = queryParams.get("category");
+
+  const handleCategorySelect = (category: string) => {
+    navigate(`/itemShop/${currentPage}?category=${category}`);
+  };
+
+  const filteredData = itemData
+    .filter((item) => {
+      if (!selectedCategory) return true;
+      return item.category === selectedCategory;
+    })
+    .filter((item) => {
+      if (debouncedSearch.toLowerCase() === "favorites") {
+        return item.isFavorite;
+      }
+      return item.name.toLowerCase().includes(debouncedSearch.toLowerCase());
+    });
 
   useEffect(() => {
     setCurrentPage(Number(pageId) || 1);
@@ -46,20 +65,6 @@ export const MainSection = () => {
   const [selectedCategories, setSelectedCategories] = useState<
     Record<string, boolean>
   >({});
-
-  const filteredData = itemData
-    .filter((item) => {
-      if (Object.values(selectedCategories).every((val) => !val)) {
-        return true;
-      }
-      return selectedCategories[item.category] || false;
-    })
-    .filter((item) => {
-      if (debouncedSearch.toLowerCase() === "favorites") {
-        return item.isFavorite;
-      }
-      return item.name.toLowerCase().includes(debouncedSearch.toLowerCase());
-    });
 
   const currentItems = filteredData.slice(
     (currentPage - 1) * itemsPerPage,
@@ -94,7 +99,9 @@ export const MainSection = () => {
             categories={categories}
             selectedCategories={selectedCategories}
             setSelectedCategories={setSelectedCategories}
+            onCategorySelect={handleCategorySelect}
           />
+
           <Table
             headers={["Name", "Category", "Photo", "Favorite"]}
             lines={tableLines}
