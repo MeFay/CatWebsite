@@ -41,13 +41,23 @@ export const MainSection = () => {
   const selectedCategory = queryParams.get("category");
 
   const handleCategorySelect = (category: string) => {
-    navigate(`/itemShop/${currentPage}?category=${category}`);
+    let currentCategories = queryParams.get("category")?.split(",") || [];
+
+    if (currentCategories.includes(category)) {
+      currentCategories = currentCategories.filter((cat) => cat !== category);
+    } else {
+      currentCategories.push(category);
+    }
+    navigate(
+      `/itemShop/${currentPage}?category=${currentCategories.join(",")}`
+    );
   };
 
   const filteredData = itemData
     .filter((item) => {
       if (!selectedCategory) return true;
-      return item.category === selectedCategory;
+      const categories = selectedCategory.split(",");
+      return categories.includes(item.category);
     })
     .filter((item) => {
       if (debouncedSearch.toLowerCase() === "favorites") {
@@ -87,7 +97,7 @@ export const MainSection = () => {
 
   const handlePageChange = ({ selected }: { selected: number }) => {
     setCurrentPage(selected + 1);
-    navigate(`/itemShop/${selected + 1}`);
+    navigate(`/itemShop/${selected + 1}?category=${selectedCategory}`);
   };
 
   return (
